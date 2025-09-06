@@ -45,16 +45,6 @@
             mix-blend-mode: difference;
         }
 
-        .cursor-follower {
-            width: 40px;
-            height: 40px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            z-index: 9999;
-        }
 
         /* Premium Navigation */
         nav {
@@ -768,7 +758,6 @@
 
     <!-- Custom Cursor -->
     <div class="cursor"></div>
-    <div class="cursor-follower"></div>
 
     <!-- Navigation -->
     <nav id="navbar">
@@ -931,10 +920,8 @@
 
         // Custom Cursor
         const cursor = document.querySelector('.cursor');
-        const follower = document.querySelector('.cursor-follower');
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
-        let followerX = 0, followerY = 0;
 
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
@@ -947,11 +934,6 @@
             cursor.style.left = cursorX - 10 + 'px';
             cursor.style.top = cursorY - 10 + 'px';
 
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
-            follower.style.left = followerX - 20 + 'px';
-            follower.style.top = followerY - 20 + 'px';
-
             requestAnimationFrame(animateCursor);
         }
         animateCursor();
@@ -961,11 +943,9 @@
         links.forEach(link => {
             link.addEventListener('mouseenter', () => {
                 cursor.style.transform = 'scale(1.5)';
-                follower.style.transform = 'scale(1.5)';
             });
             link.addEventListener('mouseleave', () => {
                 cursor.style.transform = 'scale(1)';
-                follower.style.transform = 'scale(1)';
             });
         });
 
