@@ -1025,15 +1025,6 @@
             });
         });
 
-        // Parallax effect for hero video container
-        const heroVideo = document.querySelector('.hero-video-container');
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = scrolled * 0.5;
-            if (heroVideo) {
-                heroVideo.style.transform = `translate(-50%, calc(-50% + ${parallax}px))`;
-            }
-        });
 
 
         // Add typing effect to hero title on load
