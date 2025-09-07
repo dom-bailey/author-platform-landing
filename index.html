@@ -649,28 +649,31 @@
             align-items: center;
             margin-bottom: 150px;
             position: relative;
+        }
+        
+        /* Remove the initial opacity and transform since .reveal handles it */
+        .process-step.reveal {
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInStep 0.8s ease forwards;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
-        .process-step:nth-child(1) {
-            animation-delay: 0.6s;
+        .process-step.reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
         
-        .process-step:nth-child(2) {
-            animation-delay: 1.2s;
+        /* Stagger the transitions for a cascade effect */
+        .process-step:nth-child(1).reveal {
+            transition-delay: 0.1s;
         }
         
-        .process-step:nth-child(3) {
-            animation-delay: 1.8s;
+        .process-step:nth-child(2).reveal {
+            transition-delay: 0.2s;
         }
         
-        @keyframes fadeInStep {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .process-step:nth-child(3).reveal {
+            transition-delay: 0.3s;
         }
         
         /* Connection lines between steps */
@@ -680,24 +683,29 @@
             left: 50%;
             bottom: -150px;
             width: 2px;
-            height: 150px;
+            height: 0;
             background: var(--accent);
             transform: translateX(-50%);
             opacity: 0;
-            animation: growConnection 0.5s ease forwards;
             z-index: 1;
+            transition: none;
         }
         
         .process-step:last-child::after {
             display: none;
         }
         
-        .process-step:nth-child(1)::after {
-            animation-delay: 1.2s;
+        /* Animate lines only after the card becomes active */
+        .process-step.active::after {
+            animation: growConnection 0.8s ease forwards;
         }
         
-        .process-step:nth-child(2)::after {
-            animation-delay: 1.8s;
+        .process-step:nth-child(1).active::after {
+            animation-delay: 0.5s;
+        }
+        
+        .process-step:nth-child(2).active::after {
+            animation-delay: 0.6s;
         }
         
         @keyframes growConnection {
