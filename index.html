@@ -847,21 +847,7 @@
                        0 0 150px rgba(74, 222, 128, 0.2);
         }
 
-        .video-glow {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(74, 222, 128, 0.15) 0%, transparent 70%);
-            animation: pulseGlow 4s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-        }
+        /* Removed video-glow to fix random rectangle issue */
 
         .video-frame {
             position: relative;
@@ -1687,7 +1673,6 @@
                 <div class="video-decoration bottom-right"></div>
                 
                 <div class="video-container reveal">
-                    <div class="video-glow"></div>
                     <div class="video-frame">
                         <video id="demoVideo" controls poster="">
                             <source src="/assets/author-media/demo-video.mp4" type="video/mp4">
