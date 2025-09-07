@@ -695,17 +695,9 @@
             display: none;
         }
         
-        /* Animate lines only after the card becomes active */
-        .process-step.active::after {
+        /* Lines will be animated via JavaScript when next card appears */
+        .process-step.show-line::after {
             animation: growConnection 0.8s ease forwards;
-        }
-        
-        .process-step:nth-child(1).active::after {
-            animation-delay: 0.5s;
-        }
-        
-        .process-step:nth-child(2).active::after {
-            animation-delay: 0.6s;
         }
         
         @keyframes growConnection {
@@ -2082,6 +2074,25 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    
+                    // Handle process step line animations
+                    if (entry.target.classList.contains('process-step')) {
+                        const processSteps = document.querySelectorAll('.process-step');
+                        const currentIndex = Array.from(processSteps).indexOf(entry.target);
+                        
+                        // When card 2 appears, show line from card 1
+                        if (currentIndex === 1) {
+                            setTimeout(() => {
+                                processSteps[0].classList.add('show-line');
+                            }, 300);
+                        }
+                        // When card 3 appears, show line from card 2
+                        else if (currentIndex === 2) {
+                            setTimeout(() => {
+                                processSteps[1].classList.add('show-line');
+                            }, 300);
+                        }
+                    }
                 }
             });
         }, revealOptions);
