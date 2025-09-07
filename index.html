@@ -1025,53 +1025,531 @@
             transform: translateY(0);
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            nav {
-                padding: 20px;
+        /* RESPONSIVE BREAKPOINTS - SNAP BEHAVIOR */
+        /* Each breakpoint maintains fixed sizes until the next breakpoint */
+        
+        /* ========== 4K/Ultra-wide Monitors (2560px+) ========== */
+        @media (min-width: 2560px) {
+            .hero-content {
+                max-width: 1200px;
             }
-
+            
+            .hero h1 {
+                font-size: 6rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .image-stack.left {
+                left: calc(50% - 450px);
+            }
+            
+            .image-stack.right {
+                right: calc(50% - 450px);
+            }
+        }
+        
+        /* ========== Full HD Desktop (1920px - 2559px) ========== */
+        @media (min-width: 1920px) and (max-width: 2559px) {
+            .hero h1 {
+                font-size: 5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            /* Image stacks stay at current positions */
+        }
+        
+        /* ========== Large Desktop (1440px - 1919px) ========== */
+        @media (min-width: 1440px) and (max-width: 1919px) {
+            nav {
+                padding: 25px 50px;
+            }
+            
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.25rem;
+            }
+            
+            .hero-video-container {
+                padding: 35px 50px;
+            }
+            
+            .image-stack.left {
+                left: calc(50% - 340px);
+            }
+            
+            .image-stack.right {
+                right: calc(50% - 340px);
+            }
+            
+            /* Slightly smaller image sizes */
+            .image-stack.left .stack-image:nth-child(1),
+            .image-stack.right .stack-image:nth-child(1) {
+                width: 200px;
+                height: 133px;
+            }
+            
+            .image-stack.left .stack-image:nth-child(2),
+            .image-stack.right .stack-image:nth-child(2) {
+                width: 245px;
+                height: 163px;
+            }
+            
+            .image-stack.left .stack-image:nth-child(3),
+            .image-stack.right .stack-image:nth-child(3) {
+                width: 290px;
+                height: 193px;
+            }
+        }
+        
+        /* ========== Desktop (1280px - 1439px) ========== */
+        @media (min-width: 1280px) and (max-width: 1439px) {
+            nav {
+                padding: 25px 45px;
+            }
+            
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-video-container {
+                padding: 30px 45px;
+            }
+            
+            .image-stack.left {
+                left: calc(50% - 320px);
+            }
+            
+            .image-stack.right {
+                right: calc(50% - 320px);
+            }
+            
+            /* Smaller image sizes */
+            .image-stack.left .stack-image:nth-child(1),
+            .image-stack.right .stack-image:nth-child(1) {
+                width: 180px;
+                height: 120px;
+            }
+            
+            .image-stack.left .stack-image:nth-child(2),
+            .image-stack.right .stack-image:nth-child(2) {
+                width: 220px;
+                height: 147px;
+            }
+            
+            .image-stack.left .stack-image:nth-child(3),
+            .image-stack.right .stack-image:nth-child(3) {
+                width: 260px;
+                height: 173px;
+            }
+        }
+        
+        /* ========== Small Desktop/Large Tablet Landscape (1024px - 1279px) ========== */
+        @media (min-width: 1024px) and (max-width: 1279px) {
+            nav {
+                padding: 20px 40px;
+            }
+            
             .nav-links {
+                gap: 35px;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.15rem;
+                margin-bottom: 40px;
+            }
+            
+            .hero-video-container {
+                padding: 25px 40px;
+            }
+            
+            .hero-badge {
+                font-size: 12px;
+                margin-bottom: 25px;
+            }
+            
+            .cta-button {
+                padding: 18px 45px;
+                font-size: 15px;
+            }
+            
+            /* Hide image stacks at this size */
+            .image-stack {
                 display: none;
             }
-
-            section {
-                padding: 80px 20px;
+            
+            .scroll-indicator {
+                bottom: 20px;
             }
-
+        }
+        
+        /* ========== Tablet Portrait (768px - 1023px) ========== */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            nav {
+                padding: 20px 30px;
+            }
+            
+            .nav-links {
+                gap: 25px;
+            }
+            
+            .nav-links a {
+                font-size: 14px;
+            }
+            
+            .nav-cta {
+                padding: 10px 24px;
+            }
+            
             .hero h1 {
                 font-size: 3rem;
+                letter-spacing: -2px;
             }
-
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 35px;
+            }
+            
+            .hero-video-container {
+                padding: 25px 35px;
+                margin: 0 20px;
+            }
+            
+            .hero-badge {
+                font-size: 11px;
+                padding: 6px 16px;
+                margin-bottom: 20px;
+            }
+            
+            .cta-button {
+                padding: 16px 40px;
+                font-size: 14px;
+            }
+            
+            .image-stack {
+                display: none;
+            }
+            
+            .scroll-indicator {
+                bottom: 15px;
+            }
+            
+            .scroll-text {
+                font-size: 12px;
+            }
+            
+            /* Other sections */
+            section {
+                padding: 100px 40px;
+            }
+            
             .comparison-grid,
             .bento-grid {
                 grid-template-columns: 1fr;
             }
-
+            
             .bento-card:nth-child(1) {
                 grid-column: span 1;
             }
-
-            .process-timeline:before {
-                left: 30px;
+        }
+        
+        /* ========== Tablet Landscape (640px - 767px) ========== */
+        @media (min-width: 640px) and (max-width: 767px) and (orientation: landscape) {
+            .hero {
+                min-height: 100vh;
             }
-
-            .process-step,
-            .process-step:nth-child(even) {
-                flex-direction: column;
+            
+            nav {
+                padding: 15px 25px;
             }
-
-            .step-number {
-                position: relative;
-                left: 0;
-                transform: none;
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+                margin-bottom: 20px;
+            }
+            
+            .hero .subtitle {
+                font-size: 1rem;
                 margin-bottom: 30px;
+                line-height: 1.4;
             }
-
-            .comparison-card,
-            .step-content,
-            .bento-card {
-                padding: 40px;
+            
+            .hero-video-container {
+                padding: 20px 30px;
+                margin: 0 20px;
+            }
+            
+            .hero-badge {
+                font-size: 10px;
+                padding: 5px 14px;
+                margin-bottom: 15px;
+            }
+            
+            .cta-button {
+                padding: 14px 35px;
+                font-size: 14px;
+            }
+            
+            .image-stack {
+                display: none;
+            }
+            
+            .scroll-indicator {
+                display: none;
+            }
+        }
+        
+        /* ========== Mobile Portrait (480px - 639px) ========== */
+        @media (min-width: 480px) and (max-width: 639px) {
+            nav {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.25rem;
+                letter-spacing: -1px;
+                margin-bottom: 20px;
+            }
+            
+            .hero .subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 30px;
+                padding: 0 10px;
+            }
+            
+            .hero-video-container {
+                padding: 20px 25px;
+                margin: 0 15px;
+            }
+            
+            .hero-badge {
+                font-size: 10px;
+                padding: 5px 12px;
+                margin-bottom: 15px;
+            }
+            
+            .cta-button {
+                padding: 14px 30px;
+                font-size: 13px;
+            }
+            
+            .image-stack {
+                display: none;
+            }
+            
+            .scroll-indicator {
+                bottom: 10px;
+            }
+            
+            .scroll-text {
+                font-size: 10px;
+                margin-bottom: 15px;
+            }
+            
+            /* Other sections */
+            section {
+                padding: 80px 20px;
+            }
+        }
+        
+        /* ========== Small Mobile (375px - 479px) ========== */
+        @media (min-width: 375px) and (max-width: 479px) {
+            nav {
+                padding: 18px;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: -0.5px;
+                margin-bottom: 18px;
+            }
+            
+            .hero .subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 25px;
+                padding: 0 10px;
+                line-height: 1.5;
+            }
+            
+            .hero-video-container {
+                padding: 18px 20px;
+                margin: 0 10px;
+                border-radius: 20px;
+            }
+            
+            .hero-badge {
+                font-size: 9px;
+                padding: 4px 10px;
+                margin-bottom: 12px;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 13px;
+            }
+            
+            .image-stack {
+                display: none;
+            }
+            
+            .scroll-indicator {
+                display: none;
+            }
+            
+            section {
+                padding: 60px 18px;
+            }
+        }
+        
+        /* ========== Extra Small Mobile (< 375px) ========== */
+        @media (max-width: 374px) {
+            nav {
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 1.75rem;
+                letter-spacing: 0;
+                margin-bottom: 15px;
+            }
+            
+            .hero .subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 20px;
+                padding: 0 5px;
+                line-height: 1.4;
+            }
+            
+            .hero-video-container {
+                padding: 15px;
+                margin: 0 8px;
+                border-radius: 15px;
+            }
+            
+            .hero-badge {
+                font-size: 8px;
+                padding: 3px 8px;
+                margin-bottom: 10px;
+            }
+            
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+            
+            .image-stack {
+                display: none;
+            }
+            
+            .scroll-indicator {
+                display: none;
+            }
+            
+            .particles {
+                display: none; /* Performance on very small devices */
+            }
+            
+            section {
+                padding: 50px 15px;
+            }
+        }
+        
+        /* ========== Touch Device Adjustments ========== */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor {
+                display: none;
+            }
+            
+            /* Simplify hover effects for touch */
+            .cta-button:hover:before {
+                width: 0;
+                height: 0;
+            }
+            
+            .nav-links a:hover:after {
+                width: 0;
+            }
+        }
+        
+        /* ========== Landscape Orientation Adjustments ========== */
+        @media (max-width: 896px) and (orientation: landscape) {
+            .hero {
+                min-height: 100vh;
+                height: auto;
+            }
+            
+            .hero-content {
+                padding: 20px 0;
+            }
+            
+            .hero h1 {
+                margin-bottom: 15px;
+            }
+            
+            .hero .subtitle {
+                margin-bottom: 20px;
+            }
+            
+            .scroll-indicator {
+                display: none;
+            }
+        }
+        
+        /* ========== High DPI Screens ========== */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .hero-badge,
+            .section-label {
+                border-width: 0.5px;
             }
         }
 
@@ -1177,8 +1655,8 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Experience the Magic</span>
-                <h2>See Your Story Transform</h2>
-                <p>Watch how we bring narratives to life with immersive multimedia</p>
+                <h2>View Demo</h2>
+                <p>Watch how we bring a story to life with videos, images, maps, and characters.</p>
             </div>
             
             <div class="video-wrapper">
