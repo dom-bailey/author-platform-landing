@@ -881,40 +881,63 @@
             border-radius: 20px;
         }
 
-        .video-controls {
+        /* Center Play Button Overlay */
+        .video-play-overlay {
             position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
-            gap: 20px;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px 30px;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(74, 222, 128, 0.3);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .video-container:hover .video-controls {
-            opacity: 1;
-        }
-
-        .video-control-btn {
-            background: transparent;
-            border: none;
-            color: var(--text);
-            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 5px;
+            transition: opacity 0.3s ease;
+            z-index: 10;
         }
 
-        .video-control-btn:hover {
-            color: var(--accent);
-            transform: scale(1.2);
+        .video-play-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-button-center {
+            width: 80px;
+            height: 80px;
+            background: rgba(74, 222, 128, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 
+                0 0 40px rgba(74, 222, 128, 0.6),
+                0 0 60px rgba(74, 222, 128, 0.4),
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .video-play-overlay:hover .play-button-center {
+            transform: scale(1.1);
+            background: rgba(74, 222, 128, 1);
+            box-shadow: 
+                0 0 50px rgba(74, 222, 128, 0.8),
+                0 0 80px rgba(74, 222, 128, 0.5),
+                0 6px 30px rgba(0, 0, 0, 0.4),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .play-button-center::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 22px solid #0a0a0a;
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            margin-left: 4px;
         }
 
         .video-decoration {
@@ -1670,12 +1693,9 @@
                             <source src="/assets/author-media/demo-video.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                    </div>
-                    <div class="video-controls">
-                        <button class="video-control-btn" onclick="document.getElementById('demoVideo').play()">▶</button>
-                        <button class="video-control-btn" onclick="document.getElementById('demoVideo').pause()">⏸</button>
-                        <button class="video-control-btn" onclick="document.getElementById('demoVideo').muted = !document.getElementById('demoVideo').muted">🔊</button>
-                        <button class="video-control-btn" onclick="document.getElementById('demoVideo').requestFullscreen()">⛶</button>
+                        <div class="video-play-overlay" id="playOverlay">
+                            <div class="play-button-center"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1811,6 +1831,35 @@
                 document.getElementById('loader').classList.add('hidden');
             }, 1000);
         });
+
+        // Video Play Button Handler
+        const video = document.getElementById('demoVideo');
+        const playOverlay = document.getElementById('playOverlay');
+        
+        if (video && playOverlay) {
+            // Handle play overlay click
+            playOverlay.addEventListener('click', function() {
+                video.play();
+                playOverlay.classList.add('hidden');
+            });
+            
+            // Show overlay when video is paused
+            video.addEventListener('pause', function() {
+                if (video.currentTime > 0 && !video.ended) {
+                    playOverlay.classList.remove('hidden');
+                }
+            });
+            
+            // Hide overlay when video plays
+            video.addEventListener('play', function() {
+                playOverlay.classList.add('hidden');
+            });
+            
+            // Show overlay when video ends
+            video.addEventListener('ended', function() {
+                playOverlay.classList.remove('hidden');
+            });
+        }
 
         // Custom Cursor
         const cursor = document.querySelector('.cursor');
