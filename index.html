@@ -287,10 +287,16 @@
             border-radius: 15px;
             border: 3px solid #22c55e;
             box-shadow: 0 15px 35px rgba(34, 197, 94, 0.3), 0 5px 15px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             transform-style: preserve-3d;
             object-fit: cover;
             pointer-events: auto;
+            opacity: 0;
+            transform: scale(0.3);
+        }
+        
+        .stack-image.animate-in {
+            opacity: 1;
         }
         
         
@@ -300,26 +306,42 @@
             height: 120px;
             bottom: 0;
             right: -100px;
-            transform: rotateY(15deg) rotateX(5deg);
             z-index: 1;
         }
         
         .image-stack.left .stack-image:nth-child(2) {
             width: 220px;
             height: 147px;
-            bottom: 50px;
-            right: -40px;
-            transform: rotateY(15deg) rotateX(5deg);
+            bottom: 0;
+            right: -100px;
             z-index: 2;
         }
         
         .image-stack.left .stack-image:nth-child(3) {
             width: 260px;
             height: 173px;
+            bottom: 0;
+            right: -100px;
+            z-index: 3;
+        }
+        
+        /* Animated final positions for left stack */
+        .image-stack.left .stack-image:nth-child(1).animate-in {
+            transform: rotateY(15deg) rotateX(5deg) scale(1);
+        }
+        
+        .image-stack.left .stack-image:nth-child(2).animate-in {
+            bottom: 50px;
+            right: -40px;
+            transform: rotateY(15deg) rotateX(5deg) scale(1);
+            transition-delay: 0.15s;
+        }
+        
+        .image-stack.left .stack-image:nth-child(3).animate-in {
             bottom: 120px;
             right: 20px;
-            transform: rotateY(15deg) rotateX(5deg);
-            z-index: 3;
+            transform: rotateY(15deg) rotateX(5deg) scale(1);
+            transition-delay: 0.3s;
         }
         
         /* Right stack positioning and sizing */
@@ -328,26 +350,42 @@
             height: 120px;
             bottom: 0;
             left: -100px;
-            transform: rotateY(-15deg) rotateX(5deg);
             z-index: 1;
         }
         
         .image-stack.right .stack-image:nth-child(2) {
             width: 220px;
             height: 147px;
-            bottom: 50px;
-            left: -40px;
-            transform: rotateY(-15deg) rotateX(5deg);
+            bottom: 0;
+            left: -100px;
             z-index: 2;
         }
         
         .image-stack.right .stack-image:nth-child(3) {
             width: 260px;
             height: 173px;
+            bottom: 0;
+            left: -100px;
+            z-index: 3;
+        }
+        
+        /* Animated final positions for right stack */
+        .image-stack.right .stack-image:nth-child(1).animate-in {
+            transform: rotateY(-15deg) rotateX(5deg) scale(1);
+        }
+        
+        .image-stack.right .stack-image:nth-child(2).animate-in {
+            bottom: 50px;
+            left: -40px;
+            transform: rotateY(-15deg) rotateX(5deg) scale(1);
+            transition-delay: 0.15s;
+        }
+        
+        .image-stack.right .stack-image:nth-child(3).animate-in {
             bottom: 120px;
             left: 20px;
-            transform: rotateY(-15deg) rotateX(5deg);
-            z-index: 3;
+            transform: rotateY(-15deg) rotateX(5deg) scale(1);
+            transition-delay: 0.3s;
         }
 
         /* Premium CTA Button */
@@ -1150,6 +1188,14 @@
 
         // Initialize typing effect after loader
         setTimeout(typeWriter, 1200);
+        
+        // Animate image stacks after loader
+        setTimeout(() => {
+            const stackImages = document.querySelectorAll('.stack-image');
+            stackImages.forEach(img => {
+                img.classList.add('animate-in');
+            });
+        }, 1400);
 
         // Add hover effect to comparison and bento cards
         const cards = document.querySelectorAll('.comparison-card, .bento-card, .step-content');
