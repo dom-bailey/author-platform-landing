@@ -171,6 +171,7 @@
             top: -20vh;
             overflow: hidden;
             pointer-events: none;
+            z-index: 1;
         }
 
         .particle {
@@ -180,11 +181,11 @@
             background: #4ade80;
             border-radius: 50%;
             opacity: 0.8;
-            animation: float 20s infinite linear;
+            animation: floatParticle 20s infinite linear;
             box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
         }
 
-        @keyframes float {
+        @keyframes floatParticle {
             from {
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
@@ -250,7 +251,28 @@
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientShift 3s ease infinite;
+            animation: heroTitleReveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) 1.4s forwards,
+                       gradientShift 3s ease infinite 2.9s;
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            filter: blur(10px);
+        }
+
+        @keyframes heroTitleReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+                filter: blur(10px);
+            }
+            20% {
+                opacity: 0.5;
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0px);
+            }
         }
 
         @keyframes gradientShift {
@@ -1445,7 +1467,7 @@
         }
 
         // Initialize typing effect after loader
-        setTimeout(typeWriter, 1200);
+        // setTimeout(typeWriter, 1200); // Disabled - using scale/blur animation instead
         
         // Animate image stacks after loader
         setTimeout(() => {
