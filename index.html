@@ -228,6 +228,7 @@
             z-index: 10;
             max-width: 1000px;
             width: 100%;
+            overflow: visible;
         }
 
         .hero-badge {
@@ -255,9 +256,12 @@
             line-height: 0.95;
             letter-spacing: -3px;
             margin-bottom: 30px;
+            padding: 0 5px;
+            overflow: visible;
             background: linear-gradient(135deg, #ffffff 0%, #4ade80 50%, #ffffff 100%);
             background-size: 200% 200%;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: heroTitleReveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) 1.4s forwards,
                        gradientShift 3s ease infinite 2.9s;
