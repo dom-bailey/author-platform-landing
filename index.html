@@ -202,32 +202,24 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 1200px;
-            height: 70%;
+            width: fit-content;
+            padding: 40px 60px;
             background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(74, 222, 128, 0.05));
             border: 2px solid rgba(74, 222, 128, 0.4);
             border-radius: 30px;
-            overflow: hidden;
             backdrop-filter: blur(20px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--text-muted);
             box-shadow: 0 20px 40px rgba(74, 222, 128, 0.3), 
                        0 0 20px rgba(74, 222, 128, 0.2);
+            pointer-events: none;
+            z-index: 5;
         }
 
         .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
             text-align: center;
             z-index: 10;
             max-width: 1000px;
-            width: 90%;
+            width: 100%;
         }
 
         .hero-badge {
@@ -250,7 +242,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2.5rem, 7vw, 5rem);
             font-weight: 900;
             line-height: 0.95;
             letter-spacing: -3px;
@@ -1139,13 +1131,12 @@
         </div>
         
         <div class="hero-video-container">
-        </div>
-        
-        <div class="hero-content">
-            <div class="hero-badge">Exclusive Author Platform</div>
-            <h1>Where Great Stories<br>Come to Life</h1>
-            <p class="subtitle">Transform your novels into immersive multimedia experiences.<br>We handle the production. You captivate readers like never before.</p>
-            <a href="#cta" class="cta-button"><span>Request an Invitation</span></a>
+            <div class="hero-content">
+                <div class="hero-badge">Exclusive Author Platform</div>
+                <h1>Where Great Stories<br>Come to Life</h1>
+                <p class="subtitle">Transform your novels into immersive multimedia experiences.<br>We handle the production. You captivate readers like never before.</p>
+                <a href="#cta" class="cta-button"><span>Request an Invitation</span></a>
+            </div>
         </div>
         
         <!-- Scroll Indicator -->
