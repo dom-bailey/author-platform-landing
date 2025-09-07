@@ -475,6 +475,44 @@
         .problem-solution-section {
             background: linear-gradient(180deg, #0a0f0a 0%, #1a2e1a 100%);
             position: relative;
+            overflow: hidden;
+        }
+
+        /* Section-specific particles */
+        .particles-section {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .problem-solution-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .particle-section {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #4ade80;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: floatParticleSection 20s infinite linear;
+            box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+        }
+
+        @keyframes floatParticleSection {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+            to {
+                transform: translateY(-120vh) rotate(360deg);
+            }
         }
 
         .section-header {
@@ -1689,6 +1727,7 @@
 
     <!-- Problem & Solution -->
     <section id="problem" class="problem-solution-section">
+        <div class="particles-section" id="particles-problem"></div>
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">The Challenge & Solution</span>
@@ -1912,6 +1951,40 @@
 
         // Continue creating new particles from the bottom
         setInterval(() => createParticle(false), 250);
+
+        // Particles for Problem Section
+        function createSectionParticle(containerId, isInitial = false) {
+            const particlesContainer = document.getElementById(containerId);
+            if (!particlesContainer) return;
+            
+            const particle = document.createElement('div');
+            particle.className = 'particle-section';
+            particle.style.left = Math.random() * 100 + '%';
+            
+            if (isInitial) {
+                const randomTop = Math.random() * 100;
+                particle.style.top = randomTop + '%';
+                particle.style.animationDelay = '0s';
+            } else {
+                particle.style.top = '110%';
+                particle.style.animationDelay = '0s';
+            }
+            
+            particle.style.animationDuration = (20 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 45000);
+        }
+
+        // Create initial particles for problem section
+        for (let i = 0; i < 30; i++) {
+            createSectionParticle('particles-problem', true);
+        }
+
+        // Continue creating new particles for problem section
+        setInterval(() => createSectionParticle('particles-problem', false), 400);
 
         // Navbar scroll effect
         let lastScroll = 0;
