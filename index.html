@@ -708,7 +708,7 @@
         /* Animated Arrow */
         .scroll-indicator {
             position: absolute;
-            bottom: 60px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -724,7 +724,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             opacity: 0.8;
             transition: all 0.3s ease;
         }
@@ -742,54 +742,29 @@
 
         .arrow {
             position: absolute;
-            top: 0;
             left: 50%;
-            transform: translateX(-50%);
             width: 20px;
             height: 20px;
             border-right: 3px solid;
             border-bottom: 3px solid;
             transform: translateX(-50%) rotate(45deg);
-            animation: arrowBounce 2s infinite;
         }
 
         .arrow:nth-child(1) {
-            animation: arrowColorShift1 3s linear infinite, arrowBounce 2s infinite;
+            top: 0;
+            border-color: var(--accent);
         }
 
         .arrow:nth-child(2) {
-            top: 10px;
-            animation: arrowColorShift2 3s linear infinite, arrowBounce 2s infinite 0.2s;
-            opacity: 0.7;
+            top: 12px;
+            border-color: var(--accent);
+            opacity: 0.6;
         }
 
         .arrow:nth-child(3) {
-            top: 20px;
-            animation: arrowColorShift3 3s linear infinite, arrowBounce 2s infinite 0.4s;
-            opacity: 0.4;
-        }
-
-        @keyframes arrowColorShift1 {
-            0%, 100% { border-color: var(--accent); }
-            33% { border-color: var(--accent-bright); }
-            66% { border-color: #22c55e; }
-        }
-
-        @keyframes arrowColorShift2 {
-            0%, 100% { border-color: var(--accent-bright); }
-            33% { border-color: #22c55e; }
-            66% { border-color: var(--accent); }
-        }
-
-        @keyframes arrowColorShift3 {
-            0%, 100% { border-color: #22c55e; }
-            33% { border-color: var(--accent); }
-            66% { border-color: var(--accent-bright); }
-        }
-
-        @keyframes arrowBounce {
-            0%, 100% { transform: translateX(-50%) rotate(45deg) translateY(0); }
-            50% { transform: translateX(-50%) rotate(45deg) translateY(10px); }
+            top: 24px;
+            border-color: var(--accent);
+            opacity: 0.3;
         }
 
         /* Video Demo Section */
