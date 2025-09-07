@@ -705,6 +705,245 @@
             50% { transform: translateY(-10px); }
         }
 
+        /* Animated Arrow */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .scroll-text {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-indicator:hover .scroll-text {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .arrow-container {
+            width: 30px;
+            height: 50px;
+            position: relative;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-right: 3px solid;
+            border-bottom: 3px solid;
+            transform: translateX(-50%) rotate(45deg);
+            animation: arrowBounce 2s infinite;
+        }
+
+        .arrow:nth-child(1) {
+            animation: arrowColorShift1 3s linear infinite, arrowBounce 2s infinite;
+        }
+
+        .arrow:nth-child(2) {
+            top: 10px;
+            animation: arrowColorShift2 3s linear infinite, arrowBounce 2s infinite 0.2s;
+            opacity: 0.7;
+        }
+
+        .arrow:nth-child(3) {
+            top: 20px;
+            animation: arrowColorShift3 3s linear infinite, arrowBounce 2s infinite 0.4s;
+            opacity: 0.4;
+        }
+
+        @keyframes arrowColorShift1 {
+            0%, 100% { border-color: var(--accent); }
+            33% { border-color: var(--accent-bright); }
+            66% { border-color: #22c55e; }
+        }
+
+        @keyframes arrowColorShift2 {
+            0%, 100% { border-color: var(--accent-bright); }
+            33% { border-color: #22c55e; }
+            66% { border-color: var(--accent); }
+        }
+
+        @keyframes arrowColorShift3 {
+            0%, 100% { border-color: #22c55e; }
+            33% { border-color: var(--accent); }
+            66% { border-color: var(--accent-bright); }
+        }
+
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateX(-50%) rotate(45deg) translateY(0); }
+            50% { transform: translateX(-50%) rotate(45deg) translateY(10px); }
+        }
+
+        /* Video Demo Section */
+        .video-demo-section {
+            background: #000000;
+            padding: 120px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-demo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .video-demo-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .video-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .video-container {
+            position: relative;
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 20px;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5),
+                       0 0 100px rgba(74, 222, 128, 0.1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .video-container:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5),
+                       0 0 150px rgba(74, 222, 128, 0.2);
+        }
+
+        .video-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(74, 222, 128, 0.15) 0%, transparent 70%);
+            animation: pulseGlow 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .video-frame {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .video-frame video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-container:hover .video-controls {
+            opacity: 1;
+        }
+
+        .video-control-btn {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px;
+        }
+
+        .video-control-btn:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .video-decoration {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent), transparent);
+            opacity: 0.1;
+            filter: blur(100px);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .video-decoration.top-left {
+            top: -150px;
+            left: -150px;
+        }
+
+        .video-decoration.bottom-right {
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
         .bento-card h3 {
             font-size: 36px;
             font-weight: 800;
@@ -916,10 +1155,52 @@
         </div>
         
         <div class="hero-content">
-            <div class="hero-badge">Exclusive Partnership Platform</div>
+            <div class="hero-badge">Exclusive Author Platform</div>
             <h1>Where Great Stories<br>Come to Life</h1>
             <p class="subtitle">Transform your novels into immersive multimedia experiences.<br>We handle the production. You captivate readers like never before.</p>
-            <a href="#cta" class="cta-button"><span>Apply for Private Demo</span></a>
+            <a href="#cta" class="cta-button"><span>Request an Invitation</span></a>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" onclick="document.getElementById('video-demo').scrollIntoView({ behavior: 'smooth' })">
+            <span class="scroll-text">Watch Demo</span>
+            <div class="arrow-container">
+                <div class="arrow"></div>
+                <div class="arrow"></div>
+                <div class="arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section id="video-demo" class="video-demo-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Experience the Magic</span>
+                <h2>See Your Story Transform</h2>
+                <p>Watch how we bring narratives to life with immersive multimedia</p>
+            </div>
+            
+            <div class="video-wrapper">
+                <div class="video-decoration top-left"></div>
+                <div class="video-decoration bottom-right"></div>
+                
+                <div class="video-container reveal">
+                    <div class="video-glow"></div>
+                    <div class="video-frame">
+                        <video id="demoVideo" controls poster="">
+                            <source src="/public/assets/author-media/demo-video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-controls">
+                        <button class="video-control-btn" onclick="document.getElementById('demoVideo').play()">▶</button>
+                        <button class="video-control-btn" onclick="document.getElementById('demoVideo').pause()">⏸</button>
+                        <button class="video-control-btn" onclick="document.getElementById('demoVideo').muted = !document.getElementById('demoVideo').muted">🔊</button>
+                        <button class="video-control-btn" onclick="document.getElementById('demoVideo').requestFullscreen()">⛶</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1036,7 +1317,7 @@
     <section id="cta" class="final-cta reveal">
         <h2>Ready to Shape the<br>Future of Storytelling?</h2>
         <p>The next generation of digital publishing is here, and we're building it with a select group of founding authors. Unlock a new chapter in your career.</p>
-        <a href="#" class="cta-button"><span>Apply for Private Demo</span></a>
+        <a href="#" class="cta-button"><span>Request an Invitation</span></a>
         <p class="subtext">Due to our white-glove service, partnership spots are limited.</p>
     </section>
 
