@@ -678,14 +678,14 @@
             content: '';
             position: absolute;
             left: 50%;
-            bottom: -75px;
+            bottom: -150px;
             width: 2px;
-            height: 75px;
+            height: 150px;
             background: var(--accent);
             transform: translateX(-50%);
             opacity: 0;
             animation: growConnection 0.5s ease forwards;
-            z-index: 2;
+            z-index: 1;
         }
         
         .process-step:last-child::after {
@@ -709,7 +709,7 @@
                 opacity: 0.5;
             }
             100% {
-                height: 75px;
+                height: 150px;
                 opacity: 0.5;
             }
         }
@@ -735,6 +735,8 @@
             transform: scale(1.02);
             border-color: var(--accent);
             box-shadow: 0 30px 60px rgba(45, 90, 39, 0.3);
+            position: relative;
+            z-index: 10;
         }
 
         .step-number {
