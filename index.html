@@ -754,6 +754,11 @@
             box-shadow: 0 15px 35px rgba(74, 222, 128, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3);
             /* border: 2px solid #fff; */
             transform: translate(-50%, -50%);
+            transition: transform 0.5s ease;
+        }
+
+        .process-step:hover .step-number {
+            transform: translate(-70%, -50%) scale(1.05);
         }
 
         .step-content h3 {
