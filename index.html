@@ -1178,10 +1178,35 @@
             background: radial-gradient(ellipse at center, rgba(45, 90, 39, 0.2) 0%, transparent 70%);
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
         
         /* No top border - benefits section already has bottom border */
         /* No bottom border - footer already has top border */
+        
+        .final-cta-buttons {
+            margin-top: 60px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .final-cta-buttons .cta-button,
+        .final-cta-buttons .cta-button-outline {
+            min-width: 274.88px;
+            text-align: center;
+        }
+        
+        .final-cta .cta-button {
+            transform: scale(1);
+        }
+        
+        .final-cta .cta-button:hover {
+            transform: scale(1.05);
+        }
 
         .final-cta h2 {
             font-size: clamp(3rem, 6vw, 5rem);
@@ -1199,12 +1224,8 @@
             font-size: 22px;
             color: var(--text-muted);
             max-width: 800px;
-            margin: 0 auto 60px;
+            margin: 0 auto;
             line-height: 1.6;
-        }
-
-        .final-cta .cta-button {
-            transform: scale(1.2);
         }
 
         .subtext {
@@ -2022,10 +2043,16 @@
 
     <!-- Final CTA -->
     <section id="cta" class="final-cta reveal">
-        <h2>Ready to Shape the<br>Future of Storytelling?</h2>
-        <p>The next generation of digital publishing is here, and we're building it with a select group of founding authors. Unlock a new chapter in your career.</p>
-        <a href="#" class="cta-button"><span>Request an Invitation</span></a>
-        <p class="subtext">Due to our white-glove service, partnership spots are limited.</p>
+        <div class="particles-section" id="particles-cta"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <h2>Ready to Shape the<br>Future of Storytelling?</h2>
+            <p>The next generation of digital publishing is here, and we're building it with a select group of founding authors. Request an invitation while you can!</p>
+            <div class="final-cta-buttons">
+                <a href="#" class="cta-button"><span>Request an Invitation</span></a>
+                <a href="#" class="cta-button-outline"><span>Stay Updated</span></a>
+            </div>
+            <p class="subtext">Due to the hands-on nature of our white-glove service, we can only partner with a limited number of authors at a time.</p>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -2169,6 +2196,14 @@
 
         // Continue creating new particles for problem section
         setInterval(() => createSectionParticle('particles-problem', false), 400);
+        
+        // Create initial particles for CTA section
+        for (let i = 0; i < 30; i++) {
+            createSectionParticle('particles-cta', true);
+        }
+        
+        // Continue creating new particles for CTA section
+        setInterval(() => createSectionParticle('particles-cta', false), 400);
 
         // Navbar scroll effect
         let lastScroll = 0;
