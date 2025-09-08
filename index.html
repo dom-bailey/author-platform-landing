@@ -1228,11 +1228,44 @@
             line-height: 1.6;
         }
 
-        .subtext {
-            margin-top: 30px;
+        .callout-note {
+            margin-top: 40px;
+            display: inline-flex;
+            align-items: stretch;
+            gap: 0;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .callout-icon {
+            background: linear-gradient(180deg, #0a0f0a 0%, #1a2e1a 100%);
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--glass-border);
+            flex-shrink: 0;
+            min-width: 56px;
+        }
+        
+        .callout-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--accent);
+        }
+        
+        .callout-note p {
+            padding: 10px 14px;
+            margin: 0;
+            font-size: 12px;
             color: var(--text-muted);
-            font-size: 14px;
-            opacity: 0.7;
+            line-height: 1.5;
+            text-align: left;
         }
 
         /* Footer */
@@ -2051,7 +2084,14 @@
                 <a href="#" class="cta-button"><span>Request an Invitation</span></a>
                 <a href="#" class="cta-button-outline"><span>Stay Updated</span></a>
             </div>
-            <p class="subtext">Due to the hands-on nature of our white-glove service, we can only partner with a limited number of authors at a time.</p>
+            <div class="callout-note">
+                <div class="callout-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 7H13V9H11V7M11 11H13V17H11V11M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2M12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20Z"/>
+                    </svg>
+                </div>
+                <p>Due to the hands-on nature of our white-glove service, we can only partner with a limited number of authors at a time.</p>
+            </div>
         </div>
     </section>
 
