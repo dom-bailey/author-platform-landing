@@ -799,12 +799,7 @@
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .bento-card:nth-child(1) {
-            grid-column: span 2;
-            background: linear-gradient(135deg, rgba(45, 90, 39, 0.1), rgba(74, 124, 89, 0.1));
+            min-height: 320px;
         }
 
         .bento-card:hover {
@@ -1373,10 +1368,6 @@
             .bento-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .bento-card:nth-child(1) {
-                grid-column: span 1;
-            }
         }
         
         /* ========== Tablet Landscape (640px - 767px) ========== */
@@ -1872,27 +1863,27 @@
             
             <div class="bento-grid">
                 <div class="bento-card reveal">
-                    <div>
-                        <div class="bento-icon">👑</div>
-                        <h3>Showcased Among the Best</h3>
-                    </div>
-                    <p>Our invitation-only model ensures your work is presented alongside other premier authors. This isn't about being small; it's about being significant. By focusing on quality over quantity, we ensure your story gets discovered and is never buried in an algorithm.</p>
+                    <div class="bento-icon">🚀</div>
+                    <h3>No More Barriers</h3>
+                    <p>Most authors lack the time, money, or expertise to create professional multimedia content for their novels. Our partnership eliminates these hurdles entirely. We handle the complex production process and creative development. What was impossible for individual authors before, is now achievable through our partnership.</p>
                 </div>
                 
                 <div class="bento-card reveal">
-                    <div>
-                        <div class="bento-icon">💎</div>
-                        <h3>Career-Defining Earnings</h3>
-                    </div>
-                    <p>Our reputation is built on author success. We're committed to industry-leading compensation, with every partner achieving career-defining financial success.</p>
+                    <div class="bento-icon">👑</div>
+                    <h3>Showcased Among the Best</h3>
+                    <p>Our invitation-only model ensures your work is presented alongside other premier authors. By focusing on quality over quantity, we ensure your story gets discovered and is never buried in an algorithm.</p>
                 </div>
                 
                 <div class="bento-card reveal">
-                    <div>
-                        <div class="bento-icon">🤝</div>
-                        <h3>Zero Upfront Cost</h3>
-                    </div>
-                    <p>We invest our resources, time, and talent because we believe in your potential. No fees for production services—we succeed together on a transparent revenue-share model.</p>
+                    <div class="bento-icon">💎</div>
+                    <h3>Career-Defining Earnings</h3>
+                    <p>Our reputation is built on the success of our authors. We are committed to being the industry leader in author compensation, with a goal that every writer we partner with achieves career-defining financial success.</p>
+                </div>
+                
+                <div class="bento-card reveal">
+                    <div class="bento-icon">🤝</div>
+                    <h3>Zero Upfront Cost</h3>
+                    <p>Consider us your creative and commercial partner. We invest our resources, time, and talent into enhancing your work because we believe in its potential. There are no fees for our production services. We succeed together on a transparent revenue-share model.</p>
                 </div>
             </div>
         </div>
