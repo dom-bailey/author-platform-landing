@@ -477,6 +477,18 @@
             position: relative;
             overflow: hidden;
         }
+        
+        /* No top border - video demo section already has bottom border */
+        
+        .problem-solution-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
 
         /* Section-specific particles */
         .particles-section {
@@ -637,6 +649,18 @@
             background: #000000;
             position: relative;
         }
+        
+        /* No top border - problem section already has bottom border */
+        
+        .process-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
 
         .process-timeline {
             position: relative;
@@ -783,6 +807,19 @@
         /* Benefits - Bento Grid */
         .benefits-section {
             background: linear-gradient(180deg, #0a0f0a 0%, #1a2e1a 100%);
+            position: relative;
+        }
+        
+        /* No top border - process section already has bottom border */
+        
+        .benefits-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
         .bento-grid {
@@ -1142,6 +1179,9 @@
             text-align: center;
             position: relative;
         }
+        
+        /* No top border - benefits section already has bottom border */
+        /* No bottom border - footer already has top border */
 
         .final-cta h2 {
             font-size: clamp(3rem, 6vw, 5rem);
