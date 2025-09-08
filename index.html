@@ -905,6 +905,66 @@
             position: relative;
             overflow: hidden;
         }
+        
+        .video-cta-buttons {
+            margin-top: 80px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .video-cta-buttons .cta-button,
+        .video-cta-buttons .cta-button-outline {
+            min-width: 274.88px;
+            text-align: center;
+        }
+        
+        .cta-button-outline {
+            display: inline-block;
+            position: relative;
+            padding: 20px 50px;
+            background: transparent;
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 100px;
+            border: 2px solid var(--accent);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+        }
+        
+        .cta-button-outline:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        
+        .cta-button-outline span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-button-outline:hover {
+            color: black;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(74, 222, 128, 0.3);
+        }
+        
+        .cta-button-outline:hover:before {
+            width: 300px;
+            height: 300px;
+        }
 
         .video-demo-section::before {
             content: '';
@@ -1784,6 +1844,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="video-cta-buttons reveal">
+                <a href="#cta" class="cta-button"><span>Request an Invitation</span></a>
+                <a href="#" class="cta-button-outline"><span>Stay Updated</span></a>
             </div>
         </div>
     </section>
