@@ -127,16 +127,43 @@
             color: #000000 !important;
             border-radius: 100px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .nav-cta:after {
-            display: none;
+            display: none !important;
+        }
+
+        .nav-cta:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: 0;
+        }
+
+        .nav-cta span {
+            position: relative;
+            z-index: 1;
         }
 
         .nav-cta:hover {
+            color: white !important;
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(45, 90, 39, 0.4);
+        }
+
+        .nav-cta:hover:before {
+            width: 300px;
+            height: 300px;
         }
 
         /* Hero Section - Revolutionary Design */
@@ -1867,10 +1894,11 @@
         <div class="nav-container">
             <div class="logo">StoryAlive</div>
             <div class="nav-links">
-                <a href="#problem">Platform</a>
-                <a href="#process">Process</a>
+                <a href="#video-demo">Watch Demo</a>
+                <a href="#problem">Our Solution</a>
+                <a href="#process">How It Works</a>
                 <a href="#benefits">Benefits</a>
-                <a href="#cta" class="nav-cta">Get Started</a>
+                <a href="#cta" class="nav-cta"><span>Request an Invitation</span></a>
             </div>
         </div>
     </nav>
@@ -1976,7 +2004,7 @@
                     <ul>
                         <li>We create all the visuals for your novel, freeing you to focus on your story</li>
                         <li>We provide an exclusive platform where only top authors are invited to showcase their work</li>
-                        <li>We weave in stunning videos, images, characters, and maps to create an immersive world</li>
+                        <li>We weave stunning videos, images, characters, and maps into your novel, to create an immersive world</li>
                     </ul>
                 </div>
             </div>
