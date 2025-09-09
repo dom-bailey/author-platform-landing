@@ -286,6 +286,7 @@
             animation: slideInRight 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
             box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
             overflow-y: auto;
+            overflow-x: hidden;
         }
         
         /* Panel style for larger mobile screens */
@@ -2839,14 +2840,16 @@
             const isOpen = mobileMenuToggle.classList.contains('active');
             
             if (!isOpen) {
-                // Opening menu
+                // Opening menu - prevent horizontal scroll during animation
+                document.documentElement.style.overflowX = 'hidden';
+                body.style.overflow = 'hidden';
+                
                 mobileMenuToggle.classList.add('active');
                 navLinks.classList.add('mobile-active');
                 mobileMenuOverlay.style.display = 'block';
                 setTimeout(() => {
                     mobileMenuOverlay.classList.add('active');
                 }, 10);
-                body.style.overflow = 'hidden';
             } else {
                 // Closing menu
                 mobileMenuToggle.classList.remove('active');
@@ -2854,8 +2857,9 @@
                 mobileMenuOverlay.classList.remove('active');
                 setTimeout(() => {
                     mobileMenuOverlay.style.display = 'none';
+                    document.documentElement.style.overflowX = '';
+                    body.style.overflow = '';
                 }, 300);
-                body.style.overflow = '';
             }
         }
         
@@ -2866,8 +2870,9 @@
             mobileMenuOverlay.classList.remove('active');
             setTimeout(() => {
                 mobileMenuOverlay.style.display = 'none';
+                document.documentElement.style.overflowX = '';
+                body.style.overflow = '';
             }, 300);
-            body.style.overflow = '';
         }
         
         // Menu toggle button click
