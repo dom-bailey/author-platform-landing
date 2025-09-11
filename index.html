@@ -3207,6 +3207,54 @@
                 font-size: 12px !important;  /* Keep original small size */
                 line-height: 1.5;
             }
+            
+            /* Process timeline adjustments for better spacing at 769px-1024px */
+            .process-timeline {
+                max-width: 900px;  /* Reduced to prevent edge closeness */
+                padding: 0 30px;   /* Add horizontal padding */
+            }
+            
+            .process-step {
+                margin-bottom: 70px;  /* Reduced to match shorter connection line */
+            }
+            
+            .step-content {
+                padding: 35px;        /* Reduced inner padding */
+                padding-top: 55px;    /* Reduced top padding */
+            }
+            
+            .step-content h3 {
+                font-size: 30px;      /* Slightly smaller heading */
+                margin-bottom: 16px;  /* Tighter spacing */
+            }
+            
+            .step-content p {
+                font-size: 15px;      /* Slightly smaller text */
+                line-height: 1.6;     /* Tighter line height */
+                margin-bottom: 12px;  /* Less space between paragraphs */
+            }
+            
+            /* Smaller circle and number */
+            .step-number {
+                width: 65px;          /* Reduced from 80px */
+                height: 65px;         /* Reduced from 80px */
+                font-size: 30px;      /* Reduced from 37px */
+                transform: translate(-50%, -50%);  /* Center on corner */
+            }
+            
+            .process-step:hover .step-number {
+                transform: translate(-50%, -50%) scale(1.03);  /* Keep centered on hover */
+            }
+            
+            /* Adjust connection line */
+            .process-step::after {
+                bottom: -70px;        /* Match the margin-bottom */
+                height: 70px;         /* Line height matches spacing */
+            }
+            
+            .process-step:last-child::after {
+                display: none;
+            }
         }
 
 
