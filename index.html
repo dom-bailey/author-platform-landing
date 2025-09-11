@@ -2704,12 +2704,26 @@
             
             .callout-note {
                 margin-top: 30px;
-                flex-direction: column;
+                flex-direction: row; /* Keep horizontal layout */
+                max-width: 100%;
             }
             
             .callout-icon {
-                width: 100%;
-                padding: 15px;
+                min-width: 48px; /* Smaller icon area for mobile */
+                padding: 0 15px;
+                border-right: 1px solid var(--glass-border);
+                flex-shrink: 0;
+            }
+            
+            .callout-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .callout-note p {
+                font-size: 12px !important;
+                line-height: 1.5;
+                padding: 12px 14px;
             }
             
             .callout-text {
@@ -3410,10 +3424,28 @@
                 height: 32px;         /* Same as 769px-1024px */
             }
             
-            /* Fix callout note text size */
+            /* Fix callout note - keep horizontal layout */
+            .callout-note {
+                flex-direction: row; /* Keep horizontal */
+                max-width: 100%;
+            }
+            
+            .callout-icon {
+                min-width: 44px; /* Slightly smaller for narrower screens */
+                padding: 0 12px;
+                border-right: 1px solid var(--glass-border);
+                flex-shrink: 0;
+            }
+            
+            .callout-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+            
             .callout-note p {
                 font-size: 12px !important;
                 line-height: 1.5;
+                padding: 10px 12px;
             }
             
             /* CTA section subtext adjustment */
@@ -3533,10 +3565,28 @@
                 height: 28px;
             }
             
-            /* Fix callout note text size */
+            /* Fix callout note - keep horizontal layout */
+            .callout-note {
+                flex-direction: row; /* Keep horizontal */
+                max-width: 100%;
+            }
+            
+            .callout-icon {
+                min-width: 48px;
+                padding: 0 15px;
+                border-right: 1px solid var(--glass-border);
+                flex-shrink: 0;
+            }
+            
+            .callout-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            
             .callout-note p {
                 font-size: 12px !important;
                 line-height: 1.5;
+                padding: 12px 14px;
             }
             
             /* CTA section subtext adjustment */
@@ -3643,10 +3693,28 @@
                 height: 24px;
             }
             
-            /* Fix callout note text size */
+            /* Fix callout note - keep horizontal layout */
+            .callout-note {
+                flex-direction: row; /* Keep horizontal */
+                max-width: 100%;
+            }
+            
+            .callout-icon {
+                min-width: 44px; /* Slightly smaller for narrower screens */
+                padding: 0 12px;
+                border-right: 1px solid var(--glass-border);
+                flex-shrink: 0;
+            }
+            
+            .callout-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+            
             .callout-note p {
                 font-size: 12px !important;
                 line-height: 1.5;
+                padding: 10px 12px;
             }
         }
         
@@ -3677,10 +3745,28 @@
                 display: none;
             }
             
-            /* Fix callout note text size */
+            /* Fix callout note - keep horizontal layout */
+            .callout-note {
+                flex-direction: row; /* Keep horizontal */
+                max-width: 100%;
+            }
+            
+            .callout-icon {
+                min-width: 44px; /* Slightly smaller for narrower screens */
+                padding: 0 12px;
+                border-right: 1px solid var(--glass-border);
+                flex-shrink: 0;
+            }
+            
+            .callout-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+            
             .callout-note p {
                 font-size: 12px !important;
                 line-height: 1.5;
+                padding: 10px 12px;
             }
         }
         
@@ -3724,10 +3810,28 @@
                 height: 22px;
             }
             
-            /* Fix callout note text size */
+            /* Fix callout note - keep horizontal layout */
+            .callout-note {
+                flex-direction: row; /* Keep horizontal */
+                max-width: 100%;
+            }
+            
+            .callout-icon {
+                min-width: 44px; /* Slightly smaller for narrower screens */
+                padding: 0 12px;
+                border-right: 1px solid var(--glass-border);
+                flex-shrink: 0;
+            }
+            
+            .callout-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+            
             .callout-note p {
                 font-size: 12px !important;
                 line-height: 1.5;
+                padding: 10px 12px;
             }
             
             .nav-links.mobile-active a {
