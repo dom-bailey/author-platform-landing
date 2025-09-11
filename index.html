@@ -3255,6 +3255,43 @@
             .process-step:last-child::after {
                 display: none;
             }
+            
+            /* Bento cards adjustments for "Why Authors Choose Us" */
+            .bento-grid {
+                grid-template-columns: 1fr;      /* Keep single column (vertical stack) */
+            }
+            
+            .bento-card {
+                padding: 35px;        /* Reduced from 60px to match process section */
+                min-height: unset;    /* Remove min-height, let content determine */
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .bento-card h3 {
+                font-size: 30px;      /* Match process section heading */
+                margin-bottom: 16px;  /* Tighter spacing */
+            }
+            
+            .bento-card p {
+                font-size: 15px;      /* Match process section text */
+                line-height: 1.6;     /* Consistent line height */
+                flex-grow: 1;        /* Allow paragraph to grow and fill space */
+            }
+            
+            /* Smaller icon container */
+            .bento-icon {
+                width: 60px;          /* Reduced from 80px */
+                height: 60px;         /* Reduced from 80px */
+                margin-bottom: 20px;  /* Reduced from 30px */
+                border-radius: 18px;  /* Proportionally smaller radius */
+                flex-shrink: 0;      /* Don't let icon shrink */
+            }
+            
+            .bento-icon svg {
+                width: 32px;          /* Reduced from 40px */
+                height: 32px;         /* Reduced from 40px */
+            }
         }
 
 
