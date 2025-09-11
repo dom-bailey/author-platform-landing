@@ -3052,6 +3052,10 @@
         
         /* Mobile Footer: 480px and below */
         @media (max-width: 480px) {
+            footer {
+                padding: 80px 20px 40px;  /* Match left/right padding with prior section (50px 20px) */
+            }
+            
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -3076,12 +3080,16 @@
             
             .footer-cta-buttons {
                 max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
             }
             
             .footer-cta-primary,
             .footer-cta-secondary {
                 display: block;
                 width: 100%;
+                margin: 0;
             }
         }
 
