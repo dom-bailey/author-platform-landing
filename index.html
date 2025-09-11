@@ -3572,10 +3572,10 @@
                 display: none;
             }
             
-            /* Process timeline adjustments - prevent edge touching */
+            /* Process timeline adjustments - match bento width */
             .process-timeline {
-                max-width: 500px;     /* Further reduced */
-                padding: 0 30px;      /* More padding for edge spacing */
+                max-width: 100%;      /* Full width like bento cards */
+                padding: 0;           /* No extra padding - use section padding only */
             }
             
             .process-step {
@@ -3584,7 +3584,37 @@
             
             .step-content {
                 padding: 22px;
-                padding-top: 42px;
+                padding-top: 22px;    /* No extra top padding needed */
+            }
+            
+            /* Hide the original corner number */
+            .step-number {
+                display: none;
+            }
+            
+            /* Create inline square number badge */
+            .step-content h3 {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 20px;      /* Reduced from 24px */
+                margin-bottom: 14px;
+            }
+            
+            .step-content h3::before {
+                content: attr(data-step);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 35px;
+                height: 35px;
+                background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+                border-radius: 8px;  /* Square with rounded corners */
+                font-size: 18px;
+                font-weight: 900;
+                color: #ffffff;       /* Changed to white */
+                flex-shrink: 0;
+                box-shadow: 0 4px 10px rgba(74, 222, 128, 0.3);
             }
             
             /* Bento icon - square not circle */
@@ -4080,7 +4110,7 @@
             <div class="process-timeline">
                 <div class="process-step reveal">
                     <div class="step-content">
-                        <h3>Share Your Vision</h3>
+                        <h3 data-step="1">Share Your Vision</h3>
                         <p>Our partnership begins with a collaborative deep-dive to capture the soul of your story. You are the architect of your world; we are your master builders.</p>
                         <p>You'll share creative briefs for characters, settings, and pivotal scenes. We listen intently to understand the precise mood, style, and details that matter, ensuring perfect alignment with your artistic vision. You retain full creative control with key check-ins for approval.</p>
                     </div>
@@ -4089,7 +4119,7 @@
                 
                 <div class="process-step reveal">
                     <div class="step-content">
-                        <h3>We Bring It to Life with AI</h3>
+                        <h3 data-step="2">We Bring It to Life with AI</h3>
                         <p>Our production process combines human creativity with cutting-edge artificial intelligence.</p>
                         <p>We use state-of-the-art AI workflows to generate stunning character portraits, concept art, scene illustrations, dynamic video, ambient soundscapes, and original musical scores—bringing cinematic quality to your novel at unprecedented scale.</p>
                     </div>
@@ -4098,7 +4128,7 @@
                 
                 <div class="process-step reveal">
                     <div class="step-content">
-                        <h3>Captivate Your Readers</h3>
+                        <h3 data-step="3">Captivate Your Readers</h3>
                         <p>We meticulously integrate the finished media into your novel, making it ready to publish on our exclusive platform with the click of a button.</p>
                         <p>Readers can see, hear, and explore your story, deepening their emotional connection and turning them into lifelong fans. This partnership will bring your novel to life in a whole new way!</p>
                     </div>
