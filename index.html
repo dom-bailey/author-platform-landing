@@ -3325,6 +3325,96 @@
                 display: none;
             }
             
+            /* Process timeline adjustments - same as 769px-1024px */
+            .process-timeline {
+                max-width: 700px;     /* Even more reduced for smaller screens */
+                padding: 0 35px;      /* More padding to keep away from edges */
+            }
+            
+            .process-step {
+                margin-bottom: 70px;  /* Same as 769px-1024px */
+            }
+            
+            .step-content {
+                padding: 35px;        /* Same as 769px-1024px */
+                padding-top: 55px;    /* Same as 769px-1024px */
+            }
+            
+            .step-content h3 {
+                font-size: 30px;      /* Same as 769px-1024px */
+                margin-bottom: 16px;  /* Same as 769px-1024px */
+            }
+            
+            .step-content p {
+                font-size: 15px;      /* Same as 769px-1024px */
+                line-height: 1.6;     /* Same as 769px-1024px */
+                margin-bottom: 12px;  /* Same as 769px-1024px */
+            }
+            
+            /* Same circle and number sizing as 769px-1024px */
+            .step-number {
+                width: 65px;          /* Same as 769px-1024px */
+                height: 65px;         /* Same as 769px-1024px */
+                font-size: 30px;      /* Same as 769px-1024px */
+                transform: translate(-50%, -50%);
+            }
+            
+            .process-step:hover .step-number {
+                transform: translate(-50%, -50%) scale(1.03);
+            }
+            
+            /* Adjust connection line */
+            .process-step::after {
+                bottom: -70px;        /* Same as 769px-1024px */
+                height: 70px;         /* Same as 769px-1024px */
+            }
+            
+            .process-step:last-child::after {
+                display: none;
+            }
+            
+            /* Bento cards adjustments - same as 769px-1024px */
+            .bento-grid {
+                grid-template-columns: 1fr;      /* Single column */
+            }
+            
+            .bento-card {
+                padding: 35px;        /* Same as 769px-1024px */
+                min-height: unset;    /* Same as 769px-1024px */
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .bento-card h3 {
+                font-size: 30px;      /* Same as 769px-1024px */
+                margin-bottom: 16px;  /* Same as 769px-1024px */
+            }
+            
+            .bento-card p {
+                font-size: 15px;      /* Same as 769px-1024px */
+                line-height: 1.6;     /* Same as 769px-1024px */
+                flex-grow: 1;
+            }
+            
+            /* Smaller icon container - same as 769px-1024px */
+            .bento-icon {
+                width: 60px;          /* Same as 769px-1024px */
+                height: 60px;         /* Same as 769px-1024px */
+                margin-bottom: 20px;  /* Same as 769px-1024px */
+                border-radius: 18px;  /* Same as 769px-1024px */
+                flex-shrink: 0;
+            }
+            
+            .bento-icon svg {
+                width: 32px;          /* Same as 769px-1024px */
+                height: 32px;         /* Same as 769px-1024px */
+            }
+            
+            /* Fix callout note text size */
+            .callout-note p {
+                font-size: 12px !important;
+                line-height: 1.5;
+            }
         }
         
         /* ========================================== */
