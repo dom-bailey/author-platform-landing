@@ -3415,6 +3415,11 @@
                 font-size: 12px !important;
                 line-height: 1.5;
             }
+            
+            /* CTA section subtext adjustment */
+            .final-cta p {
+                font-size: 16px;      /* Reduced from 18px */
+            }
         }
         
         /* ========================================== */
@@ -3442,6 +3447,96 @@
             
             .nav-links {
                 display: none;
+            }
+            
+            /* Process timeline adjustments with reduced padding */
+            .process-timeline {
+                max-width: 600px;
+                padding: 0 25px;
+            }
+            
+            .process-step {
+                margin-bottom: 60px;
+            }
+            
+            .step-content {
+                padding: 25px;        /* Further reduced from 35px */
+                padding-top: 45px;    /* Further reduced from 55px */
+            }
+            
+            .step-content h3 {
+                font-size: 26px;      /* Smaller than 30px */
+                margin-bottom: 14px;
+            }
+            
+            .step-content p {
+                font-size: 14px;      /* Smaller than 15px */
+                line-height: 1.5;
+                margin-bottom: 10px;
+            }
+            
+            .step-number {
+                width: 55px;
+                height: 55px;
+                font-size: 26px;
+                transform: translate(-50%, -50%);
+            }
+            
+            .process-step:hover .step-number {
+                transform: translate(-50%, -50%) scale(1.02);
+            }
+            
+            .process-step::after {
+                bottom: -60px;
+                height: 60px;
+            }
+            
+            .process-step:last-child::after {
+                display: none;
+            }
+            
+            /* Bento cards with reduced padding */
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .bento-card {
+                padding: 25px;        /* Further reduced from 35px */
+                min-height: unset;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .bento-card h3 {
+                font-size: 26px;      /* Smaller than 30px */
+                margin-bottom: 14px;
+            }
+            
+            .bento-card p {
+                font-size: 14px;      /* Smaller than 15px */
+                line-height: 1.5;
+                flex-grow: 1;
+            }
+            
+            /* Square icon container instead of circle */
+            .bento-icon {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 18px;
+                border-radius: 12px;  /* Square with rounded corners, not circle */
+                flex-shrink: 0;
+            }
+            
+            .bento-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+            
+            /* Fix callout note text size */
+            .callout-note p {
+                font-size: 12px !important;
+                line-height: 1.5;
             }
         }
         
@@ -3471,6 +3566,12 @@
             .nav-links {
                 display: none;
             }
+            
+            /* Fix callout note text size */
+            .callout-note p {
+                font-size: 12px !important;
+                line-height: 1.5;
+            }
         }
         
         /* ========================================== */
@@ -3499,6 +3600,12 @@
             .nav-links {
                 display: none;
             }
+            
+            /* Fix callout note text size */
+            .callout-note p {
+                font-size: 12px !important;
+                line-height: 1.5;
+            }
         }
         
         /* ========================================== */
@@ -3526,6 +3633,12 @@
             
             .nav-links {
                 display: none;
+            }
+            
+            /* Fix callout note text size */
+            .callout-note p {
+                font-size: 12px !important;
+                line-height: 1.5;
             }
             
             .nav-links.mobile-active a {
