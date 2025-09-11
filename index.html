@@ -572,8 +572,8 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: heroTitleReveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) 1.4s forwards,
-                       gradientShift 3s ease infinite 2.9s;
+            animation: heroTitleReveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards,
+                       gradientShift 3s ease infinite 1.8s;
             opacity: 0;
             transform: scale(0.8) translateY(20px);
             filter: blur(10px);
@@ -4674,47 +4674,9 @@
             }
         }
 
-        /* Loading Animation */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000000;
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader-text {
-            font-size: 48px;
-            font-weight: 900;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, #ffffff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: pulse 1s ease infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="loader-text">StoryAlive</div>
-    </div>
 
     <!-- Custom Cursor -->
     <div class="cursor"></div>
@@ -5005,12 +4967,6 @@
     </footer>
 
     <script>
-        // Loader
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 1000);
-        });
 
         // Video Play Button Handler
         const video = document.getElementById('demoVideo');
@@ -5326,13 +5282,13 @@
         // Initialize typing effect after loader
         // setTimeout(typeWriter, 1200); // Disabled - using scale/blur animation instead
         
-        // Animate image stacks after loader
+        // Animate image stacks with slight delay
         setTimeout(() => {
             const stackImages = document.querySelectorAll('.stack-image');
             stackImages.forEach(img => {
                 img.classList.add('animate-in');
             });
-        }, 1400);
+        }, 300);
 
         // Add hover effect to comparison and bento cards
         const cards = document.querySelectorAll('.comparison-card, .bento-card, .step-content');
