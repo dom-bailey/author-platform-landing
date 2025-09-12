@@ -3631,6 +3631,64 @@
                 padding: 16px 40px;
             }
             
+            /* Rearrange images horizontally above and below content */
+            .image-stack {
+                display: flex;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                gap: 10px;
+                perspective: none;
+                width: 90%;
+                max-width: 600px;
+                justify-content: center;
+            }
+            
+            .image-stack.left {
+                top: 17%;
+                bottom: auto;
+                left: auto;
+                right: 50%;
+                transform: translateX(50%);
+            }
+            
+            .image-stack.right {
+                bottom: 17%;
+                top: auto;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .stack-image {
+                position: relative;
+                width: 170px !important;
+                height: 113px !important;
+                transform: none !important;
+                bottom: auto !important;
+                left: auto !important;
+                right: auto !important;
+                opacity: 1 !important;
+                animation: none;
+                flex-shrink: 0;
+            }
+            
+            /* Override all nth-child sizes to be uniform */
+            .image-stack.left .stack-image:nth-child(1),
+            .image-stack.left .stack-image:nth-child(2),
+            .image-stack.left .stack-image:nth-child(3),
+            .image-stack.right .stack-image:nth-child(1),
+            .image-stack.right .stack-image:nth-child(2),
+            .image-stack.right .stack-image:nth-child(3) {
+                width: 170px !important;
+                height: 113px !important;
+                z-index: 1;
+            }
+            
+            .stack-image.animate-in {
+                transform: none !important;
+            }
+            
             
             
             nav {
@@ -3775,6 +3833,83 @@
         /* ========================================== */
         @media (min-width: 481px) and (max-width: 640px) {
             /* Content snaps to these sizes at 481px and stays until 640px */
+            
+            /* Hero section adjustments */
+            .hero-video-container {
+                width: 500px;
+                max-width: 90%;
+                padding: 24px 36px;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .hero .subtitle {
+                font-size: 15px;
+            }
+            
+            /* Reduce button padding for smaller tablets */
+            .hero .cta-button {
+                padding: 14px 35px;
+            }
+            
+            /* Rearrange images horizontally above and below content */
+            .image-stack {
+                display: flex;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                gap: 8px;
+                perspective: none;
+                width: 90%;
+                max-width: 460px;
+                justify-content: center;
+            }
+            
+            .image-stack.left {
+                top: 10%;
+                bottom: auto;
+                right: auto;
+            }
+            
+            .image-stack.right {
+                bottom: 10%;
+                top: auto;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .stack-image {
+                position: relative;
+                width: 130px !important;
+                height: 87px !important;
+                transform: none !important;
+                bottom: auto !important;
+                left: auto !important;
+                right: auto !important;
+                opacity: 1 !important;
+                animation: none;
+                flex-shrink: 0;
+            }
+            
+            /* Override all nth-child sizes to be uniform */
+            .image-stack.left .stack-image:nth-child(1),
+            .image-stack.left .stack-image:nth-child(2),
+            .image-stack.left .stack-image:nth-child(3),
+            .image-stack.right .stack-image:nth-child(1),
+            .image-stack.right .stack-image:nth-child(2),
+            .image-stack.right .stack-image:nth-child(3) {
+                width: 130px !important;
+                height: 87px !important;
+                z-index: 1;
+            }
+            
+            .stack-image.animate-in {
+                transform: none !important;
+            }
+            
             nav {
                 padding: 18px 25px;
             }
