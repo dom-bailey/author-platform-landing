@@ -5524,6 +5524,11 @@
             });
         });
 
+        // Mobile detection
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
         // Particles
         function createParticle(isInitial = false) {
             const particlesContainer = document.getElementById('particles');
@@ -5552,12 +5557,16 @@
         }
 
         // Create initial particles scattered across the screen
-        for (let i = 0; i < 49; i++) {
+        // Reduce by 40% on mobile (49 * 0.6 = 29.4, rounded to 29)
+        const heroParticleCount = isMobile() ? 29 : 49;
+        for (let i = 0; i < heroParticleCount; i++) {
             createParticle(true);
         }
 
         // Continue creating new particles from the bottom
-        setInterval(() => createParticle(false), 250);
+        // Increase interval by 40% on mobile to reduce particle generation rate
+        const heroParticleInterval = isMobile() ? 417 : 250; // 250 / 0.6 = 417
+        setInterval(() => createParticle(false), heroParticleInterval);
 
         // Particles for Problem Section
         function createSectionParticle(containerId, isInitial = false) {
@@ -5586,20 +5595,24 @@
         }
 
         // Create initial particles for problem section
-        for (let i = 0; i < 30; i++) {
+        // Reduce by 40% on mobile (30 * 0.6 = 18)
+        const sectionParticleCount = isMobile() ? 18 : 30;
+        for (let i = 0; i < sectionParticleCount; i++) {
             createSectionParticle('particles-problem', true);
         }
 
         // Continue creating new particles for problem section
-        setInterval(() => createSectionParticle('particles-problem', false), 400);
+        // Increase interval by 40% on mobile to reduce particle generation rate
+        const sectionParticleInterval = isMobile() ? 667 : 400; // 400 / 0.6 = 667
+        setInterval(() => createSectionParticle('particles-problem', false), sectionParticleInterval);
         
         // Create initial particles for CTA section
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < sectionParticleCount; i++) {
             createSectionParticle('particles-cta', true);
         }
         
         // Continue creating new particles for CTA section
-        setInterval(() => createSectionParticle('particles-cta', false), 400);
+        setInterval(() => createSectionParticle('particles-cta', false), sectionParticleInterval);
 
         // Navbar scroll effect
         let lastScroll = 0;
