@@ -609,6 +609,10 @@
             font-weight: 400;
         }
 
+        .hero .subtitle-mobile {
+            display: none;
+        }
+
         /* 3D Image Stacks */
         .image-stack {
             position: absolute;
@@ -4219,6 +4223,40 @@
         /* ========================================== */
         @media (min-width: 376px) and (max-width: 414px) {
             /* Content snaps to these sizes at 376px and stays until 414px */
+            .hero-video-container {
+                width: 600px;
+                max-width: 95%;
+                padding: 20px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero .subtitle {
+                display: none;
+            }
+
+            .hero .subtitle-mobile {
+                font-size: 11px;
+                color: var(--text-muted);
+                line-height: 1.6;
+                margin-bottom: 50px;
+                font-weight: 400;
+                display: block;
+            }
+
+            .hero .hero-badge {
+                font-size: 12px;
+            }
+            
+            /* Reduce button padding for smaller tablets */
+            .hero .cta-button {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+            
+            
             nav {
                 padding: 16px 20px;
             }
@@ -5095,6 +5133,7 @@
                 <div class="hero-badge">Exclusive Author Platform</div>
                 <h1>Where Great Stories<br>Come to Life</h1>
                 <p class="subtitle">Transform your novels into immersive multimedia experiences.<br>We handle the production. You handle the story.</p>
+                <p class="subtitle-mobile">Transform your novels into immersive multimedia experiences. We handle the production. You handle the story.</p>
                 <a href="#cta" class="cta-button"><span>Request an Invitation</span></a>
             </div>
         </div>
