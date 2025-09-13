@@ -473,6 +473,12 @@
             padding: 100px 0px;
         }
 
+        .hero-contents-wrapper {
+            position: relative;
+            border: 2px solid yellow;
+            margin-top: auto;
+        }
+
         /* Static Background Mesh */
         .hero-mesh {
             position: absolute;
@@ -617,7 +623,7 @@
         /* 3D Image Stacks */
         .image-stack {
             position: absolute;
-            bottom: calc(22% - 0px);
+            bottom: 5px;
             perspective: 1000px;
             z-index: 15;
             pointer-events: none;
@@ -3153,9 +3159,6 @@
                 font-size: 15px;
             }
 
-            .image-stack {
-                bottom: calc(27% - 0px);
-            }
         }
         
         /* ========================================== */
@@ -3250,10 +3253,6 @@
         /* ========================================== */
         @media (min-width: 1281px) and (max-width: 1440px) {
             /* Content snaps to these sizes at 1281px and stays until 1440px */
-            .image-stack {
-                bottom: calc(18% - 0px);
-            }
-            
             
             nav {
                 padding: 25px 50px;
@@ -3284,13 +3283,6 @@
                 transform: scale(0.85);
             }
             
-            /* .image-stack.left {
-                left: calc(50% - 320px);
-            }
-            
-            .image-stack.right {
-                right: calc(50% - 320px);
-            } */
             
             /* Adjust animated positions with scaling */
             .image-stack.left .stack-image:nth-child(1).animate-in {
@@ -3637,6 +3629,12 @@
                 width: 600px;
                 max-width: none;
                 padding: 24px 36px;
+                margin-bottom: 0px;
+                margin-top: 167px;
+            }
+
+            .scroll-indicator {
+                margin-top: 200px;
             }
             
             .hero h1 {
@@ -3666,7 +3664,7 @@
             }
             
             .image-stack.left {
-                top: 11%;
+                top: 35px;
                 bottom: auto;
                 left: auto;
                 right: 50%;
@@ -3674,7 +3672,7 @@
             }
             
             .image-stack.right {
-                top: 66%;
+                bottom: -135px;
                 /* top: auto; */
                 right: auto;
                 left: 50%;
@@ -3848,6 +3846,7 @@
             .final-cta p {
                 font-size: 16px;      /* Reduced from 18px */
             }
+
         }
         
         /* ========================================== */
@@ -3857,10 +3856,15 @@
             /* Content snaps to these sizes at 481px and stays until 640px */
             
             /* Hero section adjustments */
+            .hero-contents-wrapper {
+                max-width: 90%;
+            }
+            
             .hero-video-container {
                 width: 600px;
-                max-width: 90%;
+                max-width: 100%;
                 padding: 24px 24px;
+                margin-bottom: 0px;
             }
             
             .hero h1 {
@@ -3890,7 +3894,7 @@
             }
             
             .image-stack.left {
-                top: 21%;
+                top: -100px;
                 bottom: auto;
                 left: auto;
                 right: 50%;
@@ -3898,7 +3902,7 @@
             }
             
             .image-stack.right {
-                bottom: 21%;
+                bottom: -100px;
                 top: auto;
                 right: auto;
                 left: 50%;
@@ -5229,31 +5233,33 @@
         <div class="hero-mesh"></div>
         <div class="particles" id="particles"></div>
         
-        <!-- Left Image Stack -->
-        <div class="image-stack left">
-            <img src="/assets/author-media/4 - Brass Kettle Inn.webp" alt="Brass Kettle Inn" class="stack-image">
-            <img src="/assets/author-media/6 - Glowing Pool.webp" alt="Castle" class="stack-image">
-            <img src="/assets/author-media/1 - Map.webp" alt="Fantasy Map" class="stack-image">
-        </div>
-        
-        <!-- Right Image Stack -->
-        <div class="image-stack right">
-            <img src="/assets/author-media/2 - Castle.webp" alt="Glowing Pool" class="stack-image">
-            <img src="/assets/author-media/3 - Last Lantern.webp" alt="Last Lantern" class="stack-image">
-            <img src="/assets/author-media/5 - Campfire.webp" alt="Campfire" class="stack-image">
-        </div>
-        
-        <div class="hero-video-container">
-            <div class="hero-content">
-                <div class="hero-badge">Exclusive Author Platform</div>
-                <h1>Where Great Stories<br>Come to Life</h1>
-                <p class="subtitle">Transform your novels into immersive multimedia experiences.<br>We handle the production. You handle the story.</p>
-                <p class="subtitle-mobile">Transform your novels into immersive experiences. We handle the production. You handle the story.</p>
-                <a href="#cta" class="cta-button"><span>Request an Invitation</span></a>
+        <div class="hero-contents-wrapper">
+            <!-- Left Image Stack -->
+            <div class="image-stack left">
+                <img src="/assets/author-media/4 - Brass Kettle Inn.webp" alt="Brass Kettle Inn" class="stack-image">
+                <img src="/assets/author-media/6 - Glowing Pool.webp" alt="Castle" class="stack-image">
+                <img src="/assets/author-media/1 - Map.webp" alt="Fantasy Map" class="stack-image">
             </div>
+            
+            <!-- Right Image Stack -->
+            <div class="image-stack right">
+                <img src="/assets/author-media/2 - Castle.webp" alt="Glowing Pool" class="stack-image">
+                <img src="/assets/author-media/3 - Last Lantern.webp" alt="Last Lantern" class="stack-image">
+                <img src="/assets/author-media/5 - Campfire.webp" alt="Campfire" class="stack-image">
+            </div>
+            
+            <div class="hero-video-container">
+                <div class="hero-content">
+                    <div class="hero-badge">Exclusive Author Platform</div>
+                    <h1>Where Great Stories<br>Come to Life</h1>
+                    <p class="subtitle">Transform your novels into immersive multimedia experiences.<br>We handle the production. You handle the story.</p>
+                    <p class="subtitle-mobile">Transform your novels into immersive experiences. We handle the production. You handle the story.</p>
+                    <a href="#cta" class="cta-button"><span>Request an Invitation</span></a>
+                </div>
+            </div>
+            
         </div>
-        
-        
+
         <!-- Scroll Indicator -->
         <div class="scroll-indicator" onclick="document.getElementById('video-demo').scrollIntoView({ behavior: 'smooth' })">
             <span class="scroll-text">Watch Demo</span>
@@ -5263,6 +5269,8 @@
                 <div class="arrow"></div>
             </div>
         </div>
+
+        
     </section>
 
     <!-- Video Demo Section -->
