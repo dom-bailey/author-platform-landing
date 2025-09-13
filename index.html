@@ -617,7 +617,7 @@
         /* 3D Image Stacks */
         .image-stack {
             position: absolute;
-            bottom: calc(15% - 50px);
+            bottom: calc(22% - 0px);
             perspective: 1000px;
             z-index: 15;
             pointer-events: none;
@@ -653,7 +653,7 @@
         .image-stack.left .stack-image:nth-child(1) {
             width: 216px;
             height: 144px;
-            bottom: 0;
+            bottom: 0px;
             right: -100px;
             z-index: 1;
         }
@@ -3152,6 +3152,10 @@
                 padding: 14px 32px;
                 font-size: 15px;
             }
+
+            .image-stack {
+                bottom: calc(27% - 0px);
+            }
         }
         
         /* ========================================== */
@@ -3246,6 +3250,11 @@
         /* ========================================== */
         @media (min-width: 1281px) and (max-width: 1440px) {
             /* Content snaps to these sizes at 1281px and stays until 1440px */
+            .image-stack {
+                bottom: calc(18% - 0px);
+            }
+            
+            
             nav {
                 padding: 25px 50px;
             }
@@ -3354,14 +3363,15 @@
         /* ========================================== */
         /* LAPTOP SCREENS: Adjusted Scroll Indicator */
         /* ========================================== */
-        @media (min-width: 1025px) and (max-width: 1920px) {
+        /* @media (min-width: 1025px) and (max-width: 1920px) {
             
-        }
+        } */
         
         /* ========================================== */
         /* SMALL DESKTOP: 1025px to 1280px */
         /* ========================================== */
         @media (min-width: 1025px) and (max-width: 1280px) {
+            
             .hero-video-container {
                 width: 850px;
                 max-width: none;
@@ -3373,12 +3383,12 @@
             
             .image-stack.left {
                 left: calc(50% - 170px);
-                bottom: calc(50% - 400px);
+                bottom: calc(50% - 360px);
             }
             
             .image-stack.right {
                 right: calc(50% - 170px);
-                bottom: calc(50% - 400px);
+                bottom: calc(50% - 360px);
             }
 
             /* Adjust animated positions with scaling */
@@ -3656,7 +3666,7 @@
             }
             
             .image-stack.left {
-                top: 17%;
+                top: 11%;
                 bottom: auto;
                 left: auto;
                 right: 50%;
@@ -3664,8 +3674,8 @@
             }
             
             .image-stack.right {
-                bottom: 17%;
-                top: auto;
+                top: 66%;
+                /* top: auto; */
                 right: auto;
                 left: 50%;
                 transform: translateX(-50%);
