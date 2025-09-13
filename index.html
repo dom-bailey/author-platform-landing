@@ -3352,6 +3352,30 @@
         
         
         /* ========================================== */
+        /* LAPTOP SCREENS: Adjusted Scroll Indicator */
+        /* ========================================== */
+        @media (min-width: 1025px) and (max-width: 1920px) {
+            /* Extend hero to provide scroll space if needed */
+            .hero {
+                min-height: 100vh;
+                overflow: visible; /* Allow content to extend beyond viewport */
+            }
+            
+            /* Hero-video-container stays absolutely positioned as original */
+            /* No changes needed - it remains centered */
+            
+            /* Position scroll indicator relative to hero-video-container bottom */
+            .scroll-indicator {
+                position: absolute;
+                top: calc(50% + 285px); /* Position below the hero rectangle */
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 100;
+                bottom: auto; /* Override the default bottom positioning */
+            }
+        }
+        
+        /* ========================================== */
         /* SMALL DESKTOP: 1025px to 1280px */
         /* ========================================== */
         @media (min-width: 1025px) and (max-width: 1280px) {
