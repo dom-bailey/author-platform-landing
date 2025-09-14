@@ -133,12 +133,6 @@
             box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
         }
 
-        .progress-step.completed::before {
-            background: var(--accent-bright);
-            color: var(--primary);
-            content: "✓";
-            border-color: var(--accent-bright);
-        }
 
         .progress-step span {
             display: block;
@@ -807,11 +801,6 @@
                 if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
                     progressSteps.forEach(step => step.classList.remove('active'));
                     progressSteps[index].classList.add('active');
-
-                    // Mark previous steps as completed
-                    for (let i = 0; i < index; i++) {
-                        progressSteps[i].classList.add('completed');
-                    }
                 }
             });
         });
