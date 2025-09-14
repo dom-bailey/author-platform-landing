@@ -126,12 +126,6 @@
             transition: all 0.3s ease;
         }
 
-        .progress-step.active::before {
-            background: var(--accent);
-            color: var(--primary);
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
-        }
 
 
         .progress-step span {
@@ -463,7 +457,7 @@
         </div>
 
         <div class="progress-bar">
-            <div class="progress-step active" data-step="1">
+            <div class="progress-step" data-step="1">
                 <span>About You</span>
             </div>
             <div class="progress-step" data-step="2">
@@ -798,10 +792,7 @@
                 const sectionTop = section.offsetTop;
                 const sectionBottom = sectionTop + section.offsetHeight;
 
-                if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
-                    progressSteps.forEach(step => step.classList.remove('active'));
-                    progressSteps[index].classList.add('active');
-                }
+                // Removed dynamic active class switching
             });
         });
 
