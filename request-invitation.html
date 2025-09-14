@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request an Invitation | Author Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .form-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .progress-step::before {
+            content: attr(data-step);
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            font-weight: bold;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-step.active::before {
+            background: #667eea;
+            color: white;
+        }
+
+        .progress-step.completed::before {
+            background: #10b981;
+            color: white;
+            content: "✓";
+        }
+
+        .progress-step span {
+            display: block;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .form-content {
+            padding: 0 2rem 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 3rem;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #334155;
+        }
+
+        label .required {
+            color: #ef4444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .microcopy {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .radio-item:hover,
+        .checkbox-item:hover {
+            background: #f1f5f9;
+        }
+
+        .radio-item input[type="radio"],
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 0.75rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .radio-item label,
+        .checkbox-item label {
+            font-weight: 400;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .radio-description {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        #formMessage {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        #formMessage.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+            display: block;
+        }
+
+        #formMessage.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+            display: block;
+        }
+
+        #formMessage.loading {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .form-header h1 {
+                font-size: 2rem;
+            }
+
+            .progress-bar {
+                padding: 1.5rem 1rem 0;
+            }
+
+            .progress-step span {
+                font-size: 0.75rem;
+            }
+
+            .form-content {
+                padding: 0 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <a href="/" class="back-link">← Back to Home</a>
+            <h1>Request an Invitation</h1>
+            <p>Tell us about yourself and your work as an author</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <span>About You</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <span>Your Work</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <span>Partnership</span>
+            </div>
+        </div>
+
+        <form id="invitationForm" class="form-content">
+            <!-- Section 1: About You -->
+            <div class="form-section">
+                <h2 class="section-title">Section 1: About You</h2>
+
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="penName">Pen Name (if different)</label>
+                    <input type="text" id="penName" name="penName">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="authorProfileLink">Primary Author Profile Link <span class="required">*</span></label>
+                    <input type="url" id="authorProfileLink" name="authorProfileLink" required>
+                    <p class="microcopy">Please provide the one single link that serves as the best central hub for you and your work. This helps us get a complete picture of you as an author.</p>
+                </div>
+            </div>
+
+            <!-- Section 2: Your Author Profile & Audience -->
+            <div class="form-section">
+                <h2 class="section-title">Section 2: Your Author Profile & Audience</h2>
+
+                <div class="form-group">
+                    <label>How would you best describe your publishing experience? <span class="required">*</span></label>
+                    <p class="microcopy">Select the one that best represents you</p>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="independent" name="publishingExperience" value="independent" required>
+                            <label for="independent">
+                                Primarily Independent / Self-Published
+                                <div class="radio-description">You publish your own ebooks, print books, or web novels.</div>
+                            </label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="traditional" name="publishingExperience" value="traditional" required>
+                            <label for="traditional">
+                                Primarily Traditionally Published
+                                <div class="radio-description">You work with a publishing house like Penguin Random House.</div>
+                            </label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="hybrid" name="publishingExperience" value="hybrid" required>
+                            <label for="hybrid">
+                                Hybrid
+                                <div class="radio-description">You have a mix of both self-published and traditionally published works.</div>
+                            </label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="aspiring" name="publishingExperience" value="aspiring" required>
+                            <label for="aspiring">
+                                Aspiring / Pre-Published
+                                <div class="radio-description">You have a completed manuscript but have not yet made it publicly available.</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>What is your primary release style? <span class="required">*</span></label>
+                    <p class="microcopy">Select the one that best describes your process</p>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="completed" name="releaseStyle" value="completed" required>
+                            <label for="completed">
+                                Completed Works
+                                <div class="radio-description">You write and release your stories as complete, standalone products.</div>
+                            </label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="serialized" name="releaseStyle" value="serialized" required>
+                            <label for="serialized">
+                                Serialized Works
+                                <div class="radio-description">You write and release your stories in an ongoing, chapter-by-chapter format.</div>
+                            </label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="both" name="releaseStyle" value="both" required>
+                            <label for="both">
+                                Hybrid / Both
+                                <div class="radio-description">You actively use both release styles for different projects.</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>What formats is your work currently available in? <span class="required">*</span></label>
+                    <p class="microcopy">Check all that apply</p>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ebook" name="formats" value="ebook">
+                            <label for="ebook">Ebook</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="print" name="formats" value="print">
+                            <label for="print">Print</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="webNovel" name="formats" value="webNovel">
+                            <label for="webNovel">Web Novel</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="audiobook" name="formats" value="audiobook">
+                            <label for="audiobook">Audiobook</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="graphicNovel" name="formats" value="graphicNovel">
+                            <label for="graphicNovel">Graphic Novel / Webtoon</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="otherFormat" name="formats" value="other">
+                            <label for="otherFormat">Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="primaryGenre">What is your primary genre? <span class="required">*</span></label>
+                    <p class="microcopy">Select the one that best fits your work</p>
+                    <select id="primaryGenre" name="primaryGenre" required>
+                        <option value="">Select a genre...</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="scienceFiction">Science Fiction</option>
+                        <option value="romance">Romance</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="mystery">Mystery</option>
+                        <option value="horror">Horror</option>
+                        <option value="litrpg">LitRPG / GameLit</option>
+                        <option value="paranormal">Paranormal / Urban Fantasy</option>
+                        <option value="ya">Young Adult (YA)</option>
+                        <option value="historical">Historical Fiction</option>
+                        <option value="western">Western</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subgenre">Subgenre / Niche (Optional)</label>
+                    <input type="text" id="subgenre" name="subgenre" placeholder='e.g., "Cozy Fantasy", "Adventure", "Dystopian", "Billionaire Romance"'>
+                </div>
+
+                <div class="form-group">
+                    <label for="communityHub">Primary Community Hub <span class="required">*</span></label>
+                    <input type="url" id="communityHub" name="communityHub" required>
+                    <p class="microcopy">Please link to the single online space where you have the most active and engaged community. This could be your Discord server, TikTok, Instagram, Facebook Group, or any other platform where you connect most with your readers.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="mailingListSize">What is the approximate size of your author mailing list? <span class="required">*</span></label>
+                    <select id="mailingListSize" name="mailingListSize" required>
+                        <option value="">Select a range...</option>
+                        <option value="none">I don't currently have a mailing list</option>
+                        <option value="0-1000">0 - 1,000 subscribers</option>
+                        <option value="1001-5000">1,001 - 5,000 subscribers</option>
+                        <option value="5001-10000">5,001 - 10,000 subscribers</option>
+                        <option value="10001-25000">10,001 - 25,000 subscribers</option>
+                        <option value="25001+">25,001+ subscribers</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Section 3: Partnership -->
+            <div class="form-section">
+                <h2 class="section-title">Section 3: Partnership</h2>
+
+                <div class="form-group">
+                    <label for="platformAppeal">What aspects of our platform are most appealing to you? <span class="required">*</span></label>
+                    <textarea id="platformAppeal" name="platformAppeal" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="questions">Do you have any immediate questions or concerns about our platform? (Optional)</label>
+                    <textarea id="questions" name="questions"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="referralSource">How did you hear about us? (Optional)</label>
+                    <select id="referralSource" name="referralSource">
+                        <option value="">Select an option...</option>
+                        <option value="searchEngine">Search Engine (e.g., Google, Bing)</option>
+                        <option value="socialMedia">Social Media (e.g., TikTok, Instagram, Facebook, X)</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="article">Online Article or Blog Post</option>
+                        <option value="referral">Author or Friend Referral</option>
+                        <option value="community">Writer's Community (e.g., Reddit, Discord, Forum)</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn">Submit Application</button>
+            </div>
+
+            <div id="formMessage"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('invitationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+
+            // Handle checkboxes (formats) - collect all checked values
+            const formats = [];
+            const formatCheckboxes = document.querySelectorAll('input[name="formats"]:checked');
+            formatCheckboxes.forEach(checkbox => {
+                formats.push(checkbox.value);
+            });
+
+            // Create data object
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                // Skip individual format entries as we'll add them as an array
+                if (key !== 'formats') {
+                    data[key] = value;
+                }
+            }
+            // Add formats as array
+            data.formats = formats;
+
+            // Validate at least one format is selected
+            if (formats.length === 0) {
+                formMessage.textContent = 'Please select at least one format for your work.';
+                formMessage.className = 'error';
+                return;
+            }
+
+            // Replace with your actual Make.com webhook URL
+            const webhookUrl = 'https://hook.make.com/your-unique-webhook-url';
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            formMessage.textContent = 'Processing your application...';
+            formMessage.className = 'loading';
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (response.ok) {
+                    formMessage.textContent = 'Thank you for your application! We\'ll review it and get back to you soon.';
+                    formMessage.className = 'success';
+                    form.reset();
+
+                    // Scroll to top after success
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                    // Optional: Redirect after a delay
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 5000);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                formMessage.textContent = 'There was an error submitting your application. Please try again or contact support.';
+                formMessage.className = 'error';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+            });
+        });
+
+        // Optional: Update progress bar based on section visibility
+        const sections = document.querySelectorAll('.form-section');
+        const progressSteps = document.querySelectorAll('.progress-step');
+
+        // Simple scroll-based progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+                    progressSteps.forEach(step => step.classList.remove('active'));
+                    progressSteps[index].classList.add('active');
+
+                    // Mark previous steps as completed
+                    for (let i = 0; i < index; i++) {
+                        progressSteps[i].classList.add('completed');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
