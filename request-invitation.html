@@ -33,38 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Floating Particles Background */
-        .particles-bg {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .particle-bg {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: floatParticle 25s infinite linear;
-            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
-        }
-
-        @keyframes floatParticle {
-            from {
-                transform: translateY(100vh) rotate(0deg);
-            }
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-            }
-        }
-
         .container {
             max-width: 800px;
             margin: 60px auto;
@@ -186,20 +154,35 @@
         }
 
         .form-section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            padding: 2.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(74, 222, 128, 0.1);
+            position: relative;
         }
 
         .form-section:last-child {
             margin-bottom: 0;
         }
 
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.3), transparent);
+        }
+
         .section-title {
             font-size: 1.8rem;
             font-weight: 800;
             color: var(--text);
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.2);
             letter-spacing: -1px;
             position: relative;
         }
@@ -506,9 +489,6 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background Particles -->
-    <div class="particles-bg" id="particlesBg"></div>
-
     <div class="container">
         <div class="form-header">
             <a href="/" class="back-link">← Back to Home</a>
@@ -864,22 +844,6 @@
             });
         });
 
-        // Generate animated background particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particlesBg');
-            const particleCount = 20;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle-bg';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 25 + 's';
-                particle.style.animationDuration = (25 + Math.random() * 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        createParticles();
     </script>
 </body>
 </html>
