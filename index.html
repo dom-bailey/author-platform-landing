@@ -2167,7 +2167,7 @@
         .video-frame {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            background: #000;
+            background: linear-gradient(135deg, #0a0f0a 0%, #1a2e1a 100%);
             border-radius: 20px;
             overflow: hidden;
         }
@@ -5456,8 +5456,8 @@
                 
                 <div class="video-container reveal">
                     <div class="video-frame">
-                        <video id="demoVideo" controls poster="">
-                            <source src="/assets/author-media/demo-video.mp4" type="video/mp4">
+                        <video id="demoVideo" controls preload="metadata" playsinline poster="">
+                            <source src="/assets/author-media/demo-video.mp4#t=0.1" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="video-play-overlay" id="playOverlay">
