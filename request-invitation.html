@@ -301,12 +301,13 @@
             box-shadow: none !important;
         }
 
-        .radio-item input[type="radio"] {
+        .radio-item input[type="radio"],
+        .checkbox-item input[type="checkbox"] {
             accent-color: var(--accent);
         }
 
         .radio-item > div,
-        .checkbox-item label {
+        .checkbox-item > div {
             font-weight: 500;
             margin-bottom: 0;
             color: var(--text);
@@ -583,30 +584,30 @@
                     <label>What formats is your work currently available in? <span class="required">*</span></label>
                     <p class="microcopy">Check all that apply</p>
                     <div class="checkbox-group">
-                        <div class="checkbox-item">
+                        <label class="checkbox-item" for="ebook">
                             <input type="checkbox" id="ebook" name="formats" value="ebook">
-                            <label for="ebook">Ebook</label>
-                        </div>
-                        <div class="checkbox-item">
+                            <div>Ebook</div>
+                        </label>
+                        <label class="checkbox-item" for="print">
                             <input type="checkbox" id="print" name="formats" value="print">
-                            <label for="print">Print</label>
-                        </div>
-                        <div class="checkbox-item">
+                            <div>Print</div>
+                        </label>
+                        <label class="checkbox-item" for="webNovel">
                             <input type="checkbox" id="webNovel" name="formats" value="webNovel">
-                            <label for="webNovel">Web Novel</label>
-                        </div>
-                        <div class="checkbox-item">
+                            <div>Web Novel</div>
+                        </label>
+                        <label class="checkbox-item" for="audiobook">
                             <input type="checkbox" id="audiobook" name="formats" value="audiobook">
-                            <label for="audiobook">Audiobook</label>
-                        </div>
-                        <div class="checkbox-item">
+                            <div>Audiobook</div>
+                        </label>
+                        <label class="checkbox-item" for="graphicNovel">
                             <input type="checkbox" id="graphicNovel" name="formats" value="graphicNovel">
-                            <label for="graphicNovel">Graphic Novel / Webtoon</label>
-                        </div>
-                        <div class="checkbox-item">
+                            <div>Graphic Novel / Webtoon</div>
+                        </label>
+                        <label class="checkbox-item" for="otherFormat">
                             <input type="checkbox" id="otherFormat" name="formats" value="other">
-                            <label for="otherFormat">Other</label>
-                        </div>
+                            <div>Other</div>
+                        </label>
                     </div>
                 </div>
 
