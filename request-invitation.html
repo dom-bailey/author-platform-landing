@@ -815,16 +815,22 @@
 
         // Allow radio buttons to be unselected on second click
         document.querySelectorAll('input[type="radio"]').forEach(radio => {
-            let wasChecked = false;
-
-            radio.addEventListener('mousedown', function() {
-                wasChecked = this.checked;
-            });
-
             radio.addEventListener('click', function(e) {
-                if (wasChecked) {
+                // Store reference to current radio and its name group
+                const radioName = this.name;
+                const isCurrentlyChecked = this.hasAttribute('data-was-checked');
+
+                // Clear all data-was-checked in this group
+                document.querySelectorAll(`input[type="radio"][name="${radioName}"]`).forEach(r => {
+                    r.removeAttribute('data-was-checked');
+                });
+
+                // If it was checked, uncheck it
+                if (isCurrentlyChecked) {
                     this.checked = false;
-                    e.preventDefault();
+                } else {
+                    // Mark this one as checked
+                    this.setAttribute('data-was-checked', 'true');
                 }
             });
         });
