@@ -224,6 +224,38 @@
             color: rgba(255, 255, 255, 0.3);
         }
 
+        /* Custom dropdown styling */
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .select-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+
+        .select-wrapper.open::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 3rem;
+        }
+
         select option {
             background: var(--primary);
             color: var(--text);
@@ -614,6 +646,7 @@
                 <div class="form-group">
                     <label for="primaryGenre">What is your primary genre? <span class="required">*</span></label>
                     <p class="microcopy">Select the one that best fits your work</p>
+                    <div class="select-wrapper">
                     <select id="primaryGenre" name="primaryGenre" required>
                         <option value="">Select a genre...</option>
                         <option value="fantasy">Fantasy</option>
@@ -629,6 +662,7 @@
                         <option value="western">Western</option>
                         <option value="other">Other</option>
                     </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -644,6 +678,7 @@
 
                 <div class="form-group">
                     <label for="mailingListSize">What is the approximate size of your author mailing list? <span class="required">*</span></label>
+                    <div class="select-wrapper">
                     <select id="mailingListSize" name="mailingListSize" required>
                         <option value="">Select a range...</option>
                         <option value="none">I don't currently have a mailing list</option>
@@ -653,6 +688,7 @@
                         <option value="10001-25000">10,001 - 25,000 subscribers</option>
                         <option value="25001+">25,001+ subscribers</option>
                     </select>
+                    </div>
                 </div>
             </div>
 
@@ -672,6 +708,7 @@
 
                 <div class="form-group">
                     <label for="referralSource">How did you hear about us? (Optional)</label>
+                    <div class="select-wrapper">
                     <select id="referralSource" name="referralSource">
                         <option value="">Select an option...</option>
                         <option value="searchEngine">Search Engine (e.g., Google, Bing)</option>
@@ -682,6 +719,7 @@
                         <option value="community">Writer's Community (e.g., Reddit, Discord, Forum)</option>
                         <option value="other">Other</option>
                     </select>
+                    </div>
                 </div>
             </div>
 
@@ -833,6 +871,23 @@
                     // Mark this one as checked
                     this.setAttribute('data-was-checked', 'true');
                 }
+            });
+        });
+
+        // Handle dropdown arrow animation
+        document.querySelectorAll('select').forEach(select => {
+            const wrapper = select.closest('.select-wrapper');
+
+            select.addEventListener('focus', function() {
+                if (wrapper) wrapper.classList.add('open');
+            });
+
+            select.addEventListener('blur', function() {
+                if (wrapper) wrapper.classList.remove('open');
+            });
+
+            select.addEventListener('change', function() {
+                if (wrapper) wrapper.classList.remove('open');
             });
         });
     </script>
