@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | StoryAlive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0f0a;
+            --accent: #4ade80;
+            --accent-bright: #6ee7b7;
+            --gold: #fbbf24;
+            --text: #ffffff;
+            --text-muted: #d1d5db;
+            --glass: rgba(74, 222, 128, 0.15);
+            --glass-border: rgba(74, 222, 128, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(180deg, #0a0f0a 0%, #050a05 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4),
+                        0 0 100px rgba(74, 222, 128, 0.1);
+            animation: slideUp 0.6s ease-out;
+            text-align: center;
+            padding: 4rem 3rem;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 20px rgba(74, 222, 128, 0);
+            }
+        }
+
+        .success-icon::before {
+            content: '✓';
+            color: var(--primary);
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, var(--accent), #ffffff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .timeline {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(74, 222, 128, 0.1);
+        }
+
+        .timeline h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-number {
+            width: 30px;
+            height: 30px;
+            background: rgba(74, 222, 128, 0.1);
+            border: 2px solid rgba(74, 222, 128, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--accent);
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+        }
+
+        .actions {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 35px;
+            border: none;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', -apple-system, sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--text);
+            transform: scale(1.02);
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.3), transparent);
+            margin: 2.5rem 0;
+        }
+
+        .contact-note {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 2rem;
+        }
+
+        .contact-note a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-note a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding: 3rem 2rem;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .message {
+                font-size: 1.1rem;
+            }
+
+            .timeline {
+                padding: 1.5rem;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .success-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .success-icon::before {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon"></div>
+
+        <h1>Application Received!</h1>
+
+        <p class="message">
+            Thank you for your interest in StoryAlive. We've received your application and are excited to review it.
+        </p>
+
+        <div class="timeline">
+            <h2>What Happens Next?</h2>
+
+            <div class="timeline-item">
+                <div class="timeline-number">1</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Application Review</div>
+                    <div class="timeline-desc">Our team will carefully review your submission.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">2</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Invitation Email</div>
+                    <div class="timeline-desc">If approved, you'll receive an exclusive invitation with your access details.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">3</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Platform Access</div>
+                    <div class="timeline-desc">Someone from our team will reach out to begin onboarding.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="actions">
+            <a href="/" class="btn btn-primary">Return Home</a>
+            <a href="#" class="btn btn-secondary" onclick="window.close(); return false;">Close Window</a>
+        </div>
+
+        <p class="contact-note">
+            Have questions? Reach out to us at <a href="mailto:support@storyalive.com">support@storyalive.com</a>
+        </p>
+    </div>
+</body>
+</html>
