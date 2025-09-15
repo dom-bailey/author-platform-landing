@@ -3,6 +3,14 @@
     {
       "source": "/request-invitation",
       "destination": "/request-invitation.html"
+    },
+    {
+      "source": "/stay-updated",
+      "destination": "/stay-updated.html"
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/thank-you.html"
     }
   ],
   "trailingSlash": false
