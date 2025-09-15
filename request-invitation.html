@@ -323,11 +323,22 @@
             cursor: pointer;
         }
 
-        .radio-item:hover,
-        .checkbox-item:hover {
-            background: rgba(74, 222, 128, 0.05);
-            border-color: rgba(74, 222, 128, 0.3);
-            transform: translateX(5px);
+        @media (min-width: 1024px) {
+            .radio-item:hover,
+            .checkbox-item:hover {
+                background: rgba(74, 222, 128, 0.05);
+                border-color: rgba(74, 222, 128, 0.3);
+                transform: translateX(5px);
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .radio-item:hover,
+            .checkbox-item:hover {
+                background: rgba(74, 222, 128, 0.05);
+                border-color: rgba(74, 222, 128, 0.3);
+                /* No transform on tablet/mobile */
+            }
         }
 
         .radio-item input[type="radio"],
@@ -745,7 +756,7 @@
 
                 <div class="form-group">
                     <label for="authorProfileLink">Primary Author Profile Link <span class="required">*</span></label>
-                    <input type="url" id="authorProfileLink" name="authorProfileLink" required>
+                    <input type="text" id="authorProfileLink" name="authorProfileLink" required pattern="^(https?:\/\/)?.+\..+$" title="Please enter a valid URL (e.g., example.com or https://example.com)">
                     <p class="microcopy">Please provide the one single link that serves as the best central hub for you and your work. This helps us get a complete picture of you as an author.</p>
                 </div>
             </div>
@@ -877,7 +888,7 @@
 
                 <div class="form-group">
                     <label for="communityHub">Primary Community Hub <span class="required">*</span></label>
-                    <input type="url" id="communityHub" name="communityHub" required>
+                    <input type="text" id="communityHub" name="communityHub" required pattern="^(https?:\/\/)?.+\..+$" title="Please enter a valid URL (e.g., example.com or https://example.com)">
                     <p class="microcopy">Please link to the single online space where you have the most active and engaged community. This could be your Discord server, TikTok, Instagram, Facebook Group, or any other platform where you connect most with your readers.</p>
                 </div>
 
@@ -1055,6 +1066,23 @@
 
                 // Removed dynamic active class switching
             });
+        });
+
+        // Auto-format URLs to add https:// if missing
+        function formatUrl(input) {
+            let value = input.value.trim();
+            if (value && !value.match(/^https?:\/\//)) {
+                input.value = 'https://' + value;
+            }
+        }
+
+        // Add blur event to URL inputs to auto-format
+        document.getElementById('authorProfileLink').addEventListener('blur', function() {
+            formatUrl(this);
+        });
+
+        document.getElementById('communityHub').addEventListener('blur', function() {
+            formatUrl(this);
         });
 
         // Allow radio buttons to be unselected on second click
