@@ -281,17 +281,36 @@
 
         .radio-item input[type="radio"],
         .checkbox-item input[type="checkbox"] {
-            margin-right: 0.75rem;
+            margin-right: 1rem;
             margin-top: 0.25rem;
             flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
         }
 
-        .radio-item label,
+        .radio-item input[type="radio"]:focus,
+        .checkbox-item input[type="checkbox"]:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .radio-item input[type="radio"]:focus-visible,
+        .checkbox-item input[type="checkbox"]:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .radio-item input[type="radio"] {
+            accent-color: var(--accent);
+        }
+
+        .radio-item > div,
         .checkbox-item label {
             font-weight: 500;
             margin-bottom: 0;
-            cursor: pointer;
             color: var(--text);
+            flex: 1;
         }
 
         .radio-description {
@@ -501,34 +520,34 @@
                     <label>How would you best describe your publishing experience? <span class="required">*</span></label>
                     <p class="microcopy">Select the one that best represents you</p>
                     <div class="radio-group">
-                        <div class="radio-item">
+                        <label class="radio-item" for="independent">
                             <input type="radio" id="independent" name="publishingExperience" value="independent" required>
-                            <label for="independent">
+                            <div>
                                 Primarily Independent / Self-Published
                                 <div class="radio-description">You publish your own ebooks, print books, or web novels.</div>
-                            </label>
-                        </div>
-                        <div class="radio-item">
+                            </div>
+                        </label>
+                        <label class="radio-item" for="traditional">
                             <input type="radio" id="traditional" name="publishingExperience" value="traditional" required>
-                            <label for="traditional">
+                            <div>
                                 Primarily Traditionally Published
                                 <div class="radio-description">You work with a publishing house like Penguin Random House.</div>
-                            </label>
-                        </div>
-                        <div class="radio-item">
+                            </div>
+                        </label>
+                        <label class="radio-item" for="hybrid">
                             <input type="radio" id="hybrid" name="publishingExperience" value="hybrid" required>
-                            <label for="hybrid">
+                            <div>
                                 Hybrid
                                 <div class="radio-description">You have a mix of both self-published and traditionally published works.</div>
-                            </label>
-                        </div>
-                        <div class="radio-item">
+                            </div>
+                        </label>
+                        <label class="radio-item" for="aspiring">
                             <input type="radio" id="aspiring" name="publishingExperience" value="aspiring" required>
-                            <label for="aspiring">
+                            <div>
                                 Aspiring / Pre-Published
                                 <div class="radio-description">You have a completed manuscript but have not yet made it publicly available.</div>
-                            </label>
-                        </div>
+                            </div>
+                        </label>
                     </div>
                 </div>
 
@@ -536,27 +555,27 @@
                     <label>What is your primary release style? <span class="required">*</span></label>
                     <p class="microcopy">Select the one that best describes your process</p>
                     <div class="radio-group">
-                        <div class="radio-item">
+                        <label class="radio-item" for="completed">
                             <input type="radio" id="completed" name="releaseStyle" value="completed" required>
-                            <label for="completed">
+                            <div>
                                 Completed Works
                                 <div class="radio-description">You write and release your stories as complete, standalone products.</div>
-                            </label>
-                        </div>
-                        <div class="radio-item">
+                            </div>
+                        </label>
+                        <label class="radio-item" for="serialized">
                             <input type="radio" id="serialized" name="releaseStyle" value="serialized" required>
-                            <label for="serialized">
+                            <div>
                                 Serialized Works
                                 <div class="radio-description">You write and release your stories in an ongoing, chapter-by-chapter format.</div>
-                            </label>
-                        </div>
-                        <div class="radio-item">
+                            </div>
+                        </label>
+                        <label class="radio-item" for="both">
                             <input type="radio" id="both" name="releaseStyle" value="both" required>
-                            <label for="both">
+                            <div>
                                 Hybrid / Both
                                 <div class="radio-description">You actively use both release styles for different projects.</div>
-                            </label>
-                        </div>
+                            </div>
+                        </label>
                     </div>
                 </div>
 
@@ -794,6 +813,21 @@
             });
         });
 
+        // Allow radio buttons to be unselected on second click
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            let wasChecked = false;
+
+            radio.addEventListener('mousedown', function() {
+                wasChecked = this.checked;
+            });
+
+            radio.addEventListener('click', function(e) {
+                if (wasChecked) {
+                    this.checked = false;
+                    e.preventDefault();
+                }
+            });
+        });
     </script>
 </body>
 </html>
