@@ -9,5 +9,11 @@ export default defineConfig({
         'request-invitation': resolve(__dirname, 'request-invitation.html')
       }
     }
+  },
+  server: {
+    open: true
+  },
+  preview: {
+    open: true
   }
 });

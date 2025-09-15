@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/request-invitation",
+      "destination": "/request-invitation.html"
+    }
+  ],
+  "trailingSlash": false
+}
