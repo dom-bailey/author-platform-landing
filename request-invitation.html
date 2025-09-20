@@ -1122,6 +1122,45 @@
             formatUrl(this);
         });
 
+        // Format phone number to (XXX) XXX-XXXX
+        function formatPhoneNumber(input) {
+            // Remove all non-digit characters
+            let cleaned = input.value.replace(/\D/g, '');
+
+            // Check if it's a valid US phone number length
+            if (cleaned.length === 10) {
+                // Format as (XXX) XXX-XXXX
+                const formatted = `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+                input.value = formatted;
+            } else if (cleaned.length === 11 && cleaned[0] === '1') {
+                // Remove country code if present
+                cleaned = cleaned.slice(1);
+                const formatted = `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+                input.value = formatted;
+            }
+            // If not valid length, leave as is (user might still be typing)
+        }
+
+        // Add phone number formatting on blur and input
+        const phoneInput = document.getElementById('phoneNumber');
+
+        // Format on blur (when user leaves the field)
+        phoneInput.addEventListener('blur', function() {
+            formatPhoneNumber(this);
+        });
+
+        // Optional: Real-time formatting as user types
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value;
+            // Remove all non-digit characters for counting
+            let cleaned = value.replace(/\D/g, '');
+
+            // Only format if we have exactly 10 digits
+            if (cleaned.length === 10) {
+                formatPhoneNumber(this);
+            }
+        });
+
         // Allow radio buttons to be unselected on second click
         document.querySelectorAll('input[type="radio"]').forEach(radio => {
             radio.addEventListener('click', function(e) {
