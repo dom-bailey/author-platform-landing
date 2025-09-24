@@ -8,7 +8,8 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         'request-invitation': resolve(__dirname, 'request-invitation.html'),
         'stay-updated': resolve(__dirname, 'stay-updated.html'),
-        'thank-you': resolve(__dirname, 'thank-you.html')
+        'thank-you': resolve(__dirname, 'thank-you.html'),
+        'you-are-invited': resolve(__dirname, 'you-are-invited.html')
       }
     }
   },

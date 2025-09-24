@@ -11,6 +11,10 @@
     {
       "source": "/thank-you",
       "destination": "/thank-you.html"
+    },
+    {
+      "source": "/you-are-invited",
+      "destination": "/you-are-invited.html"
     }
   ],
   "trailingSlash": false
