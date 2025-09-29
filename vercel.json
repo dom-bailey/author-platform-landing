@@ -15,6 +15,10 @@
     {
       "source": "/you-are-invited",
       "destination": "/you-are-invited.html"
+    },
+    {
+      "source": "/your-invitation-form",
+      "destination": "/your-invitation-form.html"
     }
   ],
   "trailingSlash": false

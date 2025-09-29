@@ -9,7 +9,8 @@ export default defineConfig({
         'request-invitation': resolve(__dirname, 'request-invitation.html'),
         'stay-updated': resolve(__dirname, 'stay-updated.html'),
         'thank-you': resolve(__dirname, 'thank-you.html'),
-        'you-are-invited': resolve(__dirname, 'you-are-invited.html')
+        'you-are-invited': resolve(__dirname, 'you-are-invited.html'),
+        'your-invitation-form': resolve(__dirname, 'your-invitation-form.html')
       }
     }
   },

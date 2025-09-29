@@ -979,6 +979,10 @@
                 </div>
             </div>
 
+            <!-- Hidden fields for tracking -->
+            <input type="hidden" id="origination" name="origination" value="Discovery">
+            <input type="hidden" id="formOpenedAt" name="formOpenedAt" value="">
+
             <div class="form-actions">
                 <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="submitBtn">Submit Application</button>
@@ -989,6 +993,21 @@
     </div>
 
     <script>
+        // Set form opened timestamp when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const formattedDate = now.toLocaleString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            document.getElementById('formOpenedAt').value = formattedDate;
+        });
+
         document.getElementById('invitationForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -1040,7 +1059,7 @@
             }
 
             // Replace with your actual Make.com webhook URL
-            const webhookUrl = 'https://hook.us2.make.com/yxtlqxm1hmzmgwv6mryzlvdnojimu3lm';
+            const webhookUrl = 'https://hook.us2.make.com/5tf3qw1kq7mq7d52ens1n5qeb3fpzq2g';
 
             // Show loading state
             submitBtn.disabled = true;
