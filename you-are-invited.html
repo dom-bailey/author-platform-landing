@@ -587,41 +587,36 @@
             overflow: hidden;
         }
 
-        .loi-modal-header {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .loi-modal-header h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text);
-            letter-spacing: -0.5px;
-        }
+        /* Header removed to save vertical space */
 
         .loi-modal-close {
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: color 0.3s;
-            padding: 0;
+            position: absolute;
+            top: 15px;
+            right: 15px;
             width: 40px;
             height: 40px;
+            background: var(--primary);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            font-size: 24px;
+            color: var(--text);
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .loi-modal-close:hover {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--accent);
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .loi-modal-close:active {
+            transform: scale(0.95);
         }
 
         .loi-modal-body {
@@ -774,12 +769,12 @@
                 border-radius: 15px;
             }
 
-            .loi-modal-header {
-                padding: 1rem 1.5rem;
-            }
-
-            .loi-modal-header h3 {
-                font-size: 1.25rem;
+            /* Header removed - mobile adjustments for close button */
+            .loi-modal-close {
+                top: 10px;
+                right: 10px;
+                width: 35px;
+                height: 35px;
             }
 
             .loi-modal-body {
@@ -1047,10 +1042,7 @@
     <!-- LOI Modal -->
     <div id="loiModal" class="loi-modal">
         <div class="loi-modal-content">
-            <div class="loi-modal-header">
-                <h3>Letter of Intent</h3>
-                <button class="loi-modal-close" id="closeLoiModal">&times;</button>
-            </div>
+            <button class="loi-modal-close" id="closeLoiModal">&times;</button>
             <div class="loi-modal-body">
                 <div id="signwell-iframe-container">
                     <div class="loi-loading">
