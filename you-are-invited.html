@@ -627,22 +627,49 @@
         .loi-modal-body {
             flex: 1;
             padding: 2rem;
-            overflow: hidden; /* Remove our scroll, let SignWell handle it */
+            padding-bottom: 3rem; /* Extra bottom padding */
+            overflow-y: auto; /* Modal body handles scrolling */
+            overflow-x: hidden;
             background: rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: var(--accent) rgba(255, 255, 255, 0.1); /* Firefox */
+        }
+
+        /* Custom scrollbar styling for Webkit browsers */
+        .loi-modal-body::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .loi-modal-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+        }
+
+        .loi-modal-body::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 6px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+
+        .loi-modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-bright);
+            background-clip: content-box;
         }
 
         #signwell-iframe-container {
             width: 100%;
-            flex: 1;
+            height: 100%;
             border-radius: 12px;
-            overflow: hidden;
             position: relative;
-            min-height: 600px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Let SignWell handle its own iframe sizing and scrolling */
+        /* Let SignWell control its own iframe */
         #signwell-iframe-container iframe {
             width: 100% !important;
             height: 100% !important;
@@ -1328,10 +1355,7 @@
                         containerId: 'signwell-iframe-container',
                         allowClose: true,
                         skipDeclineDocumentConfirm: false,
-                        iframeAttributes: {
-                            scrolling: 'yes',  // Enable scrolling within iframe
-                            style: 'width: 100%; min-height: 800px; border: none;'
-                        },
+                        // Remove iframeAttributes - let SignWell handle sizing
                         events: {
                             completed: (e) => {
                                 console.log('Document signed successfully:', e);
