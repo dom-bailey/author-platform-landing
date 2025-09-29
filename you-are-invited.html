@@ -736,24 +736,49 @@
                     <input type="text" id="lastName" name="lastName" required>
                 </div>
 
+                <!-- Hidden field to maintain order -->
+                <input type="hidden" name="penName" value="">
+
                 <div class="form-group">
                     <label for="email">Email Address <span class="required">*</span></label>
                     <input type="email" id="email" name="email" required>
-                    <p class="microcopy">We'll only use this to send you important updates about StoryAlive</p>
                 </div>
 
                 <div class="form-group">
+                    <label for="phoneNumber">Phone Number (Optional)</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber">
+                </div>
+
+                <!-- Hidden fields to maintain order from Section 1 -->
+                <input type="hidden" name="authorProfileLink" value="">
+
+                <!-- Hidden fields for Section 2 -->
+                <input type="hidden" name="publishingExperience" value="">
+                <input type="hidden" name="releaseStyle" value="">
+                <!-- Note: formats will be handled as empty array in JavaScript -->
+                <input type="hidden" name="primaryGenre" value="">
+                <input type="hidden" name="subgenre" value="">
+                <input type="hidden" name="communityHub" value="">
+                <input type="hidden" name="mailingListSize" value="">
+                <input type="hidden" name="paidSubscribers" value="">
+                <input type="hidden" name="totalSales" value="">
+
+                <!-- Section 3 visible fields -->
+                <div class="form-group">
                     <label for="platformAppeal">What aspects of our platform are most appealing to you? (Optional)</label>
-                    <textarea id="platformAppeal" name="platformAppeal" placeholder="Tell us what excites you about StoryAlive..."></textarea>
+                    <textarea id="platformAppeal" name="platformAppeal"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="questions">Do you have any immediate questions or concerns about our platform? (Optional)</label>
-                    <textarea id="questions" name="questions" placeholder="Ask us anything..."></textarea>
+                    <textarea id="questions" name="questions"></textarea>
                 </div>
+
+                <!-- Hidden field for referralSource -->
+                <input type="hidden" name="referralSource" value="">
             </div>
 
-            <!-- Hidden fields for tracking -->
+            <!-- Hidden fields for tracking (these come at the end) -->
             <input type="hidden" id="origination" name="origination" value="Direct - Top">
             <input type="hidden" id="formOpenedAt" name="formOpenedAt" value="">
 
@@ -795,6 +820,9 @@
             for (let [key, value] of formData.entries()) {
                 data[key] = value;
             }
+
+            // Add empty formats array to maintain compatibility with Make.com
+            data.formats = [];
 
             // Replace with your actual Make.com webhook URL
             const webhookUrl = 'https://hook.us2.make.com/5tf3qw1kq7mq7d52ens1n5qeb3fpzq2g';
