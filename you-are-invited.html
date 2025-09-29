@@ -1288,13 +1288,6 @@
             }
 
             try {
-                // Debug: Log what we're sending
-                console.log('Sending to SignWell:', {
-                    firstName: data.firstName,
-                    fullName: data.fullName,
-                    Name_2_value: data.firstName
-                });
-
                 // Call your backend endpoint to create the document
                 // The backend should handle the SignWell API call securely
                 const response = await fetch(SIGNWELL_CONFIG.CREATE_DOCUMENT_ENDPOINT, {
