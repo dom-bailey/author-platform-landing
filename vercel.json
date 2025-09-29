@@ -21,5 +21,10 @@
       "destination": "/your-invitation-form.html"
     }
   ],
-  "trailingSlash": false
+  "trailingSlash": false,
+  "functions": {
+    "api/create-loi-document.js": {
+      "maxDuration": 10
+    }
+  }
 }
