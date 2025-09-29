@@ -1355,6 +1355,19 @@
 
                 // Initialize SignWell embed
                 try {
+                    // On mobile, prevent auto-zoom when iframe loads
+                    if (window.innerWidth <= 767) {
+                        // Temporarily disable zoom
+                        const viewport = document.querySelector('meta[name="viewport"]');
+                        const originalContent = viewport.content;
+                        viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+
+                        // Re-enable zoom after a short delay (after SignWell loads)
+                        setTimeout(() => {
+                            viewport.content = originalContent;
+                        }, 2000);
+                    }
+
                     const signWellEmbed = new SignWellEmbed({
                         url: embeddedSigningUrl,
                         containerId: 'signwell-iframe-container',
