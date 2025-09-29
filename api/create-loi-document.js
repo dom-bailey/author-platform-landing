@@ -62,16 +62,32 @@ export default async function handler(req, res) {
                     {
                         id: '1',
                         placeholder_name: 'document sender', // Company/Platform side
-                        name: 'StoryAlive Platform',
-                        email: 'noreply@storyalive.com', // This should be your company email
-                        send_email: false // Don't send email to company placeholder
+                        name: 'Dominick Bailey', // Your name as the company representative
+                        email: 'dominick.bailey@mythicnovel.com', // Your company email
+                        send_email: false, // Don't send email to company placeholder
+                        embedded_signing: false, // Document sender doesn't need embedded signing
+                        skip_signing: true, // Skip signing for document sender
+                        fields: {
+                            // Pre-fill company side fields
+                            // Remove Signature_1 for now to see if that helps
+                        }
                     },
                     {
                         id: '2',
                         placeholder_name: 'author', // The actual author signing
                         name: recipientName,
                         email: recipientEmail,
-                        fields: fields // Pre-fill fields for the author
+                        embedded_signing: true, // This recipient NEEDS embedded signing
+                        send_email: false, // Don't send email, we're doing embedded signing
+                        fields: {
+                            // Pre-fill author fields (but NOT their signature fields)
+                            DateSigned_1: fields.DateSigned_1,
+                            Name_1: fields.Name_1,
+                            Email_1: fields.Email_1,
+                            Name_2: fields.Name_2,
+                            Name_3: fields.Name_3
+                            // TextField_3 and Signature_2 are left empty for author to complete
+                        }
                     }
                 ],
                 // Optional: Add custom branding
@@ -92,9 +108,19 @@ export default async function handler(req, res) {
             });
         }
 
-        // Extract the embedded signing URL
-        if (data.recipients && data.recipients[0] && data.recipients[0].embedded_signing_url) {
+        // Extract the embedded signing URL for the AUTHOR (recipient index 1, not 0)
+        // Recipients array: [0] = document sender, [1] = author
+        if (data.recipients && data.recipients[1] && data.recipients[1].embedded_signing_url) {
             console.log('Document created successfully with ID:', data.id);
+            console.log('Author recipient:', data.recipients[1].name);
+            return res.status(200).json({
+                success: true,
+                document_id: data.id,
+                embedded_signing_url: data.recipients[1].embedded_signing_url // Get AUTHOR's signing URL
+            });
+        } else if (data.recipients && data.recipients[0] && data.recipients[0].embedded_signing_url) {
+            // Fallback if only one recipient exists
+            console.log('Warning: Using first recipient URL, might be wrong recipient');
             return res.status(200).json({
                 success: true,
                 document_id: data.id,

@@ -627,15 +627,27 @@
         .loi-modal-body {
             flex: 1;
             padding: 2rem;
-            overflow: auto;
+            overflow: hidden; /* Remove our scroll, let SignWell handle it */
             background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
         }
 
         #signwell-iframe-container {
             width: 100%;
-            height: 100%;
+            flex: 1;
             border-radius: 12px;
             overflow: hidden;
+            position: relative;
+            min-height: 600px;
+        }
+
+        /* Let SignWell handle its own iframe sizing and scrolling */
+        #signwell-iframe-container iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            border-radius: 12px;
         }
 
         .loi-loading {
@@ -1026,7 +1038,7 @@
     <script>
         // Configuration for SignWell
         const SIGNWELL_CONFIG = {
-            TEMPLATE_ID: '631d6117-c711-408b-a00f-435caff47499', // Your SignWell template ID
+            TEMPLATE_ID: 'd285b005-670c-4154-88f2-14b59a69f75f', // Your SignWell template ID
             // Use full URL for local development, relative path for production
             CREATE_DOCUMENT_ENDPOINT: window.location.hostname === 'localhost'
                 ? 'http://localhost:3001/api/create-loi-document'
@@ -1241,6 +1253,13 @@
             }
 
             try {
+                // Debug: Log what we're sending
+                console.log('Sending to SignWell:', {
+                    firstName: data.firstName,
+                    fullName: data.fullName,
+                    Name_2_value: data.firstName
+                });
+
                 // Call your backend endpoint to create the document
                 // The backend should handle the SignWell API call securely
                 const response = await fetch(SIGNWELL_CONFIG.CREATE_DOCUMENT_ENDPOINT, {
@@ -1259,6 +1278,8 @@
                             Email_1: data.email,    // Email Address
                             Name_2: data.firstName, // First Name only
                             Name_3: data.fullName   // First Name + Last Name
+                            // Note: TextField_3 and Signature_2 are left for author to fill manually
+                            // Signature_1 is handled in backend for document sender
                         }
                     })
                 });
@@ -1307,6 +1328,10 @@
                         containerId: 'signwell-iframe-container',
                         allowClose: true,
                         skipDeclineDocumentConfirm: false,
+                        iframeAttributes: {
+                            scrolling: 'yes',  // Enable scrolling within iframe
+                            style: 'width: 100%; min-height: 800px; border: none;'
+                        },
                         events: {
                             completed: (e) => {
                                 console.log('Document signed successfully:', e);
