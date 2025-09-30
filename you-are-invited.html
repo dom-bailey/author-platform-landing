@@ -1360,20 +1360,78 @@
                         events: {
                             completed: (e) => {
                                 console.log('Document signed successfully:', e);
+
+                                // Show initial success message
                                 container.innerHTML = `
                                     <div class="loi-success-message">
                                         <h3>Thank you!</h3>
                                         <p>Your Letter of Intent has been signed successfully.</p>
-                                        <p>We'll be in touch soon with next steps.</p>
+                                        <p>Submitting your information...</p>
                                     </div>
                                 `;
 
-                                // Optional: Auto-submit the form after signing
-                                setTimeout(() => {
-                                    // You can trigger form submission here if desired
-                                    // document.getElementById('invitationForm').dispatchEvent(new Event('submit'));
-                                    modal.classList.remove('active');
-                                }, 3000);
+                                // Submit the form data to Make.com
+                                const form = document.getElementById('invitationForm');
+                                const formData = new FormData(form);
+                                const data = {};
+
+                                for (let [key, value] of formData.entries()) {
+                                    if (key === 'phoneNumber' && value) {
+                                        let cleaned = value.replace(/\D/g, '');
+                                        if (cleaned.length === 10) {
+                                            data[key] = '+1' + cleaned;
+                                        } else if (cleaned.length === 11 && cleaned[0] === '1') {
+                                            data[key] = '+' + cleaned;
+                                        } else {
+                                            data[key] = value;
+                                        }
+                                    } else {
+                                        data[key] = value;
+                                    }
+                                }
+                                data.formats = [];
+
+                                const webhookUrl = 'https://hook.us2.make.com/5tf3qw1kq7mq7d52ens1n5qeb3fpzq2g';
+
+                                fetch(webhookUrl, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(data),
+                                })
+                                .then(response => {
+                                    if (response.ok) {
+                                        // Update success message
+                                        container.innerHTML = `
+                                            <div class="loi-success-message">
+                                                <h3>Thank you!</h3>
+                                                <p>Your Letter of Intent has been signed, and your form has been submitted successfully.</p>
+                                                <p>We'll be in touch soon after we secure investor funding.</p>
+                                            </div>
+                                        `;
+
+                                        // Redirect after 10 seconds
+                                        setTimeout(() => {
+                                            window.location.href = '/';
+                                        }, 10000);
+                                    } else {
+                                        throw new Error('Submission failed');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error submitting form:', error);
+                                    container.innerHTML = `
+                                        <div class="loi-error-message">
+                                            <h3>Almost there!</h3>
+                                            <p>Your LOI was signed, but there was an error submitting your information.</p>
+                                            <p>Please contact support or try again.</p>
+                                        </div>
+                                    `;
+                                    setTimeout(() => {
+                                        modal.classList.remove('active');
+                                    }, 5000);
+                                });
                             },
                             declined: (e) => {
                                 console.log('Document declined:', e);
