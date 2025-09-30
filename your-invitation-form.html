@@ -1315,19 +1315,39 @@
 
         // Validate form fields with visual feedback
         function validateRequiredFields() {
+            const validationMessage = document.getElementById('loiValidationMessage');
+
+            // Get all required fields
             const firstName = document.getElementById('firstName');
             const lastName = document.getElementById('lastName');
             const email = document.getElementById('email');
-            const validationMessage = document.getElementById('loiValidationMessage');
+            const authorProfileLink = document.getElementById('authorProfileLink');
+            const primaryGenre = document.getElementById('primaryGenre');
+            const communityHub = document.getElementById('communityHub');
+            const mailingListSize = document.getElementById('mailingListSize');
+            const platformAppeal = document.getElementById('platformAppeal');
 
             let isValid = true;
             let missingFields = [];
             let firstErrorField = null;
 
-            // Clear previous error states
-            [firstName, lastName, email].forEach(field => {
-                field.classList.remove('field-error');
+            // Clear previous error states for all input fields
+            const allFields = [firstName, lastName, email, authorProfileLink, primaryGenre,
+                             communityHub, mailingListSize, platformAppeal];
+            allFields.forEach(field => {
+                if (field) field.classList.remove('field-error');
             });
+
+            // Clear radio button error states
+            document.querySelectorAll('.radio-item').forEach(item => {
+                item.classList.remove('field-error');
+            });
+
+            // Clear checkbox error states
+            document.querySelectorAll('.checkbox-item').forEach(item => {
+                item.classList.remove('field-error');
+            });
+
             validationMessage.classList.remove('show');
 
             // Check first name
@@ -1359,19 +1379,102 @@
                 isValid = false;
             }
 
+            // Check author profile link
+            if (!authorProfileLink.value || authorProfileLink.value.trim() === '') {
+                authorProfileLink.classList.add('field-error');
+                missingFields.push('Primary Author Profile Link');
+                if (!firstErrorField) firstErrorField = authorProfileLink;
+                isValid = false;
+            }
+
+            // Check publishing experience (radio)
+            const publishingExperience = document.querySelector('input[name="publishingExperience"]:checked');
+            if (!publishingExperience) {
+                document.querySelectorAll('input[name="publishingExperience"]').forEach(radio => {
+                    radio.closest('.radio-item').classList.add('field-error');
+                });
+                missingFields.push('Publishing Experience');
+                if (!firstErrorField) firstErrorField = document.querySelector('input[name="publishingExperience"]');
+                isValid = false;
+            }
+
+            // Check release style (radio)
+            const releaseStyle = document.querySelector('input[name="releaseStyle"]:checked');
+            if (!releaseStyle) {
+                document.querySelectorAll('input[name="releaseStyle"]').forEach(radio => {
+                    radio.closest('.radio-item').classList.add('field-error');
+                });
+                missingFields.push('Release Style');
+                if (!firstErrorField) firstErrorField = document.querySelector('input[name="releaseStyle"]');
+                isValid = false;
+            }
+
+            // Check formats (at least one checkbox must be selected)
+            const formats = document.querySelectorAll('input[name="formats"]:checked');
+            if (formats.length === 0) {
+                document.querySelectorAll('input[name="formats"]').forEach(checkbox => {
+                    checkbox.closest('.checkbox-item').classList.add('field-error');
+                });
+                missingFields.push('At least one Format');
+                if (!firstErrorField) firstErrorField = document.querySelector('input[name="formats"]');
+                isValid = false;
+            }
+
+            // Check primary genre
+            if (!primaryGenre.value || primaryGenre.value === '') {
+                primaryGenre.classList.add('field-error');
+                missingFields.push('Primary Genre');
+                if (!firstErrorField) firstErrorField = primaryGenre;
+                isValid = false;
+            }
+
+            // Check community hub
+            if (!communityHub.value || communityHub.value.trim() === '') {
+                communityHub.classList.add('field-error');
+                missingFields.push('Primary Community Hub');
+                if (!firstErrorField) firstErrorField = communityHub;
+                isValid = false;
+            }
+
+            // Check mailing list size
+            if (!mailingListSize.value || mailingListSize.value === '') {
+                mailingListSize.classList.add('field-error');
+                missingFields.push('Mailing List Size');
+                if (!firstErrorField) firstErrorField = mailingListSize;
+                isValid = false;
+            }
+
+            // Check platform appeal
+            if (!platformAppeal.value || platformAppeal.value.trim() === '') {
+                platformAppeal.classList.add('field-error');
+                missingFields.push('Platform Appeal');
+                if (!firstErrorField) firstErrorField = platformAppeal;
+                isValid = false;
+            }
+
             // Show validation message if invalid
             if (!isValid) {
                 if (missingFields.length === 1) {
-                    validationMessage.textContent = `Please fill in your ${missingFields[0]} before viewing the LOI.`;
-                } else {
+                    validationMessage.textContent = `Please fill in: ${missingFields[0]}`;
+                } else if (missingFields.length <= 3) {
                     validationMessage.textContent = `Please fill in the following required fields: ${missingFields.join(', ')}.`;
+                } else {
+                    validationMessage.textContent = `Please complete all required fields (${missingFields.length} remaining).`;
                 }
                 validationMessage.classList.add('show');
 
                 // Smooth scroll to first error field
                 if (firstErrorField) {
-                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    setTimeout(() => firstErrorField.focus(), 500);
+                    // For radio/checkbox groups, scroll to the container
+                    const scrollTarget = firstErrorField.closest('.form-group') || firstErrorField;
+                    scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Focus if it's a focusable element
+                    setTimeout(() => {
+                        if (firstErrorField.focus) {
+                            firstErrorField.focus();
+                        }
+                    }, 500);
                 }
             }
 
@@ -1631,20 +1734,77 @@
         });
 
         // Clear error state when user starts typing in required fields
-        ['firstName', 'lastName', 'email'].forEach(fieldId => {
+        ['firstName', 'lastName', 'email', 'authorProfileLink', 'communityHub', 'platformAppeal'].forEach(fieldId => {
             const field = document.getElementById(fieldId);
-            field.addEventListener('input', function() {
-                this.classList.remove('field-error');
-                const validationMessage = document.getElementById('loiValidationMessage');
-                // Hide validation message if all required fields have values
-                const firstName = document.getElementById('firstName').value;
-                const lastName = document.getElementById('lastName').value;
-                const email = document.getElementById('email').value;
-                if (firstName && lastName && email) {
-                    validationMessage.classList.remove('show');
-                }
+            if (field) {
+                field.addEventListener('input', function() {
+                    this.classList.remove('field-error');
+                    // Check if we should hide the validation message
+                    checkAndHideValidationMessage();
+                });
+            }
+        });
+
+        // Clear error state for select dropdowns when changed
+        ['primaryGenre', 'mailingListSize'].forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('change', function() {
+                    this.classList.remove('field-error');
+                    checkAndHideValidationMessage();
+                });
+            }
+        });
+
+        // Clear error state for radio buttons
+        ['publishingExperience', 'releaseStyle'].forEach(radioName => {
+            document.querySelectorAll(`input[name="${radioName}"]`).forEach(radio => {
+                radio.addEventListener('change', function() {
+                    document.querySelectorAll(`input[name="${radioName}"]`).forEach(r => {
+                        r.closest('.radio-item').classList.remove('field-error');
+                    });
+                    checkAndHideValidationMessage();
+                });
             });
         });
+
+        // Clear error state for format checkboxes
+        document.querySelectorAll('input[name="formats"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const hasChecked = document.querySelectorAll('input[name="formats"]:checked').length > 0;
+                if (hasChecked) {
+                    document.querySelectorAll('input[name="formats"]').forEach(cb => {
+                        cb.closest('.checkbox-item').classList.remove('field-error');
+                    });
+                }
+                checkAndHideValidationMessage();
+            });
+        });
+
+        // Helper function to check if all required fields are filled and hide message
+        function checkAndHideValidationMessage() {
+            const validationMessage = document.getElementById('loiValidationMessage');
+
+            // Quick check of key required fields
+            const hasFirstName = document.getElementById('firstName').value.trim() !== '';
+            const hasLastName = document.getElementById('lastName').value.trim() !== '';
+            const hasEmail = document.getElementById('email').value.trim() !== '';
+            const hasAuthorLink = document.getElementById('authorProfileLink').value.trim() !== '';
+            const hasPubExp = document.querySelector('input[name="publishingExperience"]:checked') !== null;
+            const hasReleaseStyle = document.querySelector('input[name="releaseStyle"]:checked') !== null;
+            const hasFormats = document.querySelectorAll('input[name="formats"]:checked').length > 0;
+            const hasGenre = document.getElementById('primaryGenre').value !== '';
+            const hasCommunityHub = document.getElementById('communityHub').value.trim() !== '';
+            const hasMailingList = document.getElementById('mailingListSize').value !== '';
+            const hasPlatformAppeal = document.getElementById('platformAppeal').value.trim() !== '';
+
+            // If all required fields are filled, hide the validation message
+            if (hasFirstName && hasLastName && hasEmail && hasAuthorLink && hasPubExp &&
+                hasReleaseStyle && hasFormats && hasGenre && hasCommunityHub &&
+                hasMailingList && hasPlatformAppeal) {
+                validationMessage.classList.remove('show');
+            }
+        }
 
         // Close modal when clicking outside
         document.getElementById('loiModal').addEventListener('click', (e) => {
