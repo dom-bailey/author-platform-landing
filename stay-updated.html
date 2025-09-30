@@ -348,6 +348,30 @@
             50% { opacity: 0.7; }
         }
 
+        /* Validation Error Styles */
+        .field-error {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.05) !important;
+            animation: shake 0.3s ease;
+        }
+
+        #submitValidationMessage {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        #submitValidationMessage.show {
+            display: block;
+            animation: slideInUp 0.3s ease;
+        }
+
         /* Responsive Design */
         @media (max-width: 767px) {
             body {
@@ -484,17 +508,17 @@
 
                 <div class="form-group">
                     <label for="firstName">First Name <span class="required">*</span></label>
-                    <input type="text" id="firstName" name="firstName" required>
+                    <input type="text" id="firstName" name="firstName">
                 </div>
 
                 <div class="form-group">
                     <label for="lastName">Last Name <span class="required">*</span></label>
-                    <input type="text" id="lastName" name="lastName" required>
+                    <input type="text" id="lastName" name="lastName">
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email Address <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email">
                     <p class="microcopy">We'll only use this to send you important updates about StoryAlive</p>
                 </div>
 
@@ -519,12 +543,80 @@
                 <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="submitBtn">Stay Updated</button>
             </div>
+            <div id="submitValidationMessage"></div>
 
             <div id="formMessage"></div>
         </form>
     </div>
 
     <script>
+        // Validate form fields with visual feedback
+        function validateRequiredFields() {
+            const validationMessage = document.getElementById('submitValidationMessage');
+
+            // Get all required fields
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+
+            let isValid = true;
+            let missingFields = [];
+            let firstErrorField = null;
+
+            // Clear previous error states
+            [firstName, lastName, email].forEach(field => {
+                if (field) field.classList.remove('field-error');
+            });
+            validationMessage.classList.remove('show');
+
+            // Check first name
+            if (!firstName.value || firstName.value.trim() === '') {
+                firstName.classList.add('field-error');
+                missingFields.push('First Name');
+                if (!firstErrorField) firstErrorField = firstName;
+                isValid = false;
+            }
+
+            // Check last name
+            if (!lastName.value || lastName.value.trim() === '') {
+                lastName.classList.add('field-error');
+                missingFields.push('Last Name');
+                if (!firstErrorField) firstErrorField = lastName;
+                isValid = false;
+            }
+
+            // Check email
+            if (!email.value || email.value.trim() === '') {
+                email.classList.add('field-error');
+                missingFields.push('Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            } else if (!email.value.includes('@')) {
+                email.classList.add('field-error');
+                missingFields.push('Valid Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            }
+
+            // Show validation message if invalid
+            if (!isValid) {
+                if (missingFields.length === 1) {
+                    validationMessage.textContent = `Please fill in your ${missingFields[0]}.`;
+                } else {
+                    validationMessage.textContent = `Please fill in the following required fields: ${missingFields.join(', ')}.`;
+                }
+                validationMessage.classList.add('show');
+
+                // Smooth scroll to first error field
+                if (firstErrorField) {
+                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => firstErrorField.focus(), 500);
+                }
+            }
+
+            return isValid;
+        }
+
         document.getElementById('updateForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -545,6 +637,11 @@
                     window.location.href = '/';
                 }, 5000);
                 return; // Don't actually submit
+            }
+
+            // Validate required fields before submitting
+            if (!validateRequiredFields()) {
+                return; // Exit if validation fails
             }
 
             // Create data object
@@ -618,6 +715,27 @@
 
         formGroups.forEach(group => {
             observer.observe(group);
+        });
+
+        // Clear error state when user starts typing in required fields
+        ['firstName', 'lastName', 'email'].forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('input', function() {
+                    this.classList.remove('field-error');
+                    // Check if we should hide the validation message
+                    const validationMessage = document.getElementById('submitValidationMessage');
+
+                    // Hide validation message if all required fields have values
+                    const firstName = document.getElementById('firstName').value.trim();
+                    const lastName = document.getElementById('lastName').value.trim();
+                    const email = document.getElementById('email').value.trim();
+
+                    if (firstName && lastName && email && email.includes('@')) {
+                        validationMessage.classList.remove('show');
+                    }
+                });
+            }
         });
     </script>
 </body>

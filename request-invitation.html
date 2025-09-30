@@ -510,6 +510,30 @@
             50% { opacity: 0.7; }
         }
 
+        /* Validation Error Styles */
+        .field-error {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.05) !important;
+            animation: shake 0.3s ease;
+        }
+
+        #submitValidationMessage {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        #submitValidationMessage.show {
+            display: block;
+            animation: slideInUp 0.3s ease;
+        }
+
         /* Responsive Design - Comprehensive */
 
         /* Large Desktop: 1440px and up */
@@ -729,12 +753,12 @@
 
                 <div class="form-group">
                     <label for="firstName">First Name <span class="required">*</span></label>
-                    <input type="text" id="firstName" name="firstName" required>
+                    <input type="text" id="firstName" name="firstName">
                 </div>
 
                 <div class="form-group">
                     <label for="lastName">Last Name <span class="required">*</span></label>
-                    <input type="text" id="lastName" name="lastName" required>
+                    <input type="text" id="lastName" name="lastName">
                 </div>
 
                 <div class="form-group">
@@ -744,7 +768,7 @@
 
                 <div class="form-group">
                     <label for="email">Email Address <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email">
                 </div>
 
                 <div class="form-group">
@@ -754,7 +778,7 @@
 
                 <div class="form-group">
                     <label for="authorProfileLink">Primary Author Profile Link <span class="required">*</span></label>
-                    <input type="text" id="authorProfileLink" name="authorProfileLink" required pattern="^(https?:\/\/)?.+\..+$" title="Please enter a valid URL (e.g., example.com or https://example.com)">
+                    <input type="text" id="authorProfileLink" name="authorProfileLink">
                     <p class="microcopy">Please provide the one single link that serves as the best central hub for you and your work. This helps us get a complete picture of you as an author.</p>
                 </div>
             </div>
@@ -768,28 +792,28 @@
                     <p class="microcopy">Select the one that best represents you</p>
                     <div class="radio-group">
                         <label class="radio-item" for="independent">
-                            <input type="radio" id="independent" name="publishingExperience" value="independent" required>
+                            <input type="radio" id="independent" name="publishingExperience" value="independent">
                             <div>
                                 Primarily Independent / Self-Published
                                 <div class="radio-description">You publish your own ebooks, print books, or web novels.</div>
                             </div>
                         </label>
                         <label class="radio-item" for="traditional">
-                            <input type="radio" id="traditional" name="publishingExperience" value="traditional" required>
+                            <input type="radio" id="traditional" name="publishingExperience" value="traditional">
                             <div>
                                 Primarily Traditionally Published
                                 <div class="radio-description">You work with a publishing house like Penguin Random House.</div>
                             </div>
                         </label>
                         <label class="radio-item" for="hybrid">
-                            <input type="radio" id="hybrid" name="publishingExperience" value="hybrid" required>
+                            <input type="radio" id="hybrid" name="publishingExperience" value="hybrid">
                             <div>
                                 Hybrid
                                 <div class="radio-description">You have a mix of both self-published and traditionally published works.</div>
                             </div>
                         </label>
                         <label class="radio-item" for="aspiring">
-                            <input type="radio" id="aspiring" name="publishingExperience" value="aspiring" required>
+                            <input type="radio" id="aspiring" name="publishingExperience" value="aspiring">
                             <div>
                                 Aspiring / Pre-Published
                                 <div class="radio-description">You have a completed manuscript but have not yet made it publicly available.</div>
@@ -803,21 +827,21 @@
                     <p class="microcopy">Select the one that best describes your process</p>
                     <div class="radio-group">
                         <label class="radio-item" for="completed">
-                            <input type="radio" id="completed" name="releaseStyle" value="completed" required>
+                            <input type="radio" id="completed" name="releaseStyle" value="completed">
                             <div>
                                 Completed Works
                                 <div class="radio-description">You write and release your stories as complete, standalone products.</div>
                             </div>
                         </label>
                         <label class="radio-item" for="serialized">
-                            <input type="radio" id="serialized" name="releaseStyle" value="serialized" required>
+                            <input type="radio" id="serialized" name="releaseStyle" value="serialized">
                             <div>
                                 Serialized Works
                                 <div class="radio-description">You write and release your stories in an ongoing, chapter-by-chapter format.</div>
                             </div>
                         </label>
                         <label class="radio-item" for="both">
-                            <input type="radio" id="both" name="releaseStyle" value="both" required>
+                            <input type="radio" id="both" name="releaseStyle" value="both">
                             <div>
                                 Hybrid / Both
                                 <div class="radio-description">You actively use both release styles for different projects.</div>
@@ -861,7 +885,7 @@
                     <label for="primaryGenre">What is your primary genre? <span class="required">*</span></label>
                     <p class="microcopy">Select the one that best fits your work</p>
                     <div class="select-wrapper">
-                    <select id="primaryGenre" name="primaryGenre" required>
+                    <select id="primaryGenre" name="primaryGenre">
                         <option value="">Select a genre...</option>
                         <option value="fantasy">Fantasy</option>
                         <option value="scienceFiction">Science Fiction</option>
@@ -886,14 +910,14 @@
 
                 <div class="form-group">
                     <label for="communityHub">Primary Community Hub <span class="required">*</span></label>
-                    <input type="text" id="communityHub" name="communityHub" required pattern="^(https?:\/\/)?.+\..+$" title="Please enter a valid URL (e.g., example.com or https://example.com)">
+                    <input type="text" id="communityHub" name="communityHub">
                     <p class="microcopy">Please link to the single online space where you have the most active and engaged community. This could be your Discord server, TikTok, Instagram, Facebook Group, or any other platform where you connect most with your readers.</p>
                 </div>
 
                 <div class="form-group">
                     <label for="mailingListSize">What is the approximate size of your author mailing list? <span class="required">*</span></label>
                     <div class="select-wrapper">
-                    <select id="mailingListSize" name="mailingListSize" required>
+                    <select id="mailingListSize" name="mailingListSize">
                         <option value="">Select a range...</option>
                         <option value="none">I don't currently have a mailing list</option>
                         <option value="0-1000">0 - 1,000 subscribers</option>
@@ -942,7 +966,7 @@
 
                 <div class="form-group">
                     <label for="platformAppeal">What aspects of our platform are most appealing to you? <span class="required">*</span></label>
-                    <textarea id="platformAppeal" name="platformAppeal" required></textarea>
+                    <textarea id="platformAppeal" name="platformAppeal"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -981,6 +1005,7 @@
                 <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="submitBtn">Submit Application</button>
             </div>
+            <div id="submitValidationMessage"></div>
 
             <div id="formMessage"></div>
         </form>
@@ -1002,6 +1027,174 @@
             document.getElementById('formOpenedAt').value = formattedDate;
         });
 
+        // Validate form fields with visual feedback
+        function validateRequiredFields() {
+            const validationMessage = document.getElementById('submitValidationMessage');
+
+            // Get all required fields
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const authorProfileLink = document.getElementById('authorProfileLink');
+            const primaryGenre = document.getElementById('primaryGenre');
+            const communityHub = document.getElementById('communityHub');
+            const mailingListSize = document.getElementById('mailingListSize');
+            const platformAppeal = document.getElementById('platformAppeal');
+
+            let isValid = true;
+            let missingFields = [];
+            let firstErrorField = null;
+
+            // Clear previous error states for all input fields
+            const allFields = [firstName, lastName, email, authorProfileLink, primaryGenre,
+                             communityHub, mailingListSize, platformAppeal];
+            allFields.forEach(field => {
+                if (field) field.classList.remove('field-error');
+            });
+
+            // Clear radio button error states
+            document.querySelectorAll('.radio-item').forEach(item => {
+                item.classList.remove('field-error');
+            });
+
+            // Clear checkbox error states
+            document.querySelectorAll('.checkbox-item').forEach(item => {
+                item.classList.remove('field-error');
+            });
+
+            validationMessage.classList.remove('show');
+
+            // Check first name
+            if (!firstName.value || firstName.value.trim() === '') {
+                firstName.classList.add('field-error');
+                missingFields.push('First Name');
+                if (!firstErrorField) firstErrorField = firstName;
+                isValid = false;
+            }
+
+            // Check last name
+            if (!lastName.value || lastName.value.trim() === '') {
+                lastName.classList.add('field-error');
+                missingFields.push('Last Name');
+                if (!firstErrorField) firstErrorField = lastName;
+                isValid = false;
+            }
+
+            // Check email
+            if (!email.value || email.value.trim() === '') {
+                email.classList.add('field-error');
+                missingFields.push('Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            } else if (!email.value.includes('@')) {
+                email.classList.add('field-error');
+                missingFields.push('Valid Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            }
+
+            // Check author profile link
+            if (!authorProfileLink.value || authorProfileLink.value.trim() === '') {
+                authorProfileLink.classList.add('field-error');
+                missingFields.push('Primary Author Profile Link');
+                if (!firstErrorField) firstErrorField = authorProfileLink;
+                isValid = false;
+            }
+
+            // Check publishing experience (radio)
+            const publishingExperience = document.querySelector('input[name="publishingExperience"]:checked');
+            if (!publishingExperience) {
+                document.querySelectorAll('input[name="publishingExperience"]').forEach(radio => {
+                    radio.closest('.radio-item').classList.add('field-error');
+                });
+                missingFields.push('Publishing Experience');
+                if (!firstErrorField) firstErrorField = document.querySelector('input[name="publishingExperience"]');
+                isValid = false;
+            }
+
+            // Check release style (radio)
+            const releaseStyle = document.querySelector('input[name="releaseStyle"]:checked');
+            if (!releaseStyle) {
+                document.querySelectorAll('input[name="releaseStyle"]').forEach(radio => {
+                    radio.closest('.radio-item').classList.add('field-error');
+                });
+                missingFields.push('Release Style');
+                if (!firstErrorField) firstErrorField = document.querySelector('input[name="releaseStyle"]');
+                isValid = false;
+            }
+
+            // Check formats (at least one checkbox must be selected)
+            const formats = document.querySelectorAll('input[name="formats"]:checked');
+            if (formats.length === 0) {
+                document.querySelectorAll('input[name="formats"]').forEach(checkbox => {
+                    checkbox.closest('.checkbox-item').classList.add('field-error');
+                });
+                missingFields.push('At least one Format');
+                if (!firstErrorField) firstErrorField = document.querySelector('input[name="formats"]');
+                isValid = false;
+            }
+
+            // Check primary genre
+            if (!primaryGenre.value || primaryGenre.value === '') {
+                primaryGenre.classList.add('field-error');
+                missingFields.push('Primary Genre');
+                if (!firstErrorField) firstErrorField = primaryGenre;
+                isValid = false;
+            }
+
+            // Check community hub
+            if (!communityHub.value || communityHub.value.trim() === '') {
+                communityHub.classList.add('field-error');
+                missingFields.push('Primary Community Hub');
+                if (!firstErrorField) firstErrorField = communityHub;
+                isValid = false;
+            }
+
+            // Check mailing list size
+            if (!mailingListSize.value || mailingListSize.value === '') {
+                mailingListSize.classList.add('field-error');
+                missingFields.push('Mailing List Size');
+                if (!firstErrorField) firstErrorField = mailingListSize;
+                isValid = false;
+            }
+
+            // Check platform appeal
+            if (!platformAppeal.value || platformAppeal.value.trim() === '') {
+                platformAppeal.classList.add('field-error');
+                missingFields.push('Platform Appeal');
+                if (!firstErrorField) firstErrorField = platformAppeal;
+                isValid = false;
+            }
+
+            // Show validation message if invalid
+            if (!isValid) {
+                if (missingFields.length === 1) {
+                    validationMessage.textContent = `Please fill in: ${missingFields[0]}`;
+                } else if (missingFields.length <= 3) {
+                    validationMessage.textContent = `Please fill in the following required fields: ${missingFields.join(', ')}.`;
+                } else {
+                    validationMessage.textContent = `Please complete all required fields (${missingFields.length} remaining).`;
+                }
+                validationMessage.classList.add('show');
+
+                // Smooth scroll to first error field
+                if (firstErrorField) {
+                    // For radio/checkbox groups, scroll to the container
+                    const scrollTarget = firstErrorField.closest('.form-group') || firstErrorField;
+                    scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Focus if it's a focusable element
+                    setTimeout(() => {
+                        if (firstErrorField.focus) {
+                            firstErrorField.focus();
+                        }
+                    }, 500);
+                }
+            }
+
+            return isValid;
+        }
+
         document.getElementById('invitationForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -1022,6 +1215,11 @@
                     window.location.href = '/';
                 }, 5000);
                 return; // Don't actually submit
+            }
+
+            // Validate required fields before submitting
+            if (!validateRequiredFields()) {
+                return; // Exit if validation fails
             }
 
             // Handle checkboxes (formats) - collect all checked values
@@ -1243,6 +1441,79 @@
                 if (wrapper) wrapper.classList.remove('open');
             });
         });
+
+        // Clear error state when user starts typing in required fields
+        ['firstName', 'lastName', 'email', 'authorProfileLink', 'communityHub', 'platformAppeal'].forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('input', function() {
+                    this.classList.remove('field-error');
+                    // Check if we should hide the validation message
+                    checkAndHideValidationMessage();
+                });
+            }
+        });
+
+        // Clear error state for select dropdowns when changed
+        ['primaryGenre', 'mailingListSize'].forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('change', function() {
+                    this.classList.remove('field-error');
+                    checkAndHideValidationMessage();
+                });
+            }
+        });
+
+        // Clear error state for radio buttons
+        ['publishingExperience', 'releaseStyle'].forEach(radioName => {
+            document.querySelectorAll(`input[name="${radioName}"]`).forEach(radio => {
+                radio.addEventListener('change', function() {
+                    document.querySelectorAll(`input[name="${radioName}"]`).forEach(r => {
+                        r.closest('.radio-item').classList.remove('field-error');
+                    });
+                    checkAndHideValidationMessage();
+                });
+            });
+        });
+
+        // Clear error state for format checkboxes
+        document.querySelectorAll('input[name="formats"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const hasChecked = document.querySelectorAll('input[name="formats"]:checked').length > 0;
+                if (hasChecked) {
+                    document.querySelectorAll('input[name="formats"]').forEach(cb => {
+                        cb.closest('.checkbox-item').classList.remove('field-error');
+                    });
+                }
+                checkAndHideValidationMessage();
+            });
+        });
+
+        // Helper function to check if all required fields are filled and hide message
+        function checkAndHideValidationMessage() {
+            const validationMessage = document.getElementById('submitValidationMessage');
+
+            // Quick check of key required fields
+            const hasFirstName = document.getElementById('firstName').value.trim() !== '';
+            const hasLastName = document.getElementById('lastName').value.trim() !== '';
+            const hasEmail = document.getElementById('email').value.trim() !== '';
+            const hasAuthorLink = document.getElementById('authorProfileLink').value.trim() !== '';
+            const hasPubExp = document.querySelector('input[name="publishingExperience"]:checked') !== null;
+            const hasReleaseStyle = document.querySelector('input[name="releaseStyle"]:checked') !== null;
+            const hasFormats = document.querySelectorAll('input[name="formats"]:checked').length > 0;
+            const hasGenre = document.getElementById('primaryGenre').value !== '';
+            const hasCommunityHub = document.getElementById('communityHub').value.trim() !== '';
+            const hasMailingList = document.getElementById('mailingListSize').value !== '';
+            const hasPlatformAppeal = document.getElementById('platformAppeal').value.trim() !== '';
+
+            // If all required fields are filled, hide the validation message
+            if (hasFirstName && hasLastName && hasEmail && hasAuthorLink && hasPubExp &&
+                hasReleaseStyle && hasFormats && hasGenre && hasCommunityHub &&
+                hasMailingList && hasPlatformAppeal) {
+                validationMessage.classList.remove('show');
+            }
+        }
     </script>
 </body>
 </html>
