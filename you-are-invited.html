@@ -1281,9 +1281,27 @@
         async function createSignWellDocument() {
             const data = collectFormDataForLOI();
 
-            // Validate required fields
-            if (!data.firstName || !data.lastName || !data.email) {
-                alert('Please fill in your name and email before viewing the LOI.');
+            // Validate required fields with specific alerts
+            if (!data.firstName) {
+                alert('Please fill in your First Name before viewing the LOI.');
+                console.error('firstName is missing:', data.firstName);
+                return null;
+            }
+            if (!data.lastName) {
+                alert('Please fill in your Last Name before viewing the LOI.');
+                console.error('lastName is missing:', data.lastName);
+                return null;
+            }
+            if (!data.email) {
+                alert('Please fill in your Email before viewing the LOI.');
+                console.error('email is missing:', data.email);
+                return null;
+            }
+
+            // Additional validation - check for empty/whitespace strings
+            if (data.firstName.trim() === '') {
+                alert('First Name cannot be empty.');
+                console.error('firstName is empty/whitespace');
                 return null;
             }
 
@@ -1328,6 +1346,9 @@
 
         // Show LOI modal with SignWell embedded document
         async function showLOI() {
+            // Add small delay to ensure form data is fully committed
+            await new Promise(resolve => setTimeout(resolve, 100));
+
             const modal = document.getElementById('loiModal');
             const container = document.getElementById('signwell-iframe-container');
 

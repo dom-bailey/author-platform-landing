@@ -74,7 +74,7 @@ export default async function handler(req, res) {
                     },
                     {
                         id: '2',
-                        placeholder_name: 'author', // The actual author signing
+                        placeholder_name: 'Author', // Must match SignWell template exactly (case-sensitive)
                         name: recipientName,
                         email: recipientEmail,
                         embedded_signing: true, // This recipient NEEDS embedded signing
