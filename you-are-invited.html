@@ -524,6 +524,46 @@
             font-size: 0.95rem;
         }
 
+        /* Validation Error Styles */
+        .field-error {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.05) !important;
+            animation: shake 0.3s ease;
+        }
+
+        .validation-message {
+            color: #fca5a5;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid #ef4444;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .validation-message.show {
+            display: block;
+            animation: slideInUp 0.3s ease;
+        }
+
+        #loiValidationMessage {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        #loiValidationMessage.show {
+            display: block;
+            animation: slideInUp 0.3s ease;
+        }
+
         .btn-loi {
             padding: 18px 45px;
             border: none;
@@ -1047,6 +1087,7 @@
                 <div style="display: flex; justify-content: center;">
                     <button type="button" class="btn btn-loi" id="viewLoiBtn">View LOI</button>
                 </div>
+                <div id="loiValidationMessage"></div>
             </div>
             
 
@@ -1280,31 +1321,78 @@
             return data;
         }
 
+        // Validate form fields with visual feedback
+        function validateRequiredFields() {
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const validationMessage = document.getElementById('loiValidationMessage');
+
+            let isValid = true;
+            let missingFields = [];
+            let firstErrorField = null;
+
+            // Clear previous error states
+            [firstName, lastName, email].forEach(field => {
+                field.classList.remove('field-error');
+            });
+            validationMessage.classList.remove('show');
+
+            // Check first name
+            if (!firstName.value || firstName.value.trim() === '') {
+                firstName.classList.add('field-error');
+                missingFields.push('First Name');
+                if (!firstErrorField) firstErrorField = firstName;
+                isValid = false;
+            }
+
+            // Check last name
+            if (!lastName.value || lastName.value.trim() === '') {
+                lastName.classList.add('field-error');
+                missingFields.push('Last Name');
+                if (!firstErrorField) firstErrorField = lastName;
+                isValid = false;
+            }
+
+            // Check email
+            if (!email.value || email.value.trim() === '') {
+                email.classList.add('field-error');
+                missingFields.push('Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            } else if (!email.value.includes('@')) {
+                email.classList.add('field-error');
+                missingFields.push('Valid Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            }
+
+            // Show validation message if invalid
+            if (!isValid) {
+                if (missingFields.length === 1) {
+                    validationMessage.textContent = `Please fill in your ${missingFields[0]} before viewing the LOI.`;
+                } else {
+                    validationMessage.textContent = `Please fill in the following required fields: ${missingFields.join(', ')}.`;
+                }
+                validationMessage.classList.add('show');
+
+                // Smooth scroll to first error field
+                if (firstErrorField) {
+                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => firstErrorField.focus(), 500);
+                }
+            }
+
+            return isValid;
+        }
+
         // Create SignWell document via backend
         async function createSignWellDocument() {
             const data = collectFormDataForLOI();
 
-            // Validate required fields with specific alerts
-            if (!data.firstName) {
-                alert('Please fill in your First Name before viewing the LOI.');
-                console.error('firstName is missing:', data.firstName);
-                return null;
-            }
-            if (!data.lastName) {
-                alert('Please fill in your Last Name before viewing the LOI.');
-                console.error('lastName is missing:', data.lastName);
-                return null;
-            }
-            if (!data.email) {
-                alert('Please fill in your Email before viewing the LOI.');
-                console.error('email is missing:', data.email);
-                return null;
-            }
-
-            // Additional validation - check for empty/whitespace strings
-            if (data.firstName.trim() === '') {
-                alert('First Name cannot be empty.');
-                console.error('firstName is empty/whitespace');
+            // No more alerts - validation is handled separately
+            if (!data.firstName || !data.lastName || !data.email || data.firstName.trim() === '') {
+                console.error('Required fields are missing');
                 return null;
             }
 
@@ -1349,6 +1437,11 @@
 
         // Show LOI modal with SignWell embedded document
         async function showLOI() {
+            // Validate required fields first
+            if (!validateRequiredFields()) {
+                return; // Exit if validation fails
+            }
+
             // Add small delay to ensure form data is fully committed
             await new Promise(resolve => setTimeout(resolve, 100));
 
@@ -1511,6 +1604,22 @@
 
         document.getElementById('closeLoiModal').addEventListener('click', () => {
             document.getElementById('loiModal').classList.remove('active');
+        });
+
+        // Clear error state when user starts typing in required fields
+        ['firstName', 'lastName', 'email'].forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            field.addEventListener('input', function() {
+                this.classList.remove('field-error');
+                const validationMessage = document.getElementById('loiValidationMessage');
+                // Hide validation message if all required fields have values
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                if (firstName && lastName && email) {
+                    validationMessage.classList.remove('show');
+                }
+            });
         });
 
         // Close modal when clicking outside
