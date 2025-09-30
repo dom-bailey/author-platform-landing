@@ -1080,6 +1080,12 @@
             <input type="hidden" id="origination" name="origination" value="Direct - Top">
             <input type="hidden" id="formOpenedAt" name="formOpenedAt" value="">
 
+            <!-- Honeypot field - hidden from real users but bots will fill it -->
+            <div style="position: absolute; left: -9999px;">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
             <!-- Section 4: Investor Evidence -->
             <div class="form-section investor-evidence-section">
                 <h2 class="section-title">Investor Evidence</h2>
@@ -1437,6 +1443,25 @@
 
         // Show LOI modal with SignWell embedded document
         async function showLOI() {
+            // Bot detection - check honeypot field BEFORE any API calls
+            const honeypot = document.getElementById('website');
+            if (honeypot && honeypot.value !== '') {
+                // Bot detected - show fake success WITHOUT calling SignWell API
+                console.log('Bot detected - blocking SignWell API call');
+                const formMessage = document.getElementById('formMessage');
+                formMessage.textContent = 'Thank you! We\'ll be in touch soon after we secure investor funding.';
+                formMessage.className = 'success';
+
+                // Clear the form
+                document.getElementById('invitationForm').reset();
+
+                // Redirect after delay
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 5000);
+                return; // Don't open LOI or call SignWell API
+            }
+
             // Validate required fields first
             if (!validateRequiredFields()) {
                 return; // Exit if validation fails

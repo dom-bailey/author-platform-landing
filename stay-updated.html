@@ -509,6 +509,12 @@
                 </div>
             </div>
 
+            <!-- Honeypot field - hidden from real users but bots will fill it -->
+            <div style="position: absolute; left: -9999px;">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
             <div class="form-actions">
                 <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="submitBtn">Stay Updated</button>
@@ -526,6 +532,20 @@
             const formData = new FormData(form);
             const submitBtn = document.getElementById('submitBtn');
             const formMessage = document.getElementById('formMessage');
+
+            // Bot detection - check honeypot field
+            const honeypot = document.getElementById('website');
+            if (honeypot && honeypot.value !== '') {
+                // Bot detected - silently fail
+                console.log('Bot detected');
+                formMessage.textContent = 'Thank you! We\'ll keep you updated on our progress.';
+                formMessage.className = 'success';
+                form.reset();
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 5000);
+                return; // Don't actually submit
+            }
 
             // Create data object
             const data = {};
