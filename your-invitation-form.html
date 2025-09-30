@@ -510,6 +510,247 @@
             50% { opacity: 0.7; }
         }
 
+        /* Investor Evidence Section */
+        .investor-evidence-section {
+            background: rgba(74, 222, 128, 0.05);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .investor-text {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Validation Error Styles */
+        .field-error {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.05) !important;
+            animation: shake 0.3s ease;
+        }
+
+        .validation-message {
+            color: #fca5a5;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid #ef4444;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .validation-message.show {
+            display: block;
+            animation: slideInUp 0.3s ease;
+        }
+
+        #loiValidationMessage {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        #loiValidationMessage.show {
+            display: block;
+            animation: slideInUp 0.3s ease;
+        }
+
+        .btn-loi {
+            padding: 18px 45px;
+            border: none;
+            border-radius: 100px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', -apple-system, sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+            min-width: 260px; /* Match the home page button width */
+        }
+
+        .btn-loi:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(74, 222, 128, 0.4);
+        }
+
+        /* LOI Modal Styles */
+        .loi-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loi-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .loi-modal-content {
+            background: var(--primary);
+            width: 90%;
+            max-width: 900px;
+            height: 90vh;
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                        0 0 100px rgba(74, 222, 128, 0.1);
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .loi-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            font-size: 24px;
+            line-height: 1;
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .loi-modal-close:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .loi-modal-close:active {
+            transform: scale(0.95);
+        }
+
+        .loi-modal-body {
+            flex: 1;
+            padding: 2rem;
+            padding-bottom: 3rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) rgba(255, 255, 255, 0.1);
+        }
+
+        .loi-modal-body::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .loi-modal-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+        }
+
+        .loi-modal-body::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 6px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+
+        .loi-modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-bright);
+            background-clip: content-box;
+        }
+
+        #signwell-iframe-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #signwell-iframe-container iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .loi-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-muted);
+        }
+
+        .loi-spinner {
+            border: 3px solid rgba(74, 222, 128, 0.1);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loi-error-message {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .loi-success-message {
+            background: rgba(74, 222, 128, 0.2);
+            color: var(--accent-bright);
+            border: 1px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
         /* Responsive Design - Comprehensive */
 
         /* Large Desktop: 1440px and up */
@@ -548,6 +789,46 @@
 
         /* Mobile: 481px to 767px */
         @media (max-width: 767px) {
+            /* LOI Modal Mobile Styles - Full screen */
+            .loi-modal {
+                padding: 0;
+            }
+
+            .loi-modal-content {
+                width: 100%;
+                height: 100vh;
+                max-width: 100%;
+                border-radius: 0;
+                margin: 0;
+            }
+
+            .loi-modal-close {
+                top: 10px;
+                right: 10px;
+                width: 35px;
+                height: 35px;
+                font-size: 20px;
+                z-index: 20;
+            }
+
+            .loi-modal-body {
+                padding: 0;
+                border-radius: 0;
+            }
+
+            #signwell-iframe-container {
+                border-radius: 0;
+            }
+
+            .investor-text {
+                font-size: 0.9rem;
+            }
+
+            .btn-loi {
+                width: 100%;
+                max-width: none;
+            }
+
             body {
                 padding: 0;
             }
@@ -715,6 +996,8 @@
             }
         }
     </style>
+    <!-- SignWell Embedded Library -->
+    <script type="text/javascript" src="https://static.signwell.com/assets/embedded.js"></script>
 </head>
 <body>
     <div class="container">
@@ -972,16 +1255,49 @@
             <input type="hidden" id="origination" name="origination" value="Direct - Average">
             <input type="hidden" id="formOpenedAt" name="formOpenedAt" value="">
 
+            <!-- Section 4: Investor Evidence -->
+            <div class="form-section investor-evidence-section">
+                <h2 class="section-title">Investor Evidence</h2>
+                <p class="investor-text">This LOI is what we show to investors. It's not legally binding in any way, but they hold more weight to investors than just collecting emails.</p>
+                <div style="display: flex; justify-content: center;">
+                    <button type="button" class="btn btn-loi" id="viewLoiBtn">View LOI</button>
+                </div>
+                <div id="loiValidationMessage"></div>
+            </div>
+
             <div class="form-actions">
                 <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
-                <button type="submit" class="btn btn-primary" id="submitBtn">Submit Application</button>
             </div>
 
             <div id="formMessage"></div>
         </form>
     </div>
 
+    <!-- LOI Modal -->
+    <div id="loiModal" class="loi-modal">
+        <div class="loi-modal-content">
+            <button class="loi-modal-close" id="closeLoiModal">&times;</button>
+            <div class="loi-modal-body">
+                <div id="signwell-iframe-container">
+                    <div class="loi-loading">
+                        <div class="loi-spinner"></div>
+                        <p>Loading document...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Configuration for SignWell
+        const SIGNWELL_CONFIG = {
+            TEMPLATE_ID: 'd285b005-670c-4154-88f2-14b59a69f75f', // Your SignWell template ID
+            // Use full URL for local development, relative path for production
+            CREATE_DOCUMENT_ENDPOINT: window.location.hostname === 'localhost'
+                ? 'http://localhost:3001/api/create-loi-document'
+                : '/api/create-loi-document'
+        };
+
         // Set form opened timestamp when page loads
         document.addEventListener('DOMContentLoaded', function() {
             const now = new Date();
@@ -997,95 +1313,351 @@
             document.getElementById('formOpenedAt').value = formattedDate;
         });
 
-        document.getElementById('invitationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        // Validate form fields with visual feedback
+        function validateRequiredFields() {
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const validationMessage = document.getElementById('loiValidationMessage');
 
-            const form = event.target;
-            const formData = new FormData(form);
-            const submitBtn = document.getElementById('submitBtn');
-            const formMessage = document.getElementById('formMessage');
+            let isValid = true;
+            let missingFields = [];
+            let firstErrorField = null;
 
-            // Handle checkboxes (formats) - collect all checked values
-            const formats = [];
-            const formatCheckboxes = document.querySelectorAll('input[name="formats"]:checked');
-            formatCheckboxes.forEach(checkbox => {
-                formats.push(checkbox.value);
+            // Clear previous error states
+            [firstName, lastName, email].forEach(field => {
+                field.classList.remove('field-error');
             });
+            validationMessage.classList.remove('show');
 
-            // Create data object
-            const data = {};
-            for (let [key, value] of formData.entries()) {
-                // Skip individual format entries as we'll add them as an array
-                if (key !== 'formats') {
-                    // Convert phone number to E.164 format for the API
-                    if (key === 'phoneNumber' && value) {
-                        // Remove all non-digit characters
-                        let cleaned = value.replace(/\D/g, '');
+            // Check first name
+            if (!firstName.value || firstName.value.trim() === '') {
+                firstName.classList.add('field-error');
+                missingFields.push('First Name');
+                if (!firstErrorField) firstErrorField = firstName;
+                isValid = false;
+            }
 
-                        // If it's 10 digits, add US country code
-                        if (cleaned.length === 10) {
-                            data[key] = '+1' + cleaned;
-                        } else if (cleaned.length === 11 && cleaned[0] === '1') {
-                            // Already has country code
-                            data[key] = '+' + cleaned;
-                        } else {
-                            // Keep original if not standard format
-                            data[key] = value;
-                        }
-                    } else {
-                        data[key] = value;
-                    }
+            // Check last name
+            if (!lastName.value || lastName.value.trim() === '') {
+                lastName.classList.add('field-error');
+                missingFields.push('Last Name');
+                if (!firstErrorField) firstErrorField = lastName;
+                isValid = false;
+            }
+
+            // Check email
+            if (!email.value || email.value.trim() === '') {
+                email.classList.add('field-error');
+                missingFields.push('Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            } else if (!email.value.includes('@')) {
+                email.classList.add('field-error');
+                missingFields.push('Valid Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            }
+
+            // Show validation message if invalid
+            if (!isValid) {
+                if (missingFields.length === 1) {
+                    validationMessage.textContent = `Please fill in your ${missingFields[0]} before viewing the LOI.`;
+                } else {
+                    validationMessage.textContent = `Please fill in the following required fields: ${missingFields.join(', ')}.`;
+                }
+                validationMessage.classList.add('show');
+
+                // Smooth scroll to first error field
+                if (firstErrorField) {
+                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => firstErrorField.focus(), 500);
                 }
             }
-            // Add formats as array
-            data.formats = formats;
 
-            // Validate at least one format is selected
-            if (formats.length === 0) {
-                formMessage.textContent = 'Please select at least one format for your work.';
-                formMessage.className = 'error';
-                return;
+            return isValid;
+        }
+
+        // Collect form data for LOI
+        function collectFormDataForLOI() {
+            const form = document.getElementById('invitationForm');
+            const formData = new FormData(form);
+
+            const firstName = formData.get('firstName');
+            const lastName = formData.get('lastName');
+            const fullName = `${firstName} ${lastName}`;
+            const email = formData.get('email');
+
+            const data = {
+                // Data for creating the document
+                fullName: fullName,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phone: formData.get('phoneNumber') || '',
+                platformAppeal: formData.get('platformAppeal') || '',
+                questions: formData.get('questions') || ''
+            };
+
+            return data;
+        }
+
+        // Create SignWell document via backend
+        async function createSignWellDocument() {
+            const data = collectFormDataForLOI();
+
+            // No more alerts - validation is handled separately
+            if (!data.firstName || !data.lastName || !data.email || data.firstName.trim() === '') {
+                console.error('Required fields are missing');
+                return null;
             }
 
-            // Replace with your actual Make.com webhook URL
-            const webhookUrl = 'https://hook.us2.make.com/5tf3qw1kq7mq7d52ens1n5qeb3fpzq2g';
+            try {
+                // Call your backend endpoint to create the document
+                const response = await fetch(SIGNWELL_CONFIG.CREATE_DOCUMENT_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        templateId: SIGNWELL_CONFIG.TEMPLATE_ID,
+                        recipientName: data.fullName,
+                        recipientEmail: data.email,
+                        // SignWell template field mappings (API IDs)
+                        fields: {
+                            DateSigned_1: new Date().toLocaleDateString('en-US'), // Today's date
+                            Name_1: data.fullName,  // First Name + Last Name
+                            Email_1: data.email,    // Email Address
+                            Name_2: data.firstName, // First Name only
+                            Name_3: data.fullName   // First Name + Last Name
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to create document');
+                }
+
+                const result = await response.json();
+                return result.embedded_signing_url;
+
+            } catch (error) {
+                console.error('Error creating SignWell document:', error);
+                alert('There was an error preparing your LOI. Please ensure your backend endpoint is configured.');
+                return null;
+            }
+        }
+
+        // Show LOI modal with SignWell embedded document
+        async function showLOI() {
+            // Validate required fields first
+            if (!validateRequiredFields()) {
+                return; // Exit if validation fails
+            }
+
+            // Add small delay to ensure form data is fully committed
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            const modal = document.getElementById('loiModal');
+            const container = document.getElementById('signwell-iframe-container');
+
+            // Show modal
+            modal.classList.add('active');
 
             // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-            formMessage.textContent = 'Processing your application...';
-            formMessage.className = 'loading';
+            container.innerHTML = `
+                <div class="loi-loading">
+                    <div class="loi-spinner"></div>
+                    <p>Preparing your Letter of Intent...</p>
+                </div>
+            `;
 
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => {
-                if (response.ok) {
-                    formMessage.textContent = 'Thank you for your application! We\'ll review it and get back to you soon.';
-                    formMessage.className = 'success';
-                    form.reset();
+            // Get embedded signing URL from backend
+            const embeddedSigningUrl = await createSignWellDocument();
 
-                    // Optional: Redirect after a delay
-                    setTimeout(() => {
-                        window.location.href = '/';
-                    }, 5000);
-                } else {
-                    throw new Error('Submission failed');
+            if (embeddedSigningUrl) {
+                // Clear loading state
+                container.innerHTML = '';
+
+                // Initialize SignWell embed
+                try {
+                    const signWellEmbed = new SignWellEmbed({
+                        url: embeddedSigningUrl,
+                        containerId: 'signwell-iframe-container',
+                        allowClose: true,
+                        skipDeclineDocumentConfirm: false,
+                        events: {
+                            completed: (e) => {
+                                console.log('Document signed successfully:', e);
+
+                                // Show initial success message
+                                container.innerHTML = `
+                                    <div class="loi-success-message">
+                                        <h3>Thank you!</h3>
+                                        <p>Your Letter of Intent has been signed successfully.</p>
+                                        <p>Submitting your information...</p>
+                                    </div>
+                                `;
+
+                                // Submit the form data to Make.com
+                                const form = document.getElementById('invitationForm');
+                                const formData = new FormData(form);
+
+                                // Handle checkboxes (formats) - collect all checked values
+                                const formats = [];
+                                const formatCheckboxes = document.querySelectorAll('input[name="formats"]:checked');
+                                formatCheckboxes.forEach(checkbox => {
+                                    formats.push(checkbox.value);
+                                });
+
+                                // Create data object
+                                const data = {};
+                                for (let [key, value] of formData.entries()) {
+                                    // Skip individual format entries as we'll add them as an array
+                                    if (key !== 'formats') {
+                                        // Convert phone number to E.164 format for the API
+                                        if (key === 'phoneNumber' && value) {
+                                            let cleaned = value.replace(/\\D/g, '');
+                                            if (cleaned.length === 10) {
+                                                data[key] = '+1' + cleaned;
+                                            } else if (cleaned.length === 11 && cleaned[0] === '1') {
+                                                data[key] = '+' + cleaned;
+                                            } else {
+                                                data[key] = value;
+                                            }
+                                        } else {
+                                            data[key] = value;
+                                        }
+                                    }
+                                }
+                                // Add formats as array
+                                data.formats = formats;
+
+                                const webhookUrl = 'https://hook.us2.make.com/5tf3qw1kq7mq7d52ens1n5qeb3fpzq2g';
+
+                                fetch(webhookUrl, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(data),
+                                })
+                                .then(response => {
+                                    if (response.ok) {
+                                        // Update success message
+                                        container.innerHTML = `
+                                            <div class="loi-success-message">
+                                                <h3>Thank you!</h3>
+                                                <p>Your Letter of Intent has been signed, and your form has been submitted successfully.</p>
+                                                <p>We'll be in touch soon after we secure investor funding.</p>
+                                            </div>
+                                        `;
+
+                                        // Redirect after 10 seconds
+                                        setTimeout(() => {
+                                            window.location.href = '/';
+                                        }, 10000);
+                                    } else {
+                                        throw new Error('Submission failed');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error submitting form:', error);
+                                    container.innerHTML = `
+                                        <div class="loi-error-message">
+                                            <h3>Almost there!</h3>
+                                            <p>Your LOI was signed, but there was an error submitting your information.</p>
+                                            <p>Please contact support or try again.</p>
+                                        </div>
+                                    `;
+                                    setTimeout(() => {
+                                        modal.classList.remove('active');
+                                    }, 5000);
+                                });
+                            },
+                            declined: (e) => {
+                                console.log('Document declined:', e);
+                                container.innerHTML = `
+                                    <div class="loi-error-message">
+                                        <p>You've declined the Letter of Intent.</p>
+                                        <p>Feel free to review it again when you're ready.</p>
+                                    </div>
+                                `;
+                                setTimeout(() => {
+                                    modal.classList.remove('active');
+                                }, 3000);
+                            },
+                            closed: (e) => {
+                                console.log('SignWell closed:', e);
+                            },
+                            error: (e) => {
+                                console.error('SignWell error:', e);
+                                container.innerHTML = `
+                                    <div class="loi-error-message">
+                                        <p>An error occurred while loading the document.</p>
+                                        <p>Please try again or contact support.</p>
+                                    </div>
+                                `;
+                            }
+                        }
+                    });
+
+                    signWellEmbed.open();
+                } catch (error) {
+                    console.error('Error initializing SignWell embed:', error);
+                    container.innerHTML = `
+                        <div class="loi-error-message">
+                            <p>Unable to initialize the document viewer.</p>
+                            <p>Please ensure SignWell library is loaded.</p>
+                        </div>
+                    `;
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                formMessage.textContent = 'There was an error submitting your application. Please try again or contact support.';
-                formMessage.className = 'error';
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Application';
+            } else {
+                // Error creating document
+                container.innerHTML = `
+                    <div class="loi-error-message">
+                        <p>Unable to load the Letter of Intent.</p>
+                        <p>Please ensure all required fields are filled and try again.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Event Listeners for LOI
+        document.getElementById('viewLoiBtn').addEventListener('click', showLOI);
+
+        document.getElementById('closeLoiModal').addEventListener('click', () => {
+            document.getElementById('loiModal').classList.remove('active');
+        });
+
+        // Clear error state when user starts typing in required fields
+        ['firstName', 'lastName', 'email'].forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            field.addEventListener('input', function() {
+                this.classList.remove('field-error');
+                const validationMessage = document.getElementById('loiValidationMessage');
+                // Hide validation message if all required fields have values
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                if (firstName && lastName && email) {
+                    validationMessage.classList.remove('show');
+                }
             });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('loiModal').addEventListener('click', (e) => {
+            if (e.target.id === 'loiModal') {
+                document.getElementById('loiModal').classList.remove('active');
+            }
+        });
+
+        // Prevent default form submission - form now submits through SignWell
+        document.getElementById('invitationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Show LOI instead of submitting directly
+            showLOI();
         });
 
         // Update progress bar based on section visibility with reveal animation
