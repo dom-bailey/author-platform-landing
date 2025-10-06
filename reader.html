@@ -1831,15 +1831,16 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 8px 16px;
-            border-radius: 25px;
+            padding: 10px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
+            justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
+            width: 40px;
+            height: 40px;
         }
 
         .gallery-main:hover .gallery-expand-hint {
@@ -2080,8 +2081,8 @@
             }
 
             .gallery-expand-hint {
-                font-size: 12px;
-                padding: 6px 12px;
+                width: 35px;
+                height: 35px;
                 bottom: 15px;
                 right: 15px;
             }
@@ -6425,7 +6426,6 @@
                             <svg viewBox="0 0 24 24" width="20" height="20">
                                 <path fill="currentColor" d="M5,5H10V7H7V10H5V5M14,5H19V10H17V7H14V5M17,14H19V19H14V17H17V14M10,17V19H5V14H7V17H10Z"/>
                             </svg>
-                            <span>Click to expand</span>
                         </div>
                     </div>
 
