@@ -3630,7 +3630,230 @@
                 font-size: 14px;
             }
         }
-        
+
+        /* FAQ Section */
+        .faq-section {
+            background: linear-gradient(180deg, #0a1410 0%, #000000 100%);
+            position: relative;
+            padding: 120px 60px;
+            overflow: hidden;
+        }
+
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.5;
+        }
+
+        .faq-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .faq-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(74, 222, 128, 0.05),
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .faq-item:hover::before {
+            opacity: 1;
+        }
+
+        .faq-item.active {
+            background: rgba(74, 222, 128, 0.03);
+            border-color: rgba(74, 222, 128, 0.3);
+            box-shadow: 0 10px 40px rgba(74, 222, 128, 0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 30px 35px;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-question span {
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .faq-icon {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faq-icon svg {
+            position: absolute;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-icon .plus {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .faq-icon .minus {
+            opacity: 0;
+            transform: rotate(-90deg);
+        }
+
+        .faq-item.active .faq-icon .plus {
+            opacity: 0;
+            transform: rotate(90deg);
+        }
+
+        .faq-item.active .faq-icon .minus {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer p {
+            padding: 0 35px 30px 35px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* FAQ Responsive Styles */
+        @media (max-width: 1280px) {
+            .faq-section {
+                padding: 100px 50px;
+            }
+
+            .faq-section .section-header h2 {
+                font-size: clamp(2rem, 4.5vw, 3.5rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 70px 35px;
+            }
+
+            .faq-section .section-header h2 {
+                font-size: clamp(1.8rem, 4vw, 2.5rem);
+            }
+
+            .faq-grid {
+                gap: 15px;
+            }
+
+            .faq-item {
+                border-radius: 15px;
+            }
+
+            .faq-question {
+                padding: 25px;
+                font-size: 16px;
+            }
+
+            .faq-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .faq-answer p {
+                padding: 0 25px 25px 25px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .faq-section {
+                padding: 50px 20px;
+            }
+
+            .faq-section .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .faq-section .section-label {
+                font-size: 11px;
+                padding: 6px 16px;
+            }
+
+            .faq-grid {
+                gap: 12px;
+            }
+
+            .faq-question {
+                padding: 20px;
+                font-size: 15px;
+                gap: 15px;
+            }
+
+            .faq-answer p {
+                padding: 0 20px 20px 20px;
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .faq-item.active .faq-answer {
+                max-height: 600px;
+            }
+        }
+
         /* Footer */
         footer {
             padding: 80px 60px 40px;
@@ -6394,7 +6617,7 @@
     <section id="gallery" class="gallery-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Images From Demo</span>
+                <span class="section-label">Gallery</span>
                 <h2>A Closer Look</h2>
                 <p>Here's a few screenshots from our Demo, to give you a closer look.</p>
             </div>
@@ -6582,6 +6805,120 @@
                 </div>
                 <p>Due to the hands-on nature of the services we provide, we can only partner with a limited number of authors at a time.</p>
             </div> -->
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">FAQ</span>
+                <h2>Your Questions, Answered</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item reveal" data-delay="0.1">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What genres will be available at launch?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We'll be launching with a strong focus on Fantasy, Sci-Fi, and LitRPG, with plans to expand into other genres such as Thriller, Mystery, and Romance soon after.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal" data-delay="0.2">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Will this work on my tablet and phone?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Our platform works across all your devices. Use any modern browser on desktop, or download our dedicated app (coming soon) for any mobile device or tablet for an optimized reading experience.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal" data-delay="0.3">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How much will it cost?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We are still finalizing our pricing structure. Join the waitlist to be the first to know and to receive an exclusive early-adopter discount.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal" data-delay="0.4">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Will I be able to read offline?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We know how important offline reading is for travel and commuting. While our initial launch will require an internet connection to experience the full multimedia content, an offline reading mode is a high-priority feature on our development roadmap.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal" data-delay="0.5">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How often will new books and chapters be added?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our library will grow continuously! We are constantly partnering with new authors and will be adding new novels and serialized chapters on a regular basis. Our goal is to ensure there is always a fresh, high-quality story waiting for you to discover.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal" data-delay="0.6">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Is this a subscription service, or do I buy books individually?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We are building a subscription-based service, and we're fine-tuning the details to offer maximum choice.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -7190,6 +7527,75 @@
                     element.addEventListener('click', stopAutoplay);
                 }
             });
+            */
+        })();
+
+        // FAQ Accordion Functionality
+        (function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach((question, index) => {
+                question.addEventListener('click', () => {
+                    const faqItem = faqItems[index];
+                    const isActive = faqItem.classList.contains('active');
+
+                    // Close all other items
+                    faqItems.forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('active');
+                            item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        }
+                    });
+
+                    // Toggle current item
+                    if (isActive) {
+                        faqItem.classList.remove('active');
+                        question.setAttribute('aria-expanded', 'false');
+                    } else {
+                        faqItem.classList.add('active');
+                        question.setAttribute('aria-expanded', 'true');
+
+                        // Smooth scroll to bring item into view if needed
+                        setTimeout(() => {
+                            const rect = faqItem.getBoundingClientRect();
+                            const viewportHeight = window.innerHeight;
+                            if (rect.bottom > viewportHeight || rect.top < 0) {
+                                faqItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }
+                        }, 300);
+                    }
+                });
+
+                // Add hover effect for mouse position tracking
+                const faqItem = faqItems[index];
+                faqItem.addEventListener('mousemove', (e) => {
+                    const rect = faqItem.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+                    faqItem.style.setProperty('--mouse-x', `${x}%`);
+                    faqItem.style.setProperty('--mouse-y', `${y}%`);
+                });
+            });
+
+            // Keyboard accessibility
+            faqQuestions.forEach(question => {
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        question.click();
+                    }
+                });
+            });
+
+            // Optional: Open first FAQ by default
+            // Uncomment the following lines if you want the first FAQ to be open initially
+            /*
+            if (faqItems.length > 0) {
+                faqItems[0].classList.add('active');
+                faqQuestions[0].setAttribute('aria-expanded', 'true');
+            }
             */
         })();
 
