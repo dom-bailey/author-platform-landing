@@ -1786,6 +1786,44 @@
             transform: scale(1);
         }
 
+        /* Gallery Loader */
+        .gallery-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-loader.active {
+            opacity: 1;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            border: 3px solid rgba(74, 222, 128, 0.2);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: var(--text-muted);
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
         /* Gallery Navigation */
         .gallery-nav {
             position: absolute;
@@ -6683,11 +6721,16 @@
             <div class="gallery-container reveal">
                 <div class="gallery-viewer">
                     <div class="gallery-main">
+                        <!-- Loading placeholder -->
+                        <div class="gallery-loader">
+                            <div class="loader-spinner"></div>
+                            <span class="loader-text">Loading image...</span>
+                        </div>
                         <img src="/assets/gallery/01 - Reading Interface.webp" alt="Reading Interface" class="gallery-image active" data-index="0">
-                        <img src="/assets/gallery/02 - Reading Mode On.webp" alt="Reading Mode On" class="gallery-image" data-index="1">
-                        <img src="/assets/gallery/03 - Select Chapters.webp" alt="Select Chapters" class="gallery-image" data-index="2">
-                        <img src="/assets/gallery/04 - Select Bubbles.webp" alt="Select Bubbles" class="gallery-image" data-index="3">
-                        <img src="/assets/gallery/05 - Video Bubble.webp" alt="Video Bubble" class="gallery-image" data-index="4">
+                        <img data-src="/assets/gallery/02 - Reading Mode On.webp" alt="Reading Mode On" class="gallery-image" data-index="1">
+                        <img data-src="/assets/gallery/03 - Select Chapters.webp" alt="Select Chapters" class="gallery-image" data-index="2">
+                        <img data-src="/assets/gallery/04 - Select Bubbles.webp" alt="Select Bubbles" class="gallery-image" data-index="3">
+                        <img data-src="/assets/gallery/05 - Video Bubble.webp" alt="Video Bubble" class="gallery-image" data-index="4">
 
                         <!-- Navigation arrows -->
                         <button class="gallery-nav gallery-nav-prev" aria-label="Previous image">
@@ -7371,13 +7414,14 @@
             });
         });
 
-        // Gallery Functionality
+        // Gallery Functionality with Progressive Loading
         (function() {
             const galleryImages = document.querySelectorAll('.gallery-image');
             const galleryDots = document.querySelectorAll('.gallery-dot');
             const prevBtn = document.querySelector('.gallery-nav-prev');
             const nextBtn = document.querySelector('.gallery-nav-next');
             const galleryMain = document.querySelector('.gallery-main');
+            const galleryLoader = document.querySelector('.gallery-loader');
             const lightbox = document.querySelector('.gallery-lightbox');
             const lightboxImage = document.querySelector('.lightbox-image');
             const lightboxClose = document.querySelector('.lightbox-close');
@@ -7387,6 +7431,9 @@
 
             let currentIndex = 0;
             const totalImages = galleryImages.length;
+            const loadedImages = new Set();
+            const loadingImages = new Set();
+            let isNavigating = false;
 
             // Image data
             const imageData = [
@@ -7397,14 +7444,98 @@
                 { src: '/assets/gallery/05 - Video Bubble.webp', alt: 'Video Bubble' }
             ];
 
-            function showImage(index) {
+            // Preload an image
+            function preloadImage(index) {
+                if (index < 0 || index >= totalImages) return Promise.resolve();
+                if (loadedImages.has(index) || loadingImages.has(index)) return Promise.resolve();
+
+                return new Promise((resolve) => {
+                    loadingImages.add(index);
+                    const img = galleryImages[index];
+                    const src = img.dataset.src || img.src;
+
+                    if (!src) {
+                        resolve();
+                        return;
+                    }
+
+                    const tempImg = new Image();
+                    tempImg.onload = () => {
+                        img.src = src;
+                        loadedImages.add(index);
+                        loadingImages.delete(index);
+                        resolve();
+                    };
+                    tempImg.onerror = () => {
+                        loadingImages.delete(index);
+                        resolve();
+                    };
+                    tempImg.src = src;
+                });
+            }
+
+            // Manage memory by unloading distant images
+            function manageMemory(currentIdx) {
+                galleryImages.forEach((img, idx) => {
+                    const distance = Math.abs(idx - currentIdx);
+                    if (distance > 2 && img.dataset.src) {
+                        // Keep the src in data-src for future loading
+                        if (!img.dataset.src && img.src) {
+                            img.dataset.src = img.src;
+                        }
+                        // Only clear if it's not visible
+                        if (!img.classList.contains('active') && distance > 2) {
+                            loadedImages.delete(idx);
+                        }
+                    }
+                });
+            }
+
+            // Preload strategy: current + next 2 + previous 1
+            async function preloadNearbyImages(index) {
+                const preloadPromises = [];
+
+                // Preload next 2 images
+                preloadPromises.push(preloadImage(index + 1));
+                preloadPromises.push(preloadImage(index + 2));
+
+                // Preload previous image
+                preloadPromises.push(preloadImage(index - 1));
+
+                await Promise.all(preloadPromises);
+
+                // Clean up distant images
+                manageMemory(index);
+            }
+
+            // Show image with loading state
+            async function showImage(index, skipPreload = false) {
+                if (isNavigating) return;
+                isNavigating = true;
+
+                // Show loader if image not loaded
+                const targetImg = galleryImages[index];
+                const isLoaded = loadedImages.has(index) || targetImg.complete;
+
+                if (!isLoaded && !loadingImages.has(index)) {
+                    galleryLoader.classList.add('active');
+                }
+
+                // Ensure current image is loaded
+                await preloadImage(index);
+
+                // Hide loader
+                galleryLoader.classList.remove('active');
+
                 // Update active image
                 galleryImages.forEach(img => img.classList.remove('active'));
-                galleryImages[index].classList.add('active');
+                targetImg.classList.add('active');
 
                 // Update dots
                 galleryDots.forEach(dot => dot.classList.remove('active'));
-                galleryDots[index].classList.add('active');
+                if (galleryDots[index]) {
+                    galleryDots[index].classList.add('active');
+                }
 
                 // Update counter
                 currentCounters.forEach(counter => {
@@ -7412,6 +7543,12 @@
                 });
 
                 currentIndex = index;
+                isNavigating = false;
+
+                // Preload nearby images in background
+                if (!skipPreload) {
+                    preloadNearbyImages(index);
+                }
             }
 
             function nextImage() {
@@ -7583,6 +7720,29 @@
                 }
             });
             */
+
+            // Initialize progressive loading
+            (async function init() {
+                // Mark first image as loaded since it has src attribute
+                loadedImages.add(0);
+
+                // Start preloading nearby images for the first image
+                await preloadNearbyImages(0);
+
+                // Optional: Start autoplay when gallery is visible
+                const gallerySection = document.querySelector('.gallery-section');
+                if (gallerySection) {
+                    const galleryObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                // Preload images when gallery becomes visible
+                                preloadNearbyImages(currentIndex);
+                            }
+                        });
+                    }, { threshold: 0.3 });
+                    galleryObserver.observe(gallerySection);
+                }
+            })();
         })();
 
         // FAQ Accordion Functionality
