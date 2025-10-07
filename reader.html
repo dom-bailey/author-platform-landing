@@ -1896,57 +1896,49 @@
         /* Progress Indicators */
         .gallery-progress {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
             margin-top: 40px;
         }
 
-        .gallery-dots {
-            display: flex;
-            gap: 8px;
-            max-width: 400px;
-            overflow-x: auto;
-            padding: 5px 0;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .gallery-dots::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .gallery-dots::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-        }
-
-        .gallery-dots::-webkit-scrollbar-thumb {
-            background: rgba(74, 222, 128, 0.5);
-            border-radius: 2px;
-        }
-
-        .gallery-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .gallery-progress-bar-container {
+            width: 100%;
+            max-width: 600px;
             position: relative;
         }
 
-        .gallery-dot.active {
-            background: var(--accent);
-            width: 30px;
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+        .gallery-progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: height 0.2s ease;
         }
 
-        .gallery-dot:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(1.2);
+        .gallery-progress-bar:hover {
+            height: 8px;
+        }
+
+        .gallery-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            width: 3.03%; /* 1/33 = ~3.03% */
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+        }
+
+        /* Add click zones for easy navigation */
+        .gallery-progress-bar::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            bottom: -10px;
+            left: 0;
+            right: 0;
         }
 
         .gallery-counter {
@@ -6801,8 +6793,10 @@
 
                     <!-- Progress indicator -->
                     <div class="gallery-progress">
-                        <div class="gallery-dots">
-                            <!-- Dots will be dynamically generated -->
+                        <div class="gallery-progress-bar-container">
+                            <div class="gallery-progress-bar">
+                                <div class="gallery-progress-fill"></div>
+                            </div>
                         </div>
                         <div class="gallery-counter">
                             <span class="current">1</span> / <span class="total">33</span>
@@ -7560,15 +7554,11 @@
                 galleryImages.forEach(img => img.classList.remove('active'));
                 galleryImages[index].classList.add('active');
 
-                // Update dots - query them fresh since they're dynamically generated
-                const dots = document.querySelectorAll('.gallery-dot');
-                dots.forEach(dot => dot.classList.remove('active'));
-                if (dots[index]) {
-                    dots[index].classList.add('active');
-                    // Scroll the active dot into view
-                    if (window.scrollDotIntoView) {
-                        window.scrollDotIntoView(index);
-                    }
+                // Update progress bar
+                const progressFill = document.querySelector('.gallery-progress-fill');
+                if (progressFill) {
+                    const percentage = ((index + 1) / totalImages) * 100;
+                    progressFill.style.width = percentage + '%';
                 }
 
                 // Update counter
@@ -7749,20 +7739,18 @@
 
             // Initialize gallery
             (function init() {
-                // Generate dots dynamically
-                const dotsContainer = document.querySelector('.gallery-dots');
-                if (dotsContainer) {
-                    for (let i = 0; i < totalImages; i++) {
-                        const dot = document.createElement('button');
-                        dot.className = i === 0 ? 'gallery-dot active' : 'gallery-dot';
-                        dot.setAttribute('data-index', i);
-                        dot.setAttribute('aria-label', `Go to image ${i + 1}`);
-                        dot.addEventListener('click', () => {
-                            showImage(i);
-                            stopAutoplay();
-                        });
-                        dotsContainer.appendChild(dot);
-                    }
+                // Add click functionality to progress bar
+                const progressBar = document.querySelector('.gallery-progress-bar');
+                if (progressBar) {
+                    progressBar.addEventListener('click', (e) => {
+                        const rect = progressBar.getBoundingClientRect();
+                        const clickX = e.clientX - rect.left;
+                        const percentage = clickX / rect.width;
+                        const targetIndex = Math.floor(percentage * totalImages);
+                        const clampedIndex = Math.max(0, Math.min(totalImages - 1, targetIndex));
+                        showImage(clampedIndex);
+                        stopAutoplay();
+                    });
                 }
 
                 // Mark first image as preloaded since it's already visible
@@ -7783,26 +7771,6 @@
                     }, { threshold: 0.3 });
                     observer.observe(gallerySection);
                 }
-
-                // Auto-scroll dots to keep current dot visible
-                window.scrollDotIntoView = function(index) {
-                    const dotsContainer = document.querySelector('.gallery-dots');
-                    const dots = document.querySelectorAll('.gallery-dot');
-                    if (dotsContainer && dots[index]) {
-                        const dot = dots[index];
-                        const dotLeft = dot.offsetLeft;
-                        const dotWidth = dot.offsetWidth;
-                        const containerWidth = dotsContainer.offsetWidth;
-                        const scrollLeft = dotsContainer.scrollLeft;
-
-                        // Center the active dot if possible
-                        const targetScroll = dotLeft - (containerWidth / 2) + (dotWidth / 2);
-                        dotsContainer.scrollTo({
-                            left: targetScroll,
-                            behavior: 'smooth'
-                        });
-                    }
-                };
             })();
         })();
 
