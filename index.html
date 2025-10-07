@@ -2074,6 +2074,516 @@
             }
         }
 
+        /* Gallery Section - Immersive Visual Journey */
+        .gallery-section {
+            background: linear-gradient(180deg, #000000 0%, #0a0f0a 100%);
+            position: relative;
+            padding: 120px 60px;
+            overflow: hidden;
+        }
+
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .gallery-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .gallery-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .gallery-section .section-header p {
+            color: var(--text-muted);
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .gallery-container {
+            max-width: min(1400px, calc(70vh * 2.106));
+            margin: 0 auto;
+        }
+
+        .gallery-viewer {
+            position: relative;
+        }
+
+        .gallery-main {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1920/911;
+            max-height: 70vh;
+            background: var(--glass);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            margin: 0 auto;
+        }
+
+        .gallery-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+            transform: scale(1);
+        }
+
+        .gallery-image.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Gallery Loader */
+        .gallery-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-loader.active {
+            opacity: 1;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            border: 3px solid rgba(74, 222, 128, 0.2);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: var(--text-muted);
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Gallery Navigation */
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .gallery-main:hover .gallery-nav {
+            opacity: 1;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-nav-prev {
+            left: 20px;
+        }
+
+        .gallery-nav-next {
+            right: 20px;
+        }
+
+        /* Expand Hint */
+        .gallery-expand-hint {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            width: 40px;
+            height: 40px;
+        }
+
+        .gallery-main:hover .gallery-expand-hint {
+            opacity: 1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Progress Indicators */
+        .gallery-progress {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-progress-bar-container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .gallery-progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: height 0.2s ease;
+        }
+
+        .gallery-progress-bar:hover {
+            height: 8px;
+        }
+
+        .gallery-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            width: 3.03%; /* 1/33 = ~3.03% */
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+        }
+
+        /* Add click zones for easy navigation */
+        .gallery-progress-bar::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+        }
+
+        .gallery-counter {
+            color: var(--text-muted);
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .gallery-counter .current {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Lightbox Styles */
+        .gallery-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .gallery-lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 90vw;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-nav-prev {
+            left: 30px;
+        }
+
+        .lightbox-nav-next {
+            right: 30px;
+        }
+
+        .lightbox-progress {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .lightbox-progress .current {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Gallery Section Responsive */
+        @media (max-width: 1280px) {
+            .gallery-section {
+                padding: 100px 50px;
+            }
+
+            .gallery-section .section-header h2 {
+                font-size: clamp(2rem, 4.5vw, 3.5rem);
+            }
+
+            .gallery-section .section-header p {
+                font-size: 16px;
+            }
+
+            .gallery-main {
+                max-height: 75vh;
+            }
+
+            .gallery-container {
+                max-width: min(1300px, calc(75vh * 2.106));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-section {
+                padding: 70px 35px;
+            }
+
+            .gallery-section .section-header h2 {
+                font-size: clamp(1.8rem, 4vw, 2.5rem);
+            }
+
+            .gallery-section .section-header p {
+                font-size: 14px;
+            }
+
+            .gallery-main {
+                max-height: 80vh;
+            }
+
+            .gallery-container {
+                max-width: min(100%, calc(80vh * 2.106));
+            }
+
+            .gallery-nav {
+                width: 40px;
+                height: 40px;
+            }
+
+            .gallery-nav-prev {
+                left: 10px;
+            }
+
+            .gallery-nav-next {
+                right: 10px;
+            }
+
+            .gallery-nav {
+                opacity: 1;
+            }
+
+            .gallery-expand-hint {
+                width: 35px;
+                height: 35px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .gallery-progress {
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 30px;
+            }
+
+            .lightbox-nav {
+                width: 50px;
+                height: 50px;
+            }
+
+            .lightbox-nav-prev {
+                left: 15px;
+            }
+
+            .lightbox-nav-next {
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-section {
+                padding: 50px 20px;
+            }
+
+            .gallery-section .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .gallery-section .section-label {
+                font-size: 11px;
+                padding: 6px 16px;
+            }
+
+            .gallery-main {
+                border-radius: 15px;
+                max-height: 85vh;
+            }
+
+            .gallery-container {
+                max-width: min(100%, calc(85vh * 2.106));
+            }
+
+            .gallery-dots {
+                gap: 8px;
+            }
+
+            .gallery-dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            .gallery-dot.active {
+                width: 24px;
+            }
+
+            .gallery-counter {
+                font-size: 14px;
+            }
+        }
+
         /* Benefits - Bento Grid */
         .benefits-section {
             background: linear-gradient(180deg, #0a0f0a 0%, #1a2e1a 100%);
@@ -6031,6 +6541,117 @@
         </div>
     </section>
 
+    <!-- Immersive Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Gallery</span>
+                <h2>A Closer Look</h2>
+            </div>
+
+            <div class="gallery-container reveal">
+                <div class="gallery-viewer">
+                    <div class="gallery-main">
+                        <!-- Loading placeholder -->
+                        <div class="gallery-loader">
+                            <div class="loader-spinner"></div>
+                            <span class="loader-text">Loading image...</span>
+                        </div>
+                        <img src="/assets/gallery/01 - Reading Interface.webp" alt="Reading Interface" class="gallery-image active" data-index="0" loading="lazy">
+                        <img src="/assets/gallery/02 - Reading Mode On.webp" alt="Reading Mode On" class="gallery-image" data-index="1" loading="lazy">
+                        <img src="/assets/gallery/03 - Select Chapters.webp" alt="Select Chapters" class="gallery-image" data-index="2" loading="lazy">
+                        <img src="/assets/gallery/04 - Select Bubbles.webp" alt="Select Bubbles" class="gallery-image" data-index="3" loading="lazy">
+                        <img src="/assets/gallery/05 - Video Bubble.webp" alt="Video Bubble" class="gallery-image" data-index="4" loading="lazy">
+                        <img src="/assets/gallery/06 - Map Bubble.webp" alt="Map Bubble" class="gallery-image" data-index="5" loading="lazy">
+                        <img src="/assets/gallery/07 - Current Location.webp" alt="Current Location" class="gallery-image" data-index="6" loading="lazy">
+                        <img src="/assets/gallery/08 - Current Location Close Up.webp" alt="Current Location Close Up" class="gallery-image" data-index="7" loading="lazy">
+                        <img src="/assets/gallery/09 - Other Map Location.webp" alt="Other Map Location" class="gallery-image" data-index="8" loading="lazy">
+                        <img src="/assets/gallery/10 - Other Map Location Close Up.webp" alt="Other Map Location Close Up" class="gallery-image" data-index="9" loading="lazy">
+                        <img src="/assets/gallery/11 - Map Zoomed In.webp" alt="Map Zoomed In" class="gallery-image" data-index="10" loading="lazy">
+                        <img src="/assets/gallery/12 - Keep Scrolling, Character Bubble.webp" alt="Keep Scrolling, Character Bubble" class="gallery-image" data-index="11" loading="lazy">
+                        <img src="/assets/gallery/13 - Character Rashid.webp" alt="Character Rashid" class="gallery-image" data-index="12" loading="lazy">
+                        <img src="/assets/gallery/14 - Video Tab.webp" alt="Video Tab" class="gallery-image" data-index="13" loading="lazy">
+                        <img src="/assets/gallery/15 - Open Video.webp" alt="Open Video" class="gallery-image" data-index="14" loading="lazy">
+                        <img src="/assets/gallery/16 - Image Tab.webp" alt="Image Tab" class="gallery-image" data-index="15" loading="lazy">
+                        <img src="/assets/gallery/17 - Open Image.webp" alt="Open Image" class="gallery-image" data-index="16" loading="lazy">
+                        <img src="/assets/gallery/18 - Map Tab.webp" alt="Map Tab" class="gallery-image" data-index="17" loading="lazy">
+                        <img src="/assets/gallery/19 - Character Tab.webp" alt="Character Tab" class="gallery-image" data-index="18" loading="lazy">
+                        <img src="/assets/gallery/20 - Character - Captain Aldric.webp" alt="Character - Captain Aldric" class="gallery-image" data-index="19" loading="lazy">
+                        <img src="/assets/gallery/21 - Character - Eldrin.webp" alt="Character - Eldrin" class="gallery-image" data-index="20" loading="lazy">
+                        <img src="/assets/gallery/22 - Character - Kira.webp" alt="Character - Kira" class="gallery-image" data-index="21" loading="lazy">
+                        <img src="/assets/gallery/23 - Character - Sevra.webp" alt="Character - Sevra" class="gallery-image" data-index="22" loading="lazy">
+                        <img src="/assets/gallery/24 - Character - Theron.webp" alt="Character - Theron" class="gallery-image" data-index="23" loading="lazy">
+                        <img src="/assets/gallery/25 - Display Settings.webp" alt="Display Settings" class="gallery-image" data-index="24" loading="lazy">
+                        <img src="/assets/gallery/26 - Story Image 1.webp" alt="Story Image 1" class="gallery-image" data-index="25" loading="lazy">
+                        <img src="/assets/gallery/27 - Story Image 2.webp" alt="Story Image 2" class="gallery-image" data-index="26" loading="lazy">
+                        <img src="/assets/gallery/28 - Story Image 3.webp" alt="Story Image 3" class="gallery-image" data-index="27" loading="lazy">
+                        <img src="/assets/gallery/29 - Story Image 4.webp" alt="Story Image 4" class="gallery-image" data-index="28" loading="lazy">
+                        <img src="/assets/gallery/30 - Story Image 5.webp" alt="Story Image 5" class="gallery-image" data-index="29" loading="lazy">
+                        <img src="/assets/gallery/31 - Story Image 6.webp" alt="Story Image 6" class="gallery-image" data-index="30" loading="lazy">
+                        <img src="/assets/gallery/32 - Story Image 7.webp" alt="Story Image 7" class="gallery-image" data-index="31" loading="lazy">
+                        <img src="/assets/gallery/33 - Story Image 8.webp" alt="Story Image 8" class="gallery-image" data-index="32" loading="lazy">
+
+                        <!-- Navigation arrows -->
+                        <button class="gallery-nav gallery-nav-prev" aria-label="Previous image">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                            </svg>
+                        </button>
+                        <button class="gallery-nav gallery-nav-next" aria-label="Next image">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                            </svg>
+                        </button>
+
+                        <!-- Click to expand indicator -->
+                        <div class="gallery-expand-hint">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor" d="M5,5H10V7H7V10H5V5M14,5H19V10H17V7H14V5M17,14H19V19H14V17H17V14M10,17V19H5V14H7V17H10Z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Progress indicator -->
+                    <div class="gallery-progress">
+                        <div class="gallery-progress-bar-container">
+                            <div class="gallery-progress-bar">
+                                <div class="gallery-progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="gallery-counter">
+                            <span class="current">1</span> / <span class="total">33</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lightbox -->
+        <div class="gallery-lightbox">
+            <button class="lightbox-close" aria-label="Close lightbox">
+                <svg viewBox="0 0 24 24" width="30" height="30">
+                    <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </button>
+            <div class="lightbox-content">
+                <img src="" alt="" class="lightbox-image">
+                <button class="lightbox-nav lightbox-nav-prev" aria-label="Previous image">
+                    <svg viewBox="0 0 24 24" width="40" height="40">
+                        <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <button class="lightbox-nav lightbox-nav-next" aria-label="Next image">
+                    <svg viewBox="0 0 24 24" width="40" height="40">
+                        <path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
+                <div class="lightbox-progress">
+                    <span class="current">1</span> / <span class="total">33</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Final CTA -->
     <section id="cta" class="final-cta reveal">
         <div class="particles-section" id="particles-cta"></div>
@@ -6446,6 +7067,293 @@
         });
 
         // Removed duplicate mobile menu creation - already handled by HTML/CSS
+
+        // Gallery Functionality
+        (function() {
+            const galleryImages = document.querySelectorAll('.gallery-image');
+            const prevBtn = document.querySelector('.gallery-nav-prev');
+            const nextBtn = document.querySelector('.gallery-nav-next');
+            const galleryMain = document.querySelector('.gallery-main');
+            const galleryLoader = document.querySelector('.gallery-loader');
+            const lightbox = document.querySelector('.gallery-lightbox');
+            const lightboxImage = document.querySelector('.lightbox-image');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxPrev = document.querySelector('.lightbox-nav-prev');
+            const lightboxNext = document.querySelector('.lightbox-nav-next');
+            const currentCounters = document.querySelectorAll('.gallery-counter .current, .lightbox-progress .current');
+
+            let currentIndex = 0;
+            const totalImages = galleryImages.length;
+            const preloadedImages = new Map();
+
+            // Image data
+            const imageData = [
+                { src: '/assets/gallery/01 - Reading Interface.webp', alt: 'Reading Interface' },
+                { src: '/assets/gallery/02 - Reading Mode On.webp', alt: 'Reading Mode On' },
+                { src: '/assets/gallery/03 - Select Chapters.webp', alt: 'Select Chapters' },
+                { src: '/assets/gallery/04 - Select Bubbles.webp', alt: 'Select Bubbles' },
+                { src: '/assets/gallery/05 - Video Bubble.webp', alt: 'Video Bubble' },
+                { src: '/assets/gallery/06 - Map Bubble.webp', alt: 'Map Bubble' },
+                { src: '/assets/gallery/07 - Current Location.webp', alt: 'Current Location' },
+                { src: '/assets/gallery/08 - Current Location Close Up.webp', alt: 'Current Location Close Up' },
+                { src: '/assets/gallery/09 - Other Map Location.webp', alt: 'Other Map Location' },
+                { src: '/assets/gallery/10 - Other Map Location Close Up.webp', alt: 'Other Map Location Close Up' },
+                { src: '/assets/gallery/11 - Map Zoomed In.webp', alt: 'Map Zoomed In' },
+                { src: '/assets/gallery/12 - Keep Scrolling, Character Bubble.webp', alt: 'Keep Scrolling, Character Bubble' },
+                { src: '/assets/gallery/13 - Character Rashid.webp', alt: 'Character Rashid' },
+                { src: '/assets/gallery/14 - Video Tab.webp', alt: 'Video Tab' },
+                { src: '/assets/gallery/15 - Open Video.webp', alt: 'Open Video' },
+                { src: '/assets/gallery/16 - Image Tab.webp', alt: 'Image Tab' },
+                { src: '/assets/gallery/17 - Open Image.webp', alt: 'Open Image' },
+                { src: '/assets/gallery/18 - Map Tab.webp', alt: 'Map Tab' },
+                { src: '/assets/gallery/19 - Character Tab.webp', alt: 'Character Tab' },
+                { src: '/assets/gallery/20 - Character - Captain Aldric.webp', alt: 'Character - Captain Aldric' },
+                { src: '/assets/gallery/21 - Character - Eldrin.webp', alt: 'Character - Eldrin' },
+                { src: '/assets/gallery/22 - Character - Kira.webp', alt: 'Character - Kira' },
+                { src: '/assets/gallery/23 - Character - Sevra.webp', alt: 'Character - Sevra' },
+                { src: '/assets/gallery/24 - Character - Theron.webp', alt: 'Character - Theron' },
+                { src: '/assets/gallery/25 - Display Settings.webp', alt: 'Display Settings' },
+                { src: '/assets/gallery/26 - Story Image 1.webp', alt: 'Story Image 1' },
+                { src: '/assets/gallery/27 - Story Image 2.webp', alt: 'Story Image 2' },
+                { src: '/assets/gallery/28 - Story Image 3.webp', alt: 'Story Image 3' },
+                { src: '/assets/gallery/29 - Story Image 4.webp', alt: 'Story Image 4' },
+                { src: '/assets/gallery/30 - Story Image 5.webp', alt: 'Story Image 5' },
+                { src: '/assets/gallery/31 - Story Image 6.webp', alt: 'Story Image 6' },
+                { src: '/assets/gallery/32 - Story Image 7.webp', alt: 'Story Image 7' },
+                { src: '/assets/gallery/33 - Story Image 8.webp', alt: 'Story Image 8' }
+            ];
+
+            // Preload an image by creating a new Image object
+            function preloadImage(index) {
+                if (index < 0 || index >= totalImages) return Promise.resolve();
+                if (preloadedImages.has(index)) return Promise.resolve();
+
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        preloadedImages.set(index, true);
+                        resolve();
+                    };
+                    img.onerror = () => {
+                        resolve();
+                    };
+                    img.src = imageData[index].src;
+                });
+            }
+
+            // Preload nearby images
+            async function preloadNearbyImages(index) {
+                const promises = [];
+
+                // Preload next 2 images
+                if (index + 1 < totalImages) promises.push(preloadImage(index + 1));
+                if (index + 2 < totalImages) promises.push(preloadImage(index + 2));
+
+                // Preload previous image
+                if (index - 1 >= 0) promises.push(preloadImage(index - 1));
+
+                await Promise.all(promises);
+            }
+
+            // Show image
+            async function showImage(index) {
+                // Check if image is preloaded
+                const isPreloaded = preloadedImages.has(index) || galleryImages[index].complete;
+
+                // Show loader if not preloaded
+                if (!isPreloaded) {
+                    galleryLoader.classList.add('active');
+                    await preloadImage(index);
+                    galleryLoader.classList.remove('active');
+                }
+
+                // Update active image
+                galleryImages.forEach(img => img.classList.remove('active'));
+                galleryImages[index].classList.add('active');
+
+                // Update progress bar
+                const progressFill = document.querySelector('.gallery-progress-fill');
+                if (progressFill) {
+                    const percentage = ((index + 1) / totalImages) * 100;
+                    progressFill.style.width = percentage + '%';
+                }
+
+                // Update counter
+                currentCounters.forEach(counter => {
+                    counter.textContent = index + 1;
+                });
+
+                currentIndex = index;
+
+                // Preload nearby images in background
+                preloadNearbyImages(index);
+            }
+
+            function nextImage() {
+                const newIndex = (currentIndex + 1) % totalImages;
+                showImage(newIndex);
+            }
+
+            function prevImage() {
+                const newIndex = (currentIndex - 1 + totalImages) % totalImages;
+                showImage(newIndex);
+            }
+
+            // Gallery navigation
+            if (nextBtn) nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextImage();
+            });
+
+            if (prevBtn) prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevImage();
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (lightbox && lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowRight') nextImage();
+                    if (e.key === 'ArrowLeft') prevImage();
+                    if (e.key === 'Escape') closeLightbox();
+                }
+            });
+
+            // Lightbox functionality
+            function openLightbox() {
+                if (lightbox) {
+                    lightbox.classList.add('active');
+                    lightboxImage.src = imageData[currentIndex].src;
+                    lightboxImage.alt = imageData[currentIndex].alt;
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeLightbox() {
+                if (lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            // Open lightbox on image click
+            if (galleryMain) {
+                galleryMain.addEventListener('click', (e) => {
+                    if (!e.target.closest('.gallery-nav')) {
+                        openLightbox();
+                    }
+                });
+            }
+
+            // Close lightbox
+            if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+
+            // Close on background click
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            // Lightbox navigation
+            if (lightboxNext) lightboxNext.addEventListener('click', () => {
+                nextImage();
+                lightboxImage.src = imageData[currentIndex].src;
+                lightboxImage.alt = imageData[currentIndex].alt;
+            });
+
+            if (lightboxPrev) lightboxPrev.addEventListener('click', () => {
+                prevImage();
+                lightboxImage.src = imageData[currentIndex].src;
+                lightboxImage.alt = imageData[currentIndex].alt;
+            });
+
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            if (galleryMain) {
+                galleryMain.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                galleryMain.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+            }
+
+            if (lightbox) {
+                lightbox.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                lightbox.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+            }
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swiped left - next image
+                        nextImage();
+                        if (lightbox && lightbox.classList.contains('active')) {
+                            lightboxImage.src = imageData[currentIndex].src;
+                            lightboxImage.alt = imageData[currentIndex].alt;
+                        }
+                    } else {
+                        // Swiped right - previous image
+                        prevImage();
+                        if (lightbox && lightbox.classList.contains('active')) {
+                            lightboxImage.src = imageData[currentIndex].src;
+                            lightboxImage.alt = imageData[currentIndex].alt;
+                        }
+                    }
+                }
+            }
+
+            // Initialize gallery
+            (function init() {
+                // Add click functionality to progress bar
+                const progressBar = document.querySelector('.gallery-progress-bar');
+                if (progressBar) {
+                    progressBar.addEventListener('click', (e) => {
+                        const rect = progressBar.getBoundingClientRect();
+                        const clickX = e.clientX - rect.left;
+                        const percentage = clickX / rect.width;
+                        const targetIndex = Math.floor(percentage * totalImages);
+                        const clampedIndex = Math.max(0, Math.min(totalImages - 1, targetIndex));
+                        showImage(clampedIndex);
+                    });
+                }
+
+                // Mark first image as preloaded since it's already visible
+                preloadedImages.set(0, true);
+
+                // Start preloading nearby images when gallery becomes visible
+                const gallerySection = document.querySelector('.gallery-section');
+                if (gallerySection) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                // Preload nearby images when gallery is in view
+                                preloadNearbyImages(currentIndex);
+                                // Only observe once
+                                observer.unobserve(gallerySection);
+                            }
+                        });
+                    }, { threshold: 0.3 });
+                    observer.observe(gallerySection);
+                }
+            })();
+        })();
     </script>
 </body>
 </html>
