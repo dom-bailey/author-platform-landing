@@ -1904,7 +1904,26 @@
 
         .gallery-dots {
             display: flex;
-            gap: 12px;
+            gap: 8px;
+            max-width: 400px;
+            overflow-x: auto;
+            padding: 5px 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-dots::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .gallery-dots::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .gallery-dots::-webkit-scrollbar-thumb {
+            background: rgba(74, 222, 128, 0.5);
+            border-radius: 2px;
         }
 
         .gallery-dot {
@@ -6731,6 +6750,34 @@
                         <img src="/assets/gallery/03 - Select Chapters.webp" alt="Select Chapters" class="gallery-image" data-index="2" loading="lazy">
                         <img src="/assets/gallery/04 - Select Bubbles.webp" alt="Select Bubbles" class="gallery-image" data-index="3" loading="lazy">
                         <img src="/assets/gallery/05 - Video Bubble.webp" alt="Video Bubble" class="gallery-image" data-index="4" loading="lazy">
+                        <img src="/assets/gallery/06 - Map Bubble.webp" alt="Map Bubble" class="gallery-image" data-index="5" loading="lazy">
+                        <img src="/assets/gallery/07 - Current Location.webp" alt="Current Location" class="gallery-image" data-index="6" loading="lazy">
+                        <img src="/assets/gallery/08 - Current Location Close Up.webp" alt="Current Location Close Up" class="gallery-image" data-index="7" loading="lazy">
+                        <img src="/assets/gallery/09 - Other Map Location.webp" alt="Other Map Location" class="gallery-image" data-index="8" loading="lazy">
+                        <img src="/assets/gallery/10 - Other Map Location Close Up.webp" alt="Other Map Location Close Up" class="gallery-image" data-index="9" loading="lazy">
+                        <img src="/assets/gallery/11 - Map Zoomed In.webp" alt="Map Zoomed In" class="gallery-image" data-index="10" loading="lazy">
+                        <img src="/assets/gallery/12 - Keep Scrolling, Character Bubble.webp" alt="Keep Scrolling, Character Bubble" class="gallery-image" data-index="11" loading="lazy">
+                        <img src="/assets/gallery/13 - Character Rashid.webp" alt="Character Rashid" class="gallery-image" data-index="12" loading="lazy">
+                        <img src="/assets/gallery/14 - Video Tab.webp" alt="Video Tab" class="gallery-image" data-index="13" loading="lazy">
+                        <img src="/assets/gallery/15 - Open Video.webp" alt="Open Video" class="gallery-image" data-index="14" loading="lazy">
+                        <img src="/assets/gallery/16 - Image Tab.webp" alt="Image Tab" class="gallery-image" data-index="15" loading="lazy">
+                        <img src="/assets/gallery/17 - Open Image.webp" alt="Open Image" class="gallery-image" data-index="16" loading="lazy">
+                        <img src="/assets/gallery/18 - Map Tab.webp" alt="Map Tab" class="gallery-image" data-index="17" loading="lazy">
+                        <img src="/assets/gallery/19 - Character Tab.webp" alt="Character Tab" class="gallery-image" data-index="18" loading="lazy">
+                        <img src="/assets/gallery/20 - Character - Captain Aldric.webp" alt="Character - Captain Aldric" class="gallery-image" data-index="19" loading="lazy">
+                        <img src="/assets/gallery/21 - Character - Eldrin.webp" alt="Character - Eldrin" class="gallery-image" data-index="20" loading="lazy">
+                        <img src="/assets/gallery/22 - Character - Kira.webp" alt="Character - Kira" class="gallery-image" data-index="21" loading="lazy">
+                        <img src="/assets/gallery/23 - Character - Sevra.webp" alt="Character - Sevra" class="gallery-image" data-index="22" loading="lazy">
+                        <img src="/assets/gallery/24 - Character - Theron.webp" alt="Character - Theron" class="gallery-image" data-index="23" loading="lazy">
+                        <img src="/assets/gallery/25 - Display Settings.webp" alt="Display Settings" class="gallery-image" data-index="24" loading="lazy">
+                        <img src="/assets/gallery/26 - Story Image 1.webp" alt="Story Image 1" class="gallery-image" data-index="25" loading="lazy">
+                        <img src="/assets/gallery/27 - Story Image 2.webp" alt="Story Image 2" class="gallery-image" data-index="26" loading="lazy">
+                        <img src="/assets/gallery/28 - Story Image 3.webp" alt="Story Image 3" class="gallery-image" data-index="27" loading="lazy">
+                        <img src="/assets/gallery/29 - Story Image 4.webp" alt="Story Image 4" class="gallery-image" data-index="28" loading="lazy">
+                        <img src="/assets/gallery/30 - Story Image 5.webp" alt="Story Image 5" class="gallery-image" data-index="29" loading="lazy">
+                        <img src="/assets/gallery/31 - Story Image 6.webp" alt="Story Image 6" class="gallery-image" data-index="30" loading="lazy">
+                        <img src="/assets/gallery/32 - Story Image 7.webp" alt="Story Image 7" class="gallery-image" data-index="31" loading="lazy">
+                        <img src="/assets/gallery/33 - Story Image 8.webp" alt="Story Image 8" class="gallery-image" data-index="32" loading="lazy">
 
                         <!-- Navigation arrows -->
                         <button class="gallery-nav gallery-nav-prev" aria-label="Previous image">
@@ -6755,14 +6802,10 @@
                     <!-- Progress indicator -->
                     <div class="gallery-progress">
                         <div class="gallery-dots">
-                            <button class="gallery-dot active" data-index="0" aria-label="Go to image 1"></button>
-                            <button class="gallery-dot" data-index="1" aria-label="Go to image 2"></button>
-                            <button class="gallery-dot" data-index="2" aria-label="Go to image 3"></button>
-                            <button class="gallery-dot" data-index="3" aria-label="Go to image 4"></button>
-                            <button class="gallery-dot" data-index="4" aria-label="Go to image 5"></button>
+                            <!-- Dots will be dynamically generated -->
                         </div>
                         <div class="gallery-counter">
-                            <span class="current">1</span> / <span class="total">5</span>
+                            <span class="current">1</span> / <span class="total">33</span>
                         </div>
                     </div>
                 </div>
@@ -6789,7 +6832,7 @@
                     </svg>
                 </button>
                 <div class="lightbox-progress">
-                    <span class="current">1</span> / <span class="total">5</span>
+                    <span class="current">1</span> / <span class="total">33</span>
                 </div>
             </div>
         </div>
@@ -7417,7 +7460,6 @@
         // Gallery Functionality
         (function() {
             const galleryImages = document.querySelectorAll('.gallery-image');
-            const galleryDots = document.querySelectorAll('.gallery-dot');
             const prevBtn = document.querySelector('.gallery-nav-prev');
             const nextBtn = document.querySelector('.gallery-nav-next');
             const galleryMain = document.querySelector('.gallery-main');
@@ -7439,7 +7481,35 @@
                 { src: '/assets/gallery/02 - Reading Mode On.webp', alt: 'Reading Mode On' },
                 { src: '/assets/gallery/03 - Select Chapters.webp', alt: 'Select Chapters' },
                 { src: '/assets/gallery/04 - Select Bubbles.webp', alt: 'Select Bubbles' },
-                { src: '/assets/gallery/05 - Video Bubble.webp', alt: 'Video Bubble' }
+                { src: '/assets/gallery/05 - Video Bubble.webp', alt: 'Video Bubble' },
+                { src: '/assets/gallery/06 - Map Bubble.webp', alt: 'Map Bubble' },
+                { src: '/assets/gallery/07 - Current Location.webp', alt: 'Current Location' },
+                { src: '/assets/gallery/08 - Current Location Close Up.webp', alt: 'Current Location Close Up' },
+                { src: '/assets/gallery/09 - Other Map Location.webp', alt: 'Other Map Location' },
+                { src: '/assets/gallery/10 - Other Map Location Close Up.webp', alt: 'Other Map Location Close Up' },
+                { src: '/assets/gallery/11 - Map Zoomed In.webp', alt: 'Map Zoomed In' },
+                { src: '/assets/gallery/12 - Keep Scrolling, Character Bubble.webp', alt: 'Keep Scrolling, Character Bubble' },
+                { src: '/assets/gallery/13 - Character Rashid.webp', alt: 'Character Rashid' },
+                { src: '/assets/gallery/14 - Video Tab.webp', alt: 'Video Tab' },
+                { src: '/assets/gallery/15 - Open Video.webp', alt: 'Open Video' },
+                { src: '/assets/gallery/16 - Image Tab.webp', alt: 'Image Tab' },
+                { src: '/assets/gallery/17 - Open Image.webp', alt: 'Open Image' },
+                { src: '/assets/gallery/18 - Map Tab.webp', alt: 'Map Tab' },
+                { src: '/assets/gallery/19 - Character Tab.webp', alt: 'Character Tab' },
+                { src: '/assets/gallery/20 - Character - Captain Aldric.webp', alt: 'Character - Captain Aldric' },
+                { src: '/assets/gallery/21 - Character - Eldrin.webp', alt: 'Character - Eldrin' },
+                { src: '/assets/gallery/22 - Character - Kira.webp', alt: 'Character - Kira' },
+                { src: '/assets/gallery/23 - Character - Sevra.webp', alt: 'Character - Sevra' },
+                { src: '/assets/gallery/24 - Character - Theron.webp', alt: 'Character - Theron' },
+                { src: '/assets/gallery/25 - Display Settings.webp', alt: 'Display Settings' },
+                { src: '/assets/gallery/26 - Story Image 1.webp', alt: 'Story Image 1' },
+                { src: '/assets/gallery/27 - Story Image 2.webp', alt: 'Story Image 2' },
+                { src: '/assets/gallery/28 - Story Image 3.webp', alt: 'Story Image 3' },
+                { src: '/assets/gallery/29 - Story Image 4.webp', alt: 'Story Image 4' },
+                { src: '/assets/gallery/30 - Story Image 5.webp', alt: 'Story Image 5' },
+                { src: '/assets/gallery/31 - Story Image 6.webp', alt: 'Story Image 6' },
+                { src: '/assets/gallery/32 - Story Image 7.webp', alt: 'Story Image 7' },
+                { src: '/assets/gallery/33 - Story Image 8.webp', alt: 'Story Image 8' }
             ];
 
             // Preload an image by creating a new Image object
@@ -7490,10 +7560,15 @@
                 galleryImages.forEach(img => img.classList.remove('active'));
                 galleryImages[index].classList.add('active');
 
-                // Update dots
-                galleryDots.forEach(dot => dot.classList.remove('active'));
-                if (galleryDots[index]) {
-                    galleryDots[index].classList.add('active');
+                // Update dots - query them fresh since they're dynamically generated
+                const dots = document.querySelectorAll('.gallery-dot');
+                dots.forEach(dot => dot.classList.remove('active'));
+                if (dots[index]) {
+                    dots[index].classList.add('active');
+                    // Scroll the active dot into view
+                    if (window.scrollDotIntoView) {
+                        window.scrollDotIntoView(index);
+                    }
                 }
 
                 // Update counter
@@ -7528,12 +7603,7 @@
                 prevImage();
             });
 
-            // Dot navigation
-            galleryDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    showImage(index);
-                });
-            });
+            // Dot navigation is now handled in init function
 
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
@@ -7679,6 +7749,22 @@
 
             // Initialize gallery
             (function init() {
+                // Generate dots dynamically
+                const dotsContainer = document.querySelector('.gallery-dots');
+                if (dotsContainer) {
+                    for (let i = 0; i < totalImages; i++) {
+                        const dot = document.createElement('button');
+                        dot.className = i === 0 ? 'gallery-dot active' : 'gallery-dot';
+                        dot.setAttribute('data-index', i);
+                        dot.setAttribute('aria-label', `Go to image ${i + 1}`);
+                        dot.addEventListener('click', () => {
+                            showImage(i);
+                            stopAutoplay();
+                        });
+                        dotsContainer.appendChild(dot);
+                    }
+                }
+
                 // Mark first image as preloaded since it's already visible
                 preloadedImages.set(0, true);
 
@@ -7697,6 +7783,26 @@
                     }, { threshold: 0.3 });
                     observer.observe(gallerySection);
                 }
+
+                // Auto-scroll dots to keep current dot visible
+                window.scrollDotIntoView = function(index) {
+                    const dotsContainer = document.querySelector('.gallery-dots');
+                    const dots = document.querySelectorAll('.gallery-dot');
+                    if (dotsContainer && dots[index]) {
+                        const dot = dots[index];
+                        const dotLeft = dot.offsetLeft;
+                        const dotWidth = dot.offsetWidth;
+                        const containerWidth = dotsContainer.offsetWidth;
+                        const scrollLeft = dotsContainer.scrollLeft;
+
+                        // Center the active dot if possible
+                        const targetScroll = dotLeft - (containerWidth / 2) + (dotWidth / 2);
+                        dotsContainer.scrollTo({
+                            left: targetScroll,
+                            behavior: 'smooth'
+                        });
+                    }
+                };
             })();
         })();
 
