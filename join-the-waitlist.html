@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Waitlist | Mythic Novel</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Additional Meta Tags for Better Support -->
+    <meta name="theme-color" content="#0a0f0a">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0f0a;
+            --accent: #4ade80;
+            --accent-bright: #6ee7b7;
+            --gold: #fbbf24;
+            --text: #ffffff;
+            --text-muted: #d1d5db;
+            --glass: rgba(74, 222, 128, 0.15);
+            --glass-border: rgba(74, 222, 128, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(180deg, #0a0f0a 0%, #050a05 100%);
+            color: var(--text);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* Logo */
+        .logo-header {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            height: 45px;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo:hover {
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4),
+                        0 0 100px rgba(74, 222, 128, 0.1);
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2e1a 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: scanline 3s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .form-header h1 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 0;
+            background: linear-gradient(135deg, #ffffff, var(--accent), #ffffff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .form-content {
+            padding: 2.5rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        label .required {
+            color: var(--accent);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1),
+                        0 10px 30px rgba(74, 222, 128, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            max-height: 150px;
+        }
+
+        .microcopy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.5rem;
+            font-style: normal;
+            line-height: 1.4;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 100px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', -apple-system, sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin-top: 1.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled)::before {
+            width: 500px;
+            height: 500px;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #formMessage {
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        #formMessage.success {
+            background: rgba(74, 222, 128, 0.2);
+            color: var(--accent-bright);
+            border: 1px solid var(--accent);
+            display: block;
+            animation: slideInUp 0.5s ease;
+        }
+
+        #formMessage.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            display: block;
+            animation: shake 0.5s ease;
+        }
+
+        #formMessage.loading {
+            background: rgba(74, 222, 128, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            display: block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Validation Error Styles */
+        .field-error {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.05) !important;
+            animation: shake 0.3s ease;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+                align-items: flex-start;
+            }
+
+            .logo-header {
+                top: 20px;
+                left: 20px;
+            }
+
+            .logo {
+                height: 40px;
+            }
+
+            .container {
+                border-radius: 0;
+                max-width: 100%;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .form-header {
+                padding: 2.5rem 1.5rem;
+                margin-top: 60px;
+            }
+
+            .form-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .form-header p {
+                font-size: 1rem;
+            }
+
+            .form-content {
+                padding: 2rem 1.5rem;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 16px 35px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                height: 35px;
+            }
+
+            .form-header {
+                padding: 2rem 1rem;
+            }
+
+            .form-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-header p {
+                font-size: 0.95rem;
+            }
+
+            .form-content {
+                padding: 1.5rem 1rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                padding: 0.875rem 1rem;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo-header">
+        <a href="/" class="logo">
+            <img src="/assets/logo/White-Logo.webp" alt="Mythic Novel Logo">
+        </a>
+    </div>
+
+
+    <div class="container">
+        <div class="form-header">
+            <h1>Join the Waitlist</h1>
+        </div>
+
+        <form id="waitlistForm" class="form-content">
+            <div class="form-group">
+                <label for="firstName">First Name <span class="required">*</span></label>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="thoughts">What are your first thoughts about Mythic Novel? (Optional)</label>
+                <textarea id="thoughts" name="thoughts" placeholder="Share your initial impressions..."></textarea>
+            </div>
+
+            <!-- Hidden fields for tracking -->
+            <input type="hidden" id="source" name="source" value="reader">
+            <input type="hidden" id="formOpenedAt" name="formOpenedAt" value="">
+
+            <!-- Honeypot field -->
+            <div style="position: absolute; left: -9999px;">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitBtn">Join the Waitlist</button>
+
+            <div id="formMessage"></div>
+        </form>
+    </div>
+
+    <script>
+        // Set form opened timestamp
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const formattedDate = now.toLocaleString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            document.getElementById('formOpenedAt').value = formattedDate;
+        });
+
+        // Handle form submission
+        document.getElementById('waitlistForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+
+            // Bot detection - check honeypot field
+            const honeypot = document.getElementById('website');
+            if (honeypot && honeypot.value !== '') {
+                // Bot detected - silently fail
+                console.log('Bot detected');
+                formMessage.textContent = 'Thank you for joining our waitlist! We\'ll be in touch soon.';
+                formMessage.className = 'success';
+                form.reset();
+                setTimeout(() => {
+                    window.location.href = '/reader';
+                }, 3000);
+                return;
+            }
+
+            // Simple validation
+            const firstName = document.getElementById('firstName');
+            const email = document.getElementById('email');
+
+            // Clear previous errors
+            firstName.classList.remove('field-error');
+            email.classList.remove('field-error');
+
+            let isValid = true;
+
+            if (!firstName.value.trim()) {
+                firstName.classList.add('field-error');
+                isValid = false;
+            }
+
+            if (!email.value.trim() || !email.value.includes('@')) {
+                email.classList.add('field-error');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                formMessage.textContent = 'Please fill in all required fields.';
+                formMessage.className = 'error';
+                return;
+            }
+
+            // Create data object
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+
+            // Use the same webhook URL (you'll update this manually)
+            const webhookUrl = 'https://hook.us2.make.com/pg8y3wm8fh9g3q6y330i3i69r34tner9';
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            formMessage.textContent = 'Adding you to the waitlist...';
+            formMessage.className = 'loading';
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (response.ok) {
+                    formMessage.textContent = 'Welcome aboard! You\'re now on the waitlist. We\'ll notify you as soon as Mythic Novel is ready.';
+                    formMessage.className = 'success';
+                    form.reset();
+
+                    // Redirect after a delay
+                    setTimeout(() => {
+                        window.location.href = '/reader';
+                    }, 4000);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                formMessage.textContent = 'There was an error joining the waitlist. Please try again or contact support.';
+                formMessage.className = 'error';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join the Waitlist';
+            });
+        });
+
+        // Clear error state when user types
+        document.getElementById('firstName').addEventListener('input', function() {
+            this.classList.remove('field-error');
+        });
+
+        document.getElementById('email').addEventListener('input', function() {
+            this.classList.remove('field-error');
+        });
+    </script>
+</body>
+</html>

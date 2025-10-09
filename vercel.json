@@ -23,6 +23,10 @@
     {
       "source": "/your-invitation-form",
       "destination": "/your-invitation-form.html"
+    },
+    {
+      "source": "/join-the-waitlist",
+      "destination": "/join-the-waitlist.html"
     }
   ],
   "trailingSlash": false,

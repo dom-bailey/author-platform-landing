@@ -13,6 +13,7 @@ export default defineConfig({
         'thank-you': resolve(__dirname, 'thank-you.html'),
         'you-are-invited': resolve(__dirname, 'you-are-invited.html'),
         'your-invitation-form': resolve(__dirname, 'your-invitation-form.html'),
+        'join-the-waitlist': resolve(__dirname, 'join-the-waitlist.html'),
         '404': resolve(__dirname, '404.html')
       }
     }
@@ -36,7 +37,8 @@ export default defineConfig({
             '/stay-updated',
             '/thank-you',
             '/you-are-invited',
-            '/your-invitation-form'
+            '/your-invitation-form',
+            '/join-the-waitlist'
           ];
 
           const url = req.url.split('?')[0]; // Remove query params
