@@ -318,6 +318,8 @@
             text-align: center;
             display: none;
             font-size: 0.95rem;
+            width: 100%;
+            max-width: 450px;
         }
 
         #submitValidationMessage.show {
@@ -328,6 +330,7 @@
         /* Button wrapper with border */
         .btn-wrapper {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%;
@@ -382,6 +385,11 @@
                 font-size: 16px;
                 max-width: 100%;
             }
+
+            #submitValidationMessage {
+                margin-top: 1rem;
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -416,6 +424,12 @@
                 padding: 14px 28px;
                 font-size: 15px;
                 max-width: 100%;
+            }
+
+            #submitValidationMessage {
+                margin-top: 1rem;
+                font-size: 14px;
+                padding: 0.875rem;
             }
         }
 
@@ -466,8 +480,8 @@
 
             <div class="btn-wrapper">
                 <button type="submit" class="btn btn-primary" id="submitBtn">Join the Waitlist</button>
+                <div id="submitValidationMessage"></div>
             </div>
-            <div id="submitValidationMessage"></div>
 
             <div id="formMessage"></div>
         </form>
