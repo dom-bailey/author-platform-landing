@@ -23,6 +23,11 @@
     {
       "source": "/your-invitation-form",
       "destination": "/your-invitation-form.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/404.html",
+      "status": 404
     }
   ],
   "trailingSlash": false,
