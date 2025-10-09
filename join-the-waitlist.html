@@ -377,10 +377,6 @@
                 flex-shrink: 0;
             }
 
-            .btn-wrapper {
-                margin-top: auto;
-            }
-
             .btn {
                 padding: 16px 35px;
                 font-size: 16px;
@@ -412,7 +408,7 @@
             input[type="text"],
             input[type="email"],
             textarea {
-                padding: 0.875rem 1rem;
+                padding: 0.75rem 0.875rem;
                 font-size: 16px; /* Prevents zoom on iOS */
             }
 
@@ -420,6 +416,16 @@
                 padding: 14px 28px;
                 font-size: 15px;
                 max-width: 100%;
+            }
+        }
+
+        /* Small Mobile: 414px and below - to match request-invitation form */
+        @media (max-width: 414px) {
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                font-size: 14px !important;
+                padding: 0.75rem 0.875rem;
             }
         }
     </style>
