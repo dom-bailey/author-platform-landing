@@ -74,7 +74,7 @@
         }
 
         .container {
-            max-width: 500px;
+            max-width: 625px;
             width: 100%;
             margin: 0 auto;
             background: var(--glass);
@@ -136,8 +136,30 @@
             background: rgba(0, 0, 0, 0.2);
         }
 
+        .form-section {
+            padding: 2.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(74, 222, 128, 0.1);
+            position: relative;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.3), transparent);
+        }
+
         .form-group {
             margin-bottom: 1.75rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
         }
 
         label {
@@ -196,7 +218,7 @@
         }
 
         .btn {
-            width: 100%;
+            display: inline-block;
             padding: 18px 45px;
             border: none;
             border-radius: 100px;
@@ -210,6 +232,14 @@
             overflow: hidden;
             z-index: 1;
             margin-top: 1.5rem;
+            max-width: 320px;
+            width: 100%;
+        }
+
+        .btn-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
 
         .btn-primary {
@@ -373,9 +403,15 @@
                 justify-content: center;
             }
 
+            .form-section {
+                padding: 1.75rem;
+                border-radius: 15px;
+            }
+
             .btn {
                 padding: 16px 35px;
                 font-size: 16px;
+                max-width: 100%;
             }
         }
 
@@ -400,6 +436,10 @@
                 padding: 1.5rem 1rem;
             }
 
+            .form-section {
+                padding: 1.25rem;
+            }
+
             input[type="text"],
             input[type="email"],
             textarea {
@@ -410,6 +450,7 @@
             .btn {
                 padding: 14px 28px;
                 font-size: 15px;
+                max-width: 100%;
             }
         }
     </style>
@@ -429,19 +470,21 @@
         </div>
 
         <form id="waitlistForm" class="form-content">
-            <div class="form-group">
-                <label for="firstName">First Name <span class="required">*</span></label>
-                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
-            </div>
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="firstName">First Name <span class="required">*</span></label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+                </div>
 
-            <div class="form-group">
-                <label for="email">Email Address <span class="required">*</span></label>
-                <input type="email" id="email" name="email" placeholder="your@email.com">
-            </div>
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com">
+                </div>
 
-            <div class="form-group">
-                <label for="thoughts">What are your first thoughts about Mythic Novel? (Optional)</label>
-                <textarea id="thoughts" name="thoughts" placeholder="Share your initial impressions..."></textarea>
+                <div class="form-group">
+                    <label for="thoughts">What are your first thoughts about Mythic Novel? (Optional)</label>
+                    <textarea id="thoughts" name="thoughts" placeholder="Share your initial impressions..."></textarea>
+                </div>
             </div>
 
             <!-- Hidden fields for tracking -->
@@ -454,7 +497,9 @@
                 <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
             </div>
 
-            <button type="submit" class="btn btn-primary" id="submitBtn">Join the Waitlist</button>
+            <div class="btn-wrapper" style="margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary" id="submitBtn">Join the Waitlist</button>
+            </div>
             <div id="submitValidationMessage"></div>
 
             <div id="formMessage"></div>
