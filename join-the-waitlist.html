@@ -615,31 +615,20 @@
             });
         });
 
-        // Clear error state when user types
-        document.getElementById('firstName').addEventListener('input', function() {
-            this.classList.remove('field-error');
-            // Check if we should hide the validation message
-            checkAndHideValidationMessage();
+        // Clear error state when user starts typing in required fields
+        ['firstName', 'email'].forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            field.addEventListener('input', function() {
+                this.classList.remove('field-error');
+                const validationMessage = document.getElementById('submitValidationMessage');
+                // Hide validation message if all required fields have values
+                const firstName = document.getElementById('firstName').value;
+                const email = document.getElementById('email').value;
+                if (firstName && email && email.includes('@')) {
+                    validationMessage.classList.remove('show');
+                }
+            });
         });
-
-        document.getElementById('email').addEventListener('input', function() {
-            this.classList.remove('field-error');
-            checkAndHideValidationMessage();
-        });
-
-        // Helper function to check if all required fields are filled and hide message
-        function checkAndHideValidationMessage() {
-            const validationMessage = document.getElementById('submitValidationMessage');
-
-            const hasFirstName = document.getElementById('firstName').value.trim() !== '';
-            const hasEmail = document.getElementById('email').value.trim() !== '';
-            const hasValidEmail = document.getElementById('email').value.includes('@');
-
-            // If all required fields are filled, hide the validation message
-            if (hasFirstName && hasEmail && hasValidEmail) {
-                validationMessage.classList.remove('show');
-            }
-        }
     </script>
 </body>
 </html>
