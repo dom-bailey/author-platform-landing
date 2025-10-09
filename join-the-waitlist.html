@@ -310,6 +310,22 @@
             animation: shake 0.3s ease;
         }
 
+        #submitValidationMessage {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        #submitValidationMessage.show {
+            display: block;
+            animation: slideInUp 0.3s ease;
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -415,12 +431,12 @@
         <form id="waitlistForm" class="form-content">
             <div class="form-group">
                 <label for="firstName">First Name <span class="required">*</span></label>
-                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
             </div>
 
             <div class="form-group">
                 <label for="email">Email Address <span class="required">*</span></label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                <input type="email" id="email" name="email" placeholder="your@email.com">
             </div>
 
             <div class="form-group">
@@ -439,6 +455,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary" id="submitBtn">Join the Waitlist</button>
+            <div id="submitValidationMessage"></div>
 
             <div id="formMessage"></div>
         </form>
@@ -459,6 +476,69 @@
             });
             document.getElementById('formOpenedAt').value = formattedDate;
         });
+
+        // Validate form fields with visual feedback
+        function validateRequiredFields() {
+            const validationMessage = document.getElementById('submitValidationMessage');
+
+            // Get all required fields
+            const firstName = document.getElementById('firstName');
+            const email = document.getElementById('email');
+
+            let isValid = true;
+            let missingFields = [];
+            let firstErrorField = null;
+
+            // Clear previous error states
+            firstName.classList.remove('field-error');
+            email.classList.remove('field-error');
+            validationMessage.classList.remove('show');
+
+            // Check first name
+            if (!firstName.value || firstName.value.trim() === '') {
+                firstName.classList.add('field-error');
+                missingFields.push('First Name');
+                if (!firstErrorField) firstErrorField = firstName;
+                isValid = false;
+            }
+
+            // Check email
+            if (!email.value || email.value.trim() === '') {
+                email.classList.add('field-error');
+                missingFields.push('Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            } else if (!email.value.includes('@')) {
+                email.classList.add('field-error');
+                missingFields.push('Valid Email');
+                if (!firstErrorField) firstErrorField = email;
+                isValid = false;
+            }
+
+            // Show validation message if invalid
+            if (!isValid) {
+                if (missingFields.length === 1) {
+                    validationMessage.textContent = `Please fill in: ${missingFields[0]}`;
+                } else {
+                    validationMessage.textContent = `Please fill in the following required fields: ${missingFields.join(', ')}.`;
+                }
+                validationMessage.classList.add('show');
+
+                // Smooth scroll to first error field
+                if (firstErrorField) {
+                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Focus if it's a focusable element
+                    setTimeout(() => {
+                        if (firstErrorField.focus) {
+                            firstErrorField.focus();
+                        }
+                    }, 500);
+                }
+            }
+
+            return isValid;
+        }
 
         // Handle form submission
         document.getElementById('waitlistForm').addEventListener('submit', function(event) {
@@ -483,30 +563,9 @@
                 return;
             }
 
-            // Simple validation
-            const firstName = document.getElementById('firstName');
-            const email = document.getElementById('email');
-
-            // Clear previous errors
-            firstName.classList.remove('field-error');
-            email.classList.remove('field-error');
-
-            let isValid = true;
-
-            if (!firstName.value.trim()) {
-                firstName.classList.add('field-error');
-                isValid = false;
-            }
-
-            if (!email.value.trim() || !email.value.includes('@')) {
-                email.classList.add('field-error');
-                isValid = false;
-            }
-
-            if (!isValid) {
-                formMessage.textContent = 'Please fill in all required fields.';
-                formMessage.className = 'error';
-                return;
+            // Validate required fields before submitting
+            if (!validateRequiredFields()) {
+                return; // Exit if validation fails
             }
 
             // Create data object
@@ -559,11 +618,28 @@
         // Clear error state when user types
         document.getElementById('firstName').addEventListener('input', function() {
             this.classList.remove('field-error');
+            // Check if we should hide the validation message
+            checkAndHideValidationMessage();
         });
 
         document.getElementById('email').addEventListener('input', function() {
             this.classList.remove('field-error');
+            checkAndHideValidationMessage();
         });
+
+        // Helper function to check if all required fields are filled and hide message
+        function checkAndHideValidationMessage() {
+            const validationMessage = document.getElementById('submitValidationMessage');
+
+            const hasFirstName = document.getElementById('firstName').value.trim() !== '';
+            const hasEmail = document.getElementById('email').value.trim() !== '';
+            const hasValidEmail = document.getElementById('email').value.includes('@');
+
+            // If all required fields are filled, hide the validation message
+            if (hasFirstName && hasEmail && hasValidEmail) {
+                validationMessage.classList.remove('show');
+            }
+        }
     </script>
 </body>
 </html>
