@@ -7559,12 +7559,15 @@
             async function preloadNearbyImages(index) {
                 const promises = [];
 
-                // Preload next 2 images
-                if (index + 1 < totalImages) promises.push(preloadImage(index + 1));
-                if (index + 2 < totalImages) promises.push(preloadImage(index + 2));
+                // Preload next 2 images (with wrap-around)
+                const next1 = (index + 1) % totalImages;
+                const next2 = (index + 2) % totalImages;
+                promises.push(preloadImage(next1));
+                promises.push(preloadImage(next2));
 
-                // Preload previous image
-                if (index - 1 >= 0) promises.push(preloadImage(index - 1));
+                // Preload previous image (with wrap-around)
+                const prev1 = (index - 1 + totalImages) % totalImages;
+                promises.push(preloadImage(prev1));
 
                 await Promise.all(promises);
             }
