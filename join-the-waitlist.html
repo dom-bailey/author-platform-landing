@@ -96,6 +96,7 @@
             background: linear-gradient(135deg, #ffffff, var(--accent), #ffffff);
             background-size: 200% 200%;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: gradientShift 3s ease infinite;
         }
@@ -248,11 +249,12 @@
         #formMessage {
             padding: 1.5rem;
             border-radius: 12px;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             text-align: center;
             display: none;
             font-weight: 500;
             backdrop-filter: blur(10px);
+            width: 100%;
         }
 
         #formMessage.success {
@@ -481,9 +483,8 @@
             <div class="btn-wrapper">
                 <button type="submit" class="btn btn-primary" id="submitBtn">Join the Waitlist</button>
                 <div id="submitValidationMessage"></div>
+                <div id="formMessage"></div>
             </div>
-
-            <div id="formMessage"></div>
         </form>
     </div>
 
@@ -618,14 +619,14 @@
             })
             .then(response => {
                 if (response.ok) {
-                    formMessage.textContent = 'You\'re now on the waitlist. We\'ll keep you updated on our progress.';
+                    formMessage.textContent = 'You\'re now on the waitlist! We\'ll keep you updated on our progress.';
                     formMessage.className = 'success';
                     form.reset();
 
                     // Redirect after a delay
                     setTimeout(() => {
                         window.location.href = '/reader';
-                    }, 4000);
+                    }, 10000);
                 } else {
                     throw new Error('Submission failed');
                 }
