@@ -398,10 +398,12 @@
             opacity: 1;
         }
 
-        /* Hide on smaller viewports to prevent any issues */
+        /* Adjust for smaller viewports */
         @media (max-width: 768px) {
             .secret-message {
-                display: none !important;
+                font-size: 10px;
+                bottom: 10px;
+                right: 10px;
             }
         }
 
@@ -499,9 +501,6 @@
                 padding: 16px 35px;
                 font-size: 15px;
             }
-            .secret-message {
-                display: none; /* Hide on smaller screens to prevent scrollbar */
-            }
         }
 
         @media (max-width: 640px) {
@@ -536,9 +535,6 @@
                 max-width: 260px;
                 padding: 15px 30px;
                 font-size: 14px;
-            }
-            .secret-message {
-                display: none;
             }
             /* Reduce particle count on mobile */
             .particle:nth-child(n+16) {
