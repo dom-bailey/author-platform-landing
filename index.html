@@ -3119,7 +3119,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 20px;
         }
         
@@ -3131,6 +3131,7 @@
             
             .video-frame video {
                 border-radius: 15px;
+                object-fit: contain;
             }
         }
         
@@ -3141,6 +3142,7 @@
             
             .video-frame video {
                 border-radius: 12px;
+                object-fit: contain;
             }
         }
 
@@ -6404,13 +6406,14 @@
                 
                 <div class="video-container reveal">
                     <div class="video-frame">
-                        <video id="demoVideo" controls preload="metadata" playsinline poster="">
-                            <source src="/assets/author-media/demo-video.mp4#t=0.1" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="video-play-overlay" id="playOverlay">
-                            <div class="play-button-center"></div>
-                        </div>
+                        <iframe
+                            id="demoVideo"
+                            src="https://player.mediadelivery.net/embed/515321/9dedc8e2-92aa-4f87-8336-3a823eb98f8e?defaultQuality=1080p&preload=true&startQuality=1080p&forceQuality=1080p"
+                            loading="eager"
+                            style="border: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                            allowfullscreen="true">
+                        </iframe>
                     </div>
                 </div>
             </div>
@@ -6720,34 +6723,8 @@
 
     <script>
 
-        // Video Play Button Handler
-        const video = document.getElementById('demoVideo');
-        const playOverlay = document.getElementById('playOverlay');
-        
-        if (video && playOverlay) {
-            // Handle play overlay click
-            playOverlay.addEventListener('click', function() {
-                video.play();
-                playOverlay.classList.add('hidden');
-            });
-            
-            // Show overlay when video is paused
-            video.addEventListener('pause', function() {
-                if (video.currentTime > 0 && !video.ended) {
-                    playOverlay.classList.remove('hidden');
-                }
-            });
-            
-            // Hide overlay when video plays
-            video.addEventListener('play', function() {
-                playOverlay.classList.add('hidden');
-            });
-            
-            // Show overlay when video ends
-            video.addEventListener('ended', function() {
-                playOverlay.classList.remove('hidden');
-            });
-        }
+        // Video Play Button Handler - Removed as Bunny.net player has its own controls
+        // The iframe video player from Bunny.net handles all play/pause functionality internally
 
         // Custom Cursor
         const cursor = document.querySelector('.cursor');
