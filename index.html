@@ -91,6 +91,12 @@
             box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
         }
 
+        /* Hide cursor when over video iframe */
+        .cursor.hidden {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
 
         /* Premium Navigation */
         nav {
@@ -6745,6 +6751,18 @@
             requestAnimationFrame(animateCursor);
         }
         animateCursor();
+
+        // Hide cursor when hovering over video section
+        const videoContainer = document.querySelector('.video-container');
+        if (videoContainer) {
+            videoContainer.addEventListener('mouseenter', () => {
+                cursor.classList.add('hidden');
+            });
+
+            videoContainer.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hidden');
+            });
+        }
 
         // Hover effects for cursor
         const links = document.querySelectorAll('a, button');
