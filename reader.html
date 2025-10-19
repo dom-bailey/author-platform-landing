@@ -2412,7 +2412,15 @@
         .process-step:nth-child(3).reveal {
             transition-delay: 0.3s;
         }
-        
+
+        .process-step:nth-child(4).reveal {
+            transition-delay: 0.4s;
+        }
+
+        .process-step:nth-child(5).reveal {
+            transition-delay: 0.5s;
+        }
+
         /* Connection lines between steps */
         .process-step::after {
             content: '';
@@ -6736,6 +6744,63 @@
         </div>
     </section>
 
+    <!-- Process -->
+    <section id="process" class="process-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Our Approach</span>
+                <h2>Expanding Beyond the Page</h2>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step reveal">
+                    <div class="step-content">
+                        <h3 data-step="1">Our Mission</h3>
+                        <p>Authors deserve cinematic visual adaptations of their novels. Every reader deserves to experience their favorite worlds as their authors imagined.</p>
+                        <!-- <p>We believe every story has the potential to become a visual masterpiece, and every author should have access to the tools that bring their vision to life.</p> -->
+                    </div>
+                    <div class="step-number">1</div>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-content">
+                        <h3 data-step="2">The Reality Gap</h3>
+                        <p>While authors have always commissioned cover art, creating comprehensive visual content for every chapter has been financially impossible.</p>
+                        <p>Authors could not afford to pay for animated videos, character portraits, scene illustrations, and interactive maps for all chapters within their novels.</p>
+                    </div>
+                    <div class="step-number">2</div>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-content">
+                        <h3 data-step="3">The Result</h3>
+                        <p>This visual multimedia experience simply didn't exist. Not because authors didn't want it. Not because readers wouldn't love it.</p>
+                        <p>But because it was economically impossible. The gap between what artists could create and what authors could afford was simply too wide.</p>
+                    </div>
+                    <div class="step-number">3</div>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-content">
+                        <h3 data-step="4">Our Innovation</h3>
+                        <p>We've assembled a team of creative directors, sound designers, and editors who work directly with authors to capture their vision.</p>
+                        <p>By leveraging AI as one of our production tools, we can now create stunning visuals for all chapters within a novel at a sustainable cost!</p>
+                    </div>
+                    <div class="step-number">4</div>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-content">
+                        <h3 data-step="5">Protecting Artistic Tradition</h3>
+                        <p>Cover art is sacred in the book community. It's the reader's first impression and an author's pride.</p>
+                        <p>That's why Mythic Novel directly commissions talented artists to create human-made cover art for all our authors, whether they're starting fresh or upgrading from their current cover. We're not replacing this tradition; we're building on top of it.</p>
+                    </div>
+                    <div class="step-number">5</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Immersive Gallery Section -->
     <section id="gallery" class="gallery-section">
         <div class="container">
@@ -7354,7 +7419,7 @@
                     if (entry.target.classList.contains('process-step')) {
                         const processSteps = document.querySelectorAll('.process-step');
                         const currentIndex = Array.from(processSteps).indexOf(entry.target);
-                        
+
                         // When card 2 appears, show line from card 1
                         if (currentIndex === 1) {
                             setTimeout(() => {
@@ -7365,6 +7430,18 @@
                         else if (currentIndex === 2) {
                             setTimeout(() => {
                                 processSteps[1].classList.add('show-line');
+                            }, 300);
+                        }
+                        // When card 4 appears, show line from card 3
+                        else if (currentIndex === 3) {
+                            setTimeout(() => {
+                                processSteps[2].classList.add('show-line');
+                            }, 300);
+                        }
+                        // When card 5 appears, show line from card 4
+                        else if (currentIndex === 4) {
+                            setTimeout(() => {
+                                processSteps[3].classList.add('show-line');
                             }, 300);
                         }
                     }
