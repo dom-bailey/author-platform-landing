@@ -1,0 +1,7 @@
+OUR APPROACH
+Expanding Stories Beyond the Page
+Our Mission: Authors deserve cinematic visual adaptations of their novels. Every reader deserves to experience their favorite worlds as their authors imagined.
+The Reality Gap: While authors have always commissioned cover art, creating comprehensive visual content for every chapter has been financially impossible. Authors could not afford to pay for animated videos, character portraits, scene illustrations, and interactive maps for all chapters within their novels. 
+The Result: This visual multimedia experience simply didn't exist. Not because authors didn't want it. Not because readers wouldn't love it. But because it was economically impossible.
+Our Innovation: We've assembled a team of creative directors, sound designers, and editors who work directly with authors to capture their vision. By leveraging AI as one of our production tools, we can now create stunning visuals for all chapters within a novel at a sustainable cost!
+Protecting Artistic Tradition: Cover art is sacred in the book community. It's the reader's first impression and an author's pride. That's why Mythic Novel directly commissions talented artists to create human-made cover art for all our authors, whether they're starting fresh or upgrading from their current cover. We're not replacing this tradition; we're building on top of it.
