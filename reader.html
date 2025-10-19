@@ -1719,7 +1719,16 @@
             overflow: hidden;
         }
 
-        .gallery-section::before {
+        /* Gallery Section for Reader Page - Reversed Gradient */
+        .gallery-section-reader {
+            background: linear-gradient(180deg, #0a0f0a 0%, #000000 100%);
+            position: relative;
+            padding: 120px 60px;
+            overflow: hidden;
+        }
+
+        .gallery-section::before,
+        .gallery-section-reader::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1729,7 +1738,8 @@
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
-        .gallery-section::after {
+        .gallery-section::after,
+        .gallery-section-reader::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -1739,12 +1749,14 @@
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
-        .gallery-section .section-header {
+        .gallery-section .section-header,
+        .gallery-section-reader .section-header {
             text-align: center;
             margin-bottom: 60px;
         }
 
-        .gallery-section .section-header p {
+        .gallery-section .section-header p,
+        .gallery-section-reader .section-header p {
             color: var(--text-muted);
             font-size: 18px;
             line-height: 1.6;
@@ -2094,15 +2106,18 @@
 
         /* Gallery Section Responsive */
         @media (max-width: 1280px) {
-            .gallery-section {
+            .gallery-section,
+            .gallery-section-reader {
                 padding: 100px 50px;
             }
 
-            .gallery-section .section-header h2 {
+            .gallery-section .section-header h2,
+            .gallery-section-reader .section-header h2 {
                 font-size: clamp(2rem, 4.5vw, 3.5rem);
             }
 
-            .gallery-section .section-header p {
+            .gallery-section .section-header p,
+        .gallery-section-reader .section-header p {
                 font-size: 16px;
             }
 
@@ -2123,15 +2138,18 @@
         }
 
         @media (max-width: 768px) {
-            .gallery-section {
+            .gallery-section,
+            .gallery-section-reader {
                 padding: 70px 35px;
             }
 
-            .gallery-section .section-header h2 {
+            .gallery-section .section-header h2,
+            .gallery-section-reader .section-header h2 {
                 font-size: clamp(1.8rem, 4vw, 2.5rem);
             }
 
-            .gallery-section .section-header p {
+            .gallery-section .section-header p,
+        .gallery-section-reader .section-header p {
                 font-size: 14px;
             }
 
@@ -2188,15 +2206,18 @@
         }
 
         @media (max-width: 480px) {
-            .gallery-section {
+            .gallery-section,
+            .gallery-section-reader {
                 padding: 50px 20px;
             }
 
-            .gallery-section .section-header h2 {
+            .gallery-section .section-header h2,
+            .gallery-section-reader .section-header h2 {
                 font-size: 1.75rem;
             }
 
-            .gallery-section .section-label {
+            .gallery-section .section-label,
+            .gallery-section-reader .section-label {
                 font-size: 11px;
                 padding: 6px 16px;
             }
@@ -6802,7 +6823,7 @@
     </section>
 
     <!-- Immersive Gallery Section -->
-    <section id="gallery" class="gallery-section">
+    <section id="gallery" class="gallery-section-reader">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Gallery</span>
@@ -7822,7 +7843,7 @@
             }
 
             // Start autoplay when gallery is visible
-            const gallerySection = document.querySelector('.gallery-section');
+            const gallerySection = document.querySelector('.gallery-section-reader');
             const galleryObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -7863,7 +7884,7 @@
                 preloadedImages.set(0, true);
 
                 // Start preloading nearby images when gallery becomes visible
-                const gallerySection = document.querySelector('.gallery-section');
+                const gallerySection = document.querySelector('.gallery-section-reader');
                 if (gallerySection) {
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
