@@ -2088,6 +2088,430 @@
             }
         }
 
+        /* How It Works Section - Unique 3D Card Design */
+        .how-it-works-section {
+            background: radial-gradient(ellipse at center, #0f1a0f 0%, #000000 50%);
+            position: relative;
+            padding: 120px 60px;
+            overflow: hidden;
+        }
+
+        .how-it-works-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .how-it-works-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        /* Workflow Cards Container */
+        .workflow-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Individual Workflow Card */
+        .workflow-card {
+            position: relative;
+            perspective: 1000px;
+            height: 500px;
+        }
+
+        .card-3d-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .workflow-card:hover .card-3d-wrapper {
+            transform: rotateY(180deg);
+        }
+
+        .card-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        /* Card Front */
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 30px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(74, 222, 128, 0.02));
+            border: 2px solid rgba(74, 222, 128, 0.3);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5),
+                       0 0 40px rgba(74, 222, 128, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(34, 197, 94, 0.05));
+        }
+
+        .workflow-card:hover .card-front {
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6),
+                       0 0 60px rgba(74, 222, 128, 0.3);
+        }
+
+        /* Card Glow Effect */
+        .card-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74, 222, 128, 0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .workflow-card:hover .card-glow {
+            opacity: 0.3;
+            animation: pulseGlow 2s ease infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        /* Card Number Badge */
+        .card-number-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            color: black;
+            box-shadow: 0 10px 25px rgba(74, 222, 128, 0.4);
+            z-index: 10;
+        }
+
+        /* Card Icon with Orbiting Animation */
+        .card-icon-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+        }
+
+        .icon-orbit {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: rotate360 20s linear infinite;
+        }
+
+        @keyframes rotate360 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .orbit-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 50%;
+        }
+
+        .orbit-ring:nth-child(1) {
+            transform: scale(1.3);
+            animation: pulse-ring 3s ease infinite;
+        }
+
+        .orbit-ring:nth-child(2) {
+            transform: scale(1.6);
+            animation: pulse-ring 3s ease infinite 1s;
+        }
+
+        .orbit-ring:nth-child(3) {
+            transform: scale(1.9);
+            animation: pulse-ring 3s ease infinite 2s;
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% { opacity: 0.1; transform: scale(1.3); }
+            50% { opacity: 0.3; transform: scale(1.35); }
+        }
+
+        .card-main-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            color: var(--accent);
+            filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.6));
+        }
+
+        /* Card Content */
+        .card-front h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .card-preview p {
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .flip-indicator {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .flip-indicator::after {
+            content: '→';
+            position: absolute;
+            right: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .workflow-card:hover .flip-indicator::after {
+            transform: translateX(5px);
+        }
+
+        /* Card Back Content */
+        .card-back-content {
+            text-align: left;
+            max-width: 100%;
+        }
+
+        .card-back h3 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .card-back p {
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        /* Back Decoration */
+        .back-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .deco-line {
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .deco-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+        }
+
+        /* SVG Connection Lines */
+        .workflow-connections {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            transform: translateY(-50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .connection-line {
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation: drawLine 3s ease forwards 1s;
+            opacity: 0.3;
+        }
+
+        .connection-line.line-2 {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1280px) {
+            .workflow-cards {
+                gap: 30px;
+            }
+
+            .workflow-card {
+                height: 480px;
+            }
+
+            .card-front h3,
+            .card-back h3 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .workflow-cards {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .workflow-card {
+                height: 450px;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .workflow-connections {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .how-it-works-section {
+                padding: 80px 30px;
+            }
+
+            .workflow-cards {
+                margin-top: 60px;
+                gap: 30px;
+            }
+
+            .workflow-card {
+                height: 420px;
+            }
+
+            .card-front,
+            .card-back {
+                padding: 30px;
+                border-radius: 20px;
+            }
+
+            .card-icon-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+
+            .card-main-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .card-number-badge {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                top: 20px;
+                right: 20px;
+            }
+
+            .card-front h3 {
+                font-size: 22px;
+            }
+
+            .card-back h3 {
+                font-size: 20px;
+            }
+
+            .card-back p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .how-it-works-section {
+                padding: 60px 20px;
+            }
+
+            .workflow-card {
+                height: 400px;
+            }
+
+            .card-front,
+            .card-back {
+                padding: 25px;
+            }
+
+            .card-preview p {
+                font-size: 14px;
+            }
+
+            .flip-indicator {
+                font-size: 12px;
+            }
+        }
+
+        /* Touch Device Support */
+        @media (hover: none) {
+            .workflow-card:active .card-3d-wrapper {
+                transform: rotateY(180deg);
+            }
+        }
+
         /* Gallery Section - Immersive Visual Journey */
         .gallery-section {
             background: linear-gradient(180deg, #000000 0%, #0a0f0a 100%);
@@ -6524,6 +6948,164 @@
                     <div class="step-number">5</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- How It Works - New Section with Unique 3D Card Design -->
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">How It Works</span>
+                <h2>Your Vision, Our Expertise</h2>
+            </div>
+
+            <div class="workflow-cards">
+                <!-- Card 1 -->
+                <div class="workflow-card reveal">
+                    <div class="card-3d-wrapper">
+                        <div class="card-3d">
+                            <div class="card-front">
+                                <div class="card-glow"></div>
+                                <div class="card-number-badge">
+                                    <span>01</span>
+                                </div>
+                                <div class="card-icon-wrapper">
+                                    <div class="icon-orbit">
+                                        <div class="orbit-ring"></div>
+                                        <div class="orbit-ring"></div>
+                                        <div class="orbit-ring"></div>
+                                    </div>
+                                    <svg class="card-main-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L2 7V12C2 16.5 4.23 20.68 7.62 22.47L12 24L16.38 22.47C19.77 20.68 22 16.5 22 12V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h3>Share Your Vision</h3>
+                                <div class="card-preview">
+                                    <!-- <p>Collaborative deep-dive to capture your vision</p> -->
+                                    <p> Our Team does a Collaborative deep-dive with you to capture your vision</p>
+                                </div>
+                                <div class="card-action">
+                                    <span class="flip-indicator">Explore Details →</span>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-back-content">
+                                    <h3>Share Your Vision</h3>
+                                    <p>Our partnership begins with a collaborative deep-dive to capture the soul of your story. You are the architect of your world; we are your master builders.</p>
+                                    <p>You'll share creative briefs for characters, settings, and pivotal scenes. We work to understand the precise mood, style, and details that matter, ensuring perfect alignment with your artistic vision. You retain full creative control with key check-ins for approval.</p>
+                                    <div class="back-decoration">
+                                        <div class="deco-line"></div>
+                                        <div class="deco-dot"></div>
+                                        <div class="deco-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="workflow-card reveal">
+                    <div class="card-3d-wrapper">
+                        <div class="card-3d">
+                            <div class="card-front">
+                                <div class="card-glow"></div>
+                                <div class="card-number-badge">
+                                    <span>02</span>
+                                </div>
+                                <div class="card-icon-wrapper">
+                                    <div class="icon-orbit">
+                                        <div class="orbit-ring"></div>
+                                        <div class="orbit-ring"></div>
+                                        <div class="orbit-ring"></div>
+                                    </div>
+                                    <svg class="card-main-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 16V8C21 7.45 20.55 7 20 7H13L11 5H4C3.45 5 3 5.45 3 6V16C3 16.55 3.45 17 4 17H20C20.55 17 21 16.55 21 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 10L12 14L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h3>We Bring It to Life with AI</h3>
+                                <div class="card-preview">
+                                    <!-- <p>Human creativity meets cutting-edge artificial intelligence</p> -->
+                                    <p>Using Human creativity and AI, we create stunning visuals for your novel</p>
+                                </div>
+                                <div class="card-action">
+                                    <span class="flip-indicator">Explore Details →</span>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-back-content">
+                                    <h3>We Bring It to Life with AI</h3>
+                                    <p>Our production process combines human creativity with cutting-edge artificial intelligence.</p>
+                                    <p>We use state-of-the-art AI workflows to create stunning videos, images, characters, and interactive maps, bringing cinematic quality to your novel at unprecedented scale.</p>
+                                    <div class="back-decoration">
+                                        <div class="deco-line"></div>
+                                        <div class="deco-dot"></div>
+                                        <div class="deco-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="workflow-card reveal">
+                    <div class="card-3d-wrapper">
+                        <div class="card-3d">
+                            <div class="card-front">
+                                <div class="card-glow"></div>
+                                <div class="card-number-badge">
+                                    <span>03</span>
+                                </div>
+                                <div class="card-icon-wrapper">
+                                    <div class="icon-orbit">
+                                        <div class="orbit-ring"></div>
+                                        <div class="orbit-ring"></div>
+                                        <div class="orbit-ring"></div>
+                                    </div>
+                                    <svg class="card-main-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h3>Captivate Your Readers</h3>
+                                <div class="card-preview">
+                                    <p>Click Publish! Your readers can see, hear, and explore your world</p>
+                                </div>
+                                <div class="card-action">
+                                    <span class="flip-indicator">Explore Details →</span>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-back-content">
+                                    <h3>Captivate Your Readers</h3>
+                                    <p>We integrate the finished visuals into your novel, making it ready to publish on our exclusive platform with the click of a button.</p>
+                                    <p>Readers can see, hear, and explore the world you created, deepening their emotional connection to your story. This partnership will allow your readers to experience your work in a whole new way!</p>
+                                    <div class="back-decoration">
+                                        <div class="deco-line"></div>
+                                        <div class="deco-dot"></div>
+                                        <div class="deco-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animated Connection Lines -->
+            <svg class="workflow-connections" viewBox="0 0 1200 200" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:transparent;stop-opacity:0" />
+                        <stop offset="50%" style="stop-color:var(--accent);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
+                    </linearGradient>
+                </defs>
+                <path class="connection-line line-1" d="M 200 100 Q 400 50 600 100" stroke="url(#lineGradient)" stroke-width="2" fill="none" />
+                <path class="connection-line line-2" d="M 600 100 Q 800 150 1000 100" stroke="url(#lineGradient)" stroke-width="2" fill="none" />
+            </svg>
         </div>
     </section>
 
