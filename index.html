@@ -1875,13 +1875,21 @@
         .process-step:nth-child(1).reveal {
             transition-delay: 0.1s;
         }
-        
+
         .process-step:nth-child(2).reveal {
             transition-delay: 0.2s;
         }
-        
+
         .process-step:nth-child(3).reveal {
             transition-delay: 0.3s;
+        }
+
+        .process-step:nth-child(4).reveal {
+            transition-delay: 0.4s;
+        }
+
+        .process-step:nth-child(5).reveal {
+            transition-delay: 0.5s;
         }
         
         /* Connection lines between steps */
@@ -6471,36 +6479,49 @@
     <section id="process" class="process-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">How It Works</span>
-                <h2>Your Vision, Our Expertise</h2>
+                <span class="section-label">Our Approach</span>
+                <h2>Beyond the Page</h2>
             </div>
-            
             <div class="process-timeline">
                 <div class="process-step reveal">
                     <div class="step-content">
-                        <h3 data-step="1">Share Your Vision</h3>
-                        <p>Our partnership begins with a collaborative deep-dive to capture the soul of your story. You are the architect of your world; we are your master builders.</p>
-                        <p>You'll share creative briefs for characters, settings, and pivotal scenes. We listen intently to understand the precise mood, style, and details that matter, ensuring perfect alignment with your artistic vision. You retain full creative control with key check-ins for approval.</p>
+                        <h3 data-step="1">Our Mission</h3>
+                        <p>Every author deserves to have their novels transformed into a cinematic visual experience. Every reader deserves to see their favorite worlds just as the author envisioned.</p>
+                        <p>We're the step between reading a novel and watching its movie adaptation—think Netflix meets Kindle.</p>
                     </div>
                     <div class="step-number">1</div>
                 </div>
-                
                 <div class="process-step reveal">
                     <div class="step-content">
-                        <h3 data-step="2">We Bring It to Life with AI</h3>
-                        <p>Our production process combines human creativity with cutting-edge artificial intelligence.</p>
-                        <p>We use state-of-the-art AI workflows to generate stunning character portraits, concept art, scene illustrations, dynamic video, ambient soundscapes, and original musical scores—bringing cinematic quality to your novel at unprecedented scale.</p>
+                        <h3 data-step="2">The Reality Gap</h3>
+                        <p>While authors have always commissioned cover art, creating comprehensive visual content for every chapter has been financially impossible.</p>
+                        <p>Authors could not afford to pay for animated videos, character portraits, scene illustrations, and interactive maps for all chapters within their novels.</p>
                     </div>
                     <div class="step-number">2</div>
                 </div>
-                
                 <div class="process-step reveal">
                     <div class="step-content">
-                        <h3 data-step="3">Captivate Your Readers</h3>
-                        <p>We meticulously integrate the finished media into your novel, making it ready to publish on our exclusive platform with the click of a button.</p>
-                        <p>Readers can see, hear, and explore your story, deepening their emotional connection and turning them into lifelong fans. This partnership will bring your novel to life in a whole new way!</p>
+                        <h3 data-step="3">The Result</h3>
+                        <p>This visual multimedia experience simply didn't exist. Not because authors didn't want it. Not because readers wouldn't love it.</p>
+                        <p>But because it was economically impossible. The gap between what artists could create and what authors could afford was simply too wide.</p>
                     </div>
                     <div class="step-number">3</div>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-content">
+                        <h3 data-step="4">Our Innovation</h3>
+                        <p>We've assembled a team of creative directors, sound designers, and editors who work directly with authors to capture their vision.</p>
+                        <p>By leveraging AI as one of our production tools, we can now create stunning visuals for all chapters within a novel at a sustainable cost!</p>
+                    </div>
+                    <div class="step-number">4</div>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-content">
+                        <h3 data-step="5">Protecting Artistic Tradition</h3>
+                        <p>Cover art is sacred in the book community. It's the reader's first impression and an author's pride.</p>
+                        <p>That's why Mythic Novel directly commissions talented artists to create human-made cover art for all our authors, whether they're starting fresh or upgrading from their current cover. We're not replacing this tradition; we're building on top of it.</p>
+                    </div>
+                    <div class="step-number">5</div>
                 </div>
             </div>
         </div>
@@ -6972,7 +6993,7 @@
                     if (entry.target.classList.contains('process-step')) {
                         const processSteps = document.querySelectorAll('.process-step');
                         const currentIndex = Array.from(processSteps).indexOf(entry.target);
-                        
+
                         // When card 2 appears, show line from card 1
                         if (currentIndex === 1) {
                             setTimeout(() => {
@@ -6983,6 +7004,18 @@
                         else if (currentIndex === 2) {
                             setTimeout(() => {
                                 processSteps[1].classList.add('show-line');
+                            }, 300);
+                        }
+                        // When card 4 appears, show line from card 3
+                        else if (currentIndex === 3) {
+                            setTimeout(() => {
+                                processSteps[2].classList.add('show-line');
+                            }, 300);
+                        }
+                        // When card 5 appears, show line from card 4
+                        else if (currentIndex === 4) {
+                            setTimeout(() => {
+                                processSteps[3].classList.add('show-line');
                             }, 300);
                         }
                     }
