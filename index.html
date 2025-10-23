@@ -5140,7 +5140,7 @@
 
             .workflow-card {
                 height: auto !important;
-                min-height: 450px;
+                min-height: auto;
                 max-width: 500px;
                 margin: 0 auto;
                 cursor: pointer;
@@ -5161,12 +5161,12 @@
                 position: relative !important;
                 width: 100% !important;
                 height: auto !important;
-                min-height: 450px;
-                padding: 40px;
+                min-height: auto;
+                padding: 35px;  /* Match bento card padding */
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-start;  /* Start from top, not center */
             }
 
             /* Card back styles */
@@ -5174,12 +5174,12 @@
                 position: relative !important;
                 width: 100% !important;
                 height: auto !important;
-                min-height: 450px;
-                padding: 40px;
+                min-height: auto;
+                padding: 35px;  /* Match bento card padding */
                 display: none;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-start;  /* Start from top, not center */
                 transform: none !important;
             }
 
@@ -5197,17 +5197,17 @@
                 transform: translateY(-50%); /* Don't move on hover since click-to-flip */
             }
 
-            /* Icon wrapper adjustments */
+            /* Icon wrapper adjustments - match bento icon sizing */
             .card-icon-wrapper {
-                width: 90px;
-                height: 90px;
-                margin-bottom: 35px;
+                width: 60px;  /* Match bento icon */
+                height: 60px;  /* Match bento icon */
+                margin-bottom: 20px;  /* Match bento icon spacing */
                 flex-shrink: 0;
             }
 
             .card-main-icon {
-                width: 45px;
-                height: 45px;
+                width: 32px;  /* Match bento icon svg */
+                height: 32px;  /* Match bento icon svg */
             }
 
             .card-number-badge {
@@ -5219,9 +5219,9 @@
             }
 
             .card-front h3 {
-                font-size: 22px;
-                margin-top: 10px;
-                margin-bottom: 15px;
+                font-size: 30px;  /* Match bento card h3 */
+                margin-top: 0;  /* Remove extra top margin */
+                margin-bottom: 16px;  /* Match bento card spacing */
             }
 
             .card-preview {
@@ -5231,8 +5231,8 @@
             }
 
             .card-preview p {
-                font-size: 14px;
-                line-height: 1.5;
+                font-size: 15px;  /* Match bento card p */
+                line-height: 1.6;  /* Match bento card line-height */
             }
 
             /* Ensure back content fits properly */
@@ -5241,14 +5241,14 @@
             }
 
             .card-back h3 {
-                font-size: 20px;  /* Match front card h3 */
-                margin-bottom: 20px;
+                font-size: 30px;  /* Match front card h3 and bento h3 */
+                margin-bottom: 16px;  /* Match bento spacing */
             }
 
             .card-back p {
-                font-size: 14px;
+                font-size: 15px;  /* Match front card p and bento p */
                 line-height: 1.6;
-                margin-bottom: 15px;
+                margin-bottom: 12px;  /* Tighter spacing between paragraphs */
             }
         }
 
