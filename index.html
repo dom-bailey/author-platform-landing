@@ -2551,6 +2551,25 @@
             .flip-indicator {
                 cursor: pointer !important;
             }
+
+            /* Disable orbit ring animations but keep one static circle */
+            .orbit-ring {
+                animation: none !important;
+                opacity: 0.3 !important;
+                border: 1px solid rgba(74, 222, 128, 0.3) !important;
+            }
+
+            /* Hide all orbit rings except the first one */
+            .orbit-ring:nth-child(2),
+            .orbit-ring:nth-child(3) {
+                display: none !important;
+            }
+
+            /* Keep the first ring as a static circle */
+            .orbit-ring:nth-child(1) {
+                transform: scale(1.3) !important;
+                animation: none !important;
+            }
         }
 
         /* Gallery Section - Immersive Visual Journey */
