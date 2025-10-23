@@ -2517,10 +2517,39 @@
             }
         }
 
-        /* Touch Device Support */
-        @media (hover: none) {
-            .workflow-card:active .card-3d-wrapper {
-                transform: rotateY(180deg);
+        /* Touch Device Support - Simple toggle approach */
+        @media (max-width: 1024px) {
+            .workflow-card {
+                cursor: pointer !important;
+            }
+
+            .workflow-card:hover .card-3d-wrapper {
+                transform: none !important; /* Disable hover flip */
+            }
+
+            /* When card is flipped via JS, show back and hide front */
+            .workflow-card.flipped .card-front {
+                display: none !important;
+            }
+
+            .workflow-card.flipped .card-back {
+                display: flex !important;
+                position: relative !important;
+                transform: none !important;
+            }
+
+            /* Default state - show front, hide back */
+            .workflow-card:not(.flipped) .card-front {
+                position: relative !important;
+                display: flex !important;
+            }
+
+            .workflow-card:not(.flipped) .card-back {
+                display: none !important;
+            }
+
+            .flip-indicator {
+                cursor: pointer !important;
             }
         }
 
@@ -5111,46 +5140,53 @@
 
             .workflow-card {
                 height: auto !important;
+                min-height: 450px;
                 max-width: 500px;
                 margin: 0 auto;
-                perspective: none;
+                cursor: pointer;
             }
 
-            /* Disable 3D flip on tablets - show only front */
+            /* Reset transforms for simple toggle */
             .card-3d-wrapper {
-                transform: none !important;
                 height: auto !important;
+                transform: none !important;
             }
 
             .card-3d {
                 height: auto !important;
             }
 
-            .workflow-card:hover .card-3d-wrapper {
-                transform: none !important;
-            }
-
+            /* Card front styles */
             .card-front {
                 position: relative !important;
                 width: 100% !important;
                 height: auto !important;
+                min-height: 450px;
                 padding: 40px;
-                min-height: 420px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
             }
 
-            /* Hide the back of cards on tablets */
+            /* Card back styles */
             .card-back {
-                display: none !important;
+                position: relative !important;
+                width: 100% !important;
+                height: auto !important;
+                min-height: 450px;
+                padding: 40px;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transform: none !important;
             }
 
-            /* Keep flip indicator visible but style it as non-interactive */
+            /* Keep flip indicator visible and clickable */
             .flip-indicator {
                 font-size: 12px;
-                cursor: default;
+                cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -5158,7 +5194,7 @@
             }
 
             .workflow-card:hover .flip-indicator::after {
-                transform: translateY(-50%); /* Don't move on hover since no flip */
+                transform: translateY(-50%); /* Don't move on hover since click-to-flip */
             }
 
             /* Icon wrapper adjustments */
@@ -5205,7 +5241,7 @@
             }
 
             .card-back h3 {
-                font-size: 22px;
+                font-size: 20px;  /* Match front card h3 */
                 margin-bottom: 20px;
             }
 
@@ -5464,39 +5500,20 @@
 
             .workflow-card {
                 height: auto !important;
+                min-height: 420px;
                 max-width: 450px;
                 margin: 0 auto;
-                perspective: none;
             }
 
-            .card-3d-wrapper {
-                transform: none !important;
-                height: auto !important;
-            }
-
-            .card-3d {
-                height: auto !important;
-            }
-
-            .workflow-card:hover .card-3d-wrapper {
-                transform: none !important;
-            }
-
-            .card-front {
-                position: relative !important;
-                width: 100% !important;
-                height: auto !important;
-                padding: 35px;
-                min-height: 400px;
-            }
-
+            .card-front,
             .card-back {
-                display: none !important;
+                min-height: 420px;
+                padding: 35px;
             }
 
             .flip-indicator {
                 font-size: 11px;
-                cursor: default;
+                cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -5534,11 +5551,11 @@
             }
 
             .card-back h3 {
-                font-size: 21px;
+                font-size: 20px;  /* Match front card h3 */
             }
 
             .card-back p {
-                font-size: 13px;
+                font-size: 14px;  /* Match front card text */
             }
 
         }
@@ -5786,34 +5803,15 @@
 
             .workflow-card {
                 height: auto !important;
+                min-height: 400px;
                 max-width: 400px;
                 margin: 0 auto;
-                perspective: none;
             }
 
-            .card-3d-wrapper {
-                transform: none !important;
-                height: auto !important;
-            }
-
-            .card-3d {
-                height: auto !important;
-            }
-
-            .workflow-card:hover .card-3d-wrapper {
-                transform: none !important;
-            }
-
-            .card-front {
-                position: relative !important;
-                width: 100% !important;
-                height: auto !important;
-                padding: 30px;
-                min-height: 380px;
-            }
-
+            .card-front,
             .card-back {
-                display: none !important;
+                min-height: 400px;
+                padding: 30px;
             }
 
             .card-icon-wrapper {
@@ -5863,7 +5861,7 @@
             }
 
             .card-back p {
-                font-size: 13px;
+                font-size: 14px;  /* Match front card text */
                 line-height: 1.5;
             }
         }
@@ -6124,33 +6122,14 @@
 
             .workflow-card {
                 height: auto !important;
+                min-height: 380px;
                 max-width: 100%;
-                perspective: none;
             }
 
-            .card-3d-wrapper {
-                transform: none !important;
-                height: auto !important;
-            }
-
-            .card-3d {
-                height: auto !important;
-            }
-
-            .workflow-card:hover .card-3d-wrapper {
-                transform: none !important;
-            }
-
-            .card-front {
-                position: relative !important;
-                width: 100% !important;
-                height: auto !important;
-                padding: 25px;
-                min-height: 360px;
-            }
-
+            .card-front,
             .card-back {
-                display: none !important;
+                min-height: 380px;
+                padding: 25px;
             }
 
             .card-icon-wrapper {
@@ -6171,12 +6150,12 @@
             }
 
             .card-front h3 {
-                font-size: 19px;
+                font-size: 20px;  /* Consistent with other sections */
                 margin-bottom: 10px;
             }
 
             .card-preview p {
-                font-size: 12px;
+                font-size: 14px;  /* Consistent with other sections */
             }
 
             .flip-indicator {
@@ -6193,12 +6172,12 @@
             }
 
             .card-back h3 {
-                font-size: 19px;
+                font-size: 20px;  /* Match front card h3 */
                 margin-bottom: 15px;
             }
 
             .card-back p {
-                font-size: 12px;
+                font-size: 14px;  /* Match front card text */
                 margin-bottom: 12px;
             }
 
@@ -6485,33 +6464,15 @@
 
             .workflow-card {
                 height: auto !important;
+                min-height: 360px;
                 max-width: 100%;
-                perspective: none;
             }
 
-            .card-3d-wrapper {
-                transform: none !important;
-                height: auto !important;
-            }
-
-            .card-3d {
-                height: auto !important;
-            }
-
-            .workflow-card:hover .card-3d-wrapper {
-                transform: none !important;
-            }
-
-            .card-front {
-                position: relative !important;
-                width: 100% !important;
-                height: auto !important;
-                padding: 22px;
-                min-height: 340px;
-            }
-
+            .card-front,
             .card-back {
-                display: none !important;
+                min-height: 360px;
+                padding: 22px;
+                border-radius: 18px;
             }
 
             .card-icon-wrapper {
@@ -6534,12 +6495,12 @@
             }
 
             .card-front h3 {
-                font-size: 18px;
+                font-size: 20px;  /* Match bento card h3 */
                 margin-bottom: 8px;
             }
 
             .card-preview p {
-                font-size: 12px;
+                font-size: 14px;  /* Match bento card p */
                 line-height: 1.4;
             }
 
@@ -6557,11 +6518,11 @@
             }
 
             .card-back h3 {
-                font-size: 18px;
+                font-size: 20px;  /* Match front card h3 */
             }
 
             .card-back p {
-                font-size: 12px;
+                font-size: 14px;  /* Match front card text */
                 line-height: 1.4;
                 margin-bottom: 10px;
             }
@@ -6798,33 +6759,14 @@
 
             .workflow-card {
                 height: auto !important;
-                perspective: none;
+                min-height: 350px;
             }
 
-            .card-3d-wrapper {
-                transform: none !important;
-                height: auto !important;
-            }
-
-            .card-3d {
-                height: auto !important;
-            }
-
-            .workflow-card:hover .card-3d-wrapper {
-                transform: none !important;
-            }
-
-            .card-front {
-                position: relative !important;
-                width: 100% !important;
-                height: auto !important;
-                padding: 20px;
-                min-height: 320px;
-                border-radius: 18px;
-            }
-
+            .card-front,
             .card-back {
-                display: none !important;
+                min-height: 350px;
+                padding: 20px;
+                border-radius: 18px;
             }
 
             .card-icon-wrapper {
@@ -6847,12 +6789,12 @@
             }
 
             .card-front h3 {
-                font-size: 17px;
+                font-size: 20px;  /* Match bento card h3 at this size */
                 margin-bottom: 8px;
             }
 
             .card-preview p {
-                font-size: 11px;
+                font-size: 14px;  /* Match bento card p at this size */
                 line-height: 1.3;
             }
 
@@ -6871,12 +6813,12 @@
             }
 
             .card-back h3 {
-                font-size: 17px;
+                font-size: 20px;  /* Match front card h3 */
                 margin-bottom: 12px;
             }
 
             .card-back p {
-                font-size: 11px;
+                font-size: 14px;  /* Match front card text */
                 line-height: 1.4;
                 margin-bottom: 8px;
             }
@@ -8701,6 +8643,31 @@
                 }
             })();
         })();
+
+        // Handle card flip on click for touch devices
+        document.addEventListener('DOMContentLoaded', function() {
+            const workflowCards = document.querySelectorAll('.workflow-card');
+
+            // Check if we're on a touch device or small screen
+            function isTouchDevice() {
+                return window.matchMedia('(max-width: 1024px)').matches ||
+                       ('ontouchstart' in window) ||
+                       (navigator.maxTouchPoints > 0);
+            }
+
+            workflowCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Only handle clicks on touch devices or small screens
+                    if (isTouchDevice()) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Toggle the flipped class
+                        this.classList.toggle('flipped');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
