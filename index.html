@@ -2320,11 +2320,13 @@
             content: '→';
             position: absolute;
             right: 0;
+            top: 50%;
+            transform: translateY(-50%);
             transition: transform 0.3s ease;
         }
 
         .workflow-card:hover .flip-indicator::after {
-            transform: translateX(5px);
+            transform: translateX(5px) translateY(-50%);
         }
 
         /* Card Back Content */
@@ -5145,9 +5147,18 @@
                 display: none !important;
             }
 
-            /* Hide flip indicator since we can't flip */
+            /* Keep flip indicator visible but style it as non-interactive */
             .flip-indicator {
-                display: none;
+                font-size: 12px;
+                cursor: default;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: auto;
+            }
+
+            .workflow-card:hover .flip-indicator::after {
+                transform: translateY(-50%); /* Don't move on hover since no flip */
             }
 
             /* Icon wrapper adjustments */
@@ -5186,11 +5197,6 @@
             .card-preview p {
                 font-size: 14px;
                 line-height: 1.5;
-            }
-
-            .flip-indicator {
-                font-size: 12px;
-                margin-top: auto;
             }
 
             /* Ensure back content fits properly */
@@ -5489,7 +5495,16 @@
             }
 
             .flip-indicator {
-                display: none;
+                font-size: 11px;
+                cursor: default;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: auto;
+            }
+
+            .workflow-card:hover .flip-indicator::after {
+                transform: translateY(-50%);
             }
 
             .card-icon-wrapper {
@@ -5832,6 +5847,15 @@
 
             .flip-indicator {
                 font-size: 11px;
+                cursor: default;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: auto;
+            }
+
+            .workflow-card:hover .flip-indicator::after {
+                transform: translateY(-50%);
             }
 
             .card-back h3 {
@@ -6153,6 +6177,19 @@
 
             .card-preview p {
                 font-size: 12px;
+            }
+
+            .flip-indicator {
+                font-size: 10px;
+                cursor: default;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: auto;
+            }
+
+            .workflow-card:hover .flip-indicator::after {
+                transform: translateY(-50%);
             }
 
             .card-back h3 {
@@ -6508,6 +6545,15 @@
 
             .flip-indicator {
                 font-size: 10px;
+                cursor: default;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: auto;
+            }
+
+            .workflow-card:hover .flip-indicator::after {
+                transform: translateY(-50%);
             }
 
             .card-back h3 {
@@ -6813,6 +6859,15 @@
             .flip-indicator {
                 font-size: 9px;
                 padding: 6px 12px;
+                cursor: default;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: auto;
+            }
+
+            .workflow-card:hover .flip-indicator::after {
+                transform: translateY(-50%);
             }
 
             .card-back h3 {
