@@ -373,6 +373,7 @@
         .nav-links.mobile-active a:nth-child(4) { animation-delay: 0.2s; }
         .nav-links.mobile-active a:nth-child(5) { animation-delay: 0.25s; }
         .nav-links.mobile-active a:nth-child(6) { animation-delay: 0.3s; }
+        .nav-links.mobile-active a:nth-child(7) { animation-delay: 0.35s; }
 
         @keyframes linkSlideIn {
             to {
@@ -4164,6 +4165,263 @@
             }
         }
         
+        /* FAQ Section */
+        .faq-section {
+            background: linear-gradient(180deg, #0a1410 0%, #000000 100%);
+            position: relative;
+            padding: 120px 60px;
+            overflow: hidden;
+        }
+
+        /* FAQ Items fade in animation */
+        @keyframes faqFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-item {
+            animation: faqFadeIn 0.6s ease forwards;
+            animation-fill-mode: both;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+        .faq-item:nth-child(6) { animation-delay: 0.6s; }
+        .faq-item:nth-child(7) { animation-delay: 0.7s; }
+        .faq-item:nth-child(8) { animation-delay: 0.8s; }
+        .faq-item:nth-child(9) { animation-delay: 0.9s; }
+        .faq-item:nth-child(10) { animation-delay: 1.0s; }
+        .faq-item:nth-child(11) { animation-delay: 1.1s; }
+
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.5;
+        }
+
+        .faq-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .faq-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(74, 222, 128, 0.05),
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .faq-item:hover::before {
+            opacity: 1;
+        }
+
+        .faq-item.active {
+            background: rgba(74, 222, 128, 0.03);
+            border-color: rgba(74, 222, 128, 0.3);
+            box-shadow: 0 10px 40px rgba(74, 222, 128, 0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 30px 35px;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-question span {
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .faq-icon {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faq-icon svg {
+            position: absolute;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-icon .plus {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .faq-icon .minus {
+            opacity: 0;
+            transform: rotate(-90deg);
+        }
+
+        .faq-item.active .faq-icon .plus {
+            opacity: 0;
+            transform: rotate(90deg);
+        }
+
+        .faq-item.active .faq-icon .minus {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer p {
+            padding: 0 35px 30px 35px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-answer p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+
+        /* FAQ Responsive Styles */
+        @media (max-width: 1280px) {
+            .faq-section {
+                padding: 100px 50px;
+            }
+
+            .faq-section .section-header h2 {
+                font-size: clamp(2rem, 4.5vw, 3.5rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 70px 35px;
+            }
+
+            .faq-section .section-header h2 {
+                font-size: clamp(1.8rem, 4vw, 2.5rem);
+            }
+
+            .faq-grid {
+                gap: 15px;
+            }
+
+            .faq-item {
+                border-radius: 15px;
+            }
+
+            .faq-question {
+                padding: 25px;
+                font-size: 16px;
+            }
+
+            .faq-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .faq-answer p {
+                padding: 0 25px 25px 25px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .faq-section {
+                padding: 50px 20px;
+            }
+
+            .faq-section .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .faq-section .section-label {
+                font-size: 11px;
+                padding: 6px 16px;
+            }
+
+            .faq-grid {
+                gap: 12px;
+            }
+
+            .faq-question {
+                padding: 20px;
+                font-size: 15px;
+                gap: 15px;
+            }
+
+            .faq-answer p {
+                padding: 0 20px 20px 20px;
+                font-size: 14px;
+                line-height: 1.7;
+            }
+        }
+
         /* Footer */
         footer {
             padding: 80px 60px 40px;
@@ -7945,6 +8203,215 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">FAQ</span>
+                <h2>Your Questions, Answered</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Do I get to approve the visuals before being posted?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, you retain full creative control with key check-ins for approval throughout the production process.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How much input do I have in the multimedia creation process?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The creative process is deeply collaborative from start to finish. We begin by working with you to identify which scenes deserve visuals and gathering your vision for character appearances, settings, and pivotal moments. Depending on how involved you want to be, you could even provide creative briefs and reference materials, to help us understand your vision more clearly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What if I don't like something that's been created?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Capturing your vision is our top priority. If something isn't right, we'll revise it until it matches what you imagined.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Who owns the rights to the multimedia content created?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Think of it like a Netflix adaptation: if Netflix turns your book into a TV series, you still own your original story and characters, but Netflix owns the specific show they produced. You couldn't take their filmed episodes to another platform, but you still own your underlying book and could license it elsewhere.</p>
+                        <p>Similarly, Mythic Novel retains ownership of all multimedia content we create (videos, images, character art, maps, etc.). Since we invest our resources to produce this content at no upfront cost to you, it remains our intellectual property, so we need it to stay on our platform. You always retain full ownership of your original story, text, and characters—we're simply creating visual interpretations of your work.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Can I use the multimedia content for my own marketing?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! We encourage you to share multimedia content on your social media, website, and other promotional channels. We'll provide you with a selection of downloadable assets like key character art, compelling scene visuals, and video teasers, all specifically optimized for sharing across different platforms.</p>
+                        <p>While not every single visual will be available for download (to preserve the full experience for readers on our platform), you'll have plenty of stunning content to generate excitement and drive readers to your novel on Mythic Novel. The only requirement is that they're used for promotional purposes that benefit both your novel and the Mythic Novel platform.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What happens to the multimedia content if I leave the platform?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>If you choose to leave Mythic Novel, your novel and all associated multimedia content will be taken down from the platform. You of course retain full rights to your original story and text, but the visual enhancements we created (videos, images, character art, maps) remain our property and cannot be used outside of Mythic Novel.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Is this an exclusive arrangement?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No, you're free to sell your original novel anywhere you'd like including Amazon, your website, or other platforms with no restrictions. Choosing to have your novel adapted on Mythic Novel doesn't limit where else you can publish or sell your text-only version.</p>
+                        <p>The multimedia-enhanced version of your novel (with videos, images, and interactive elements) will be exclusive to Mythic Novel, but your original text can be available everywhere. Think of it as having two versions of your work: your traditional novel that you can sell anywhere, and a special multimedia edition that readers can only experience on our platform.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What is the financial model?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Readers pay $12/month for unlimited access to all novels on our platform. Authors earn through our transparent revenue-share model with no upfront costs.</p>
+                        <p>We offer competitive revenue sharing that rewards both organic discovery and authors who bring their own readership. Our Direct Author Pool system ensures your earnings are based on actual reader engagement. When a reader pays their subscription, their payment only goes to the authors they actually read that month, not spread thin across a diluted platform-wide pool. You earn directly from your actual readers.</p>
+                        <p>Authors who bring readers to the platform through their invite links earn additional lifetime commissions on those readers.</p>
+                        <p>Note: Detailed compensation structure will be provided upon acceptance into the program.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Can my fans subscribe directly to me instead of the site-wide subscription?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Readers subscribe to the full Mythic Novel platform, but your dedicated fans directly impact your earnings. The more exclusively a reader engages with your work, the larger your share of their subscription becomes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>When and how do I get paid?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You're paid monthly, with payments processed around the 10th of each month for the previous month's earnings.</p>
+                        <p>Payments are sent directly to your bank account through our secure payment partner, Stripe. When you first join Mythic Novel, you'll complete a quick setup to connect your bank account—it takes just a few minutes. Stripe handles all tax documentation automatically, including 1099s for US authors.</p>
+                        <p>We maintain a minimum payout threshold to ensure transaction fees don't eat into smaller payments. Details will be provided upon acceptance.</p>
+                        <p>You'll be able to track your earnings and payment history through your author dashboard, so you always know exactly what you've earned and when to expect payment.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Can I see analytics on my readership and earnings?</span>
+                        <div class="faq-icon">
+                            <svg class="plus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <svg class="minus" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,13H5V11H19V13Z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, you'll have access to a comprehensive analytics dashboard that shows exactly how readers are engaging with your work. This includes metrics like total reads, reading completion rates, which chapters readers love most, and where they typically stop reading—all updated in real-time.</p>
+                        <p>For earnings, you'll see your estimated monthly revenue, which becomes final after each month ends (once we calculate the Direct Author Pool distribution based on all reader activity). You'll also have access to your complete payment history and can track which novels are generating the most engagement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-glow"></div>
@@ -8339,6 +8806,75 @@
         });
 
         // Removed duplicate mobile menu creation - already handled by HTML/CSS
+
+        // FAQ Accordion Functionality
+        (function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach((question, index) => {
+                question.addEventListener('click', () => {
+                    const faqItem = faqItems[index];
+                    const isActive = faqItem.classList.contains('active');
+
+                    // Close all other items
+                    faqItems.forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('active');
+                            item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        }
+                    });
+
+                    // Toggle current item
+                    if (isActive) {
+                        faqItem.classList.remove('active');
+                        question.setAttribute('aria-expanded', 'false');
+                    } else {
+                        faqItem.classList.add('active');
+                        question.setAttribute('aria-expanded', 'true');
+
+                        // Smooth scroll to bring item into view if needed
+                        setTimeout(() => {
+                            const rect = faqItem.getBoundingClientRect();
+                            const viewportHeight = window.innerHeight;
+                            if (rect.bottom > viewportHeight || rect.top < 0) {
+                                faqItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }
+                        }, 300);
+                    }
+                });
+
+                // Add hover effect for mouse position tracking
+                const faqItem = faqItems[index];
+                faqItem.addEventListener('mousemove', (e) => {
+                    const rect = faqItem.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+                    faqItem.style.setProperty('--mouse-x', `${x}%`);
+                    faqItem.style.setProperty('--mouse-y', `${y}%`);
+                });
+            });
+
+            // Keyboard accessibility
+            faqQuestions.forEach(question => {
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        question.click();
+                    }
+                });
+            });
+
+            // Optional: Open first FAQ by default
+            // Uncomment the following lines if you want the first FAQ to be open initially
+            /*
+            if (faqItems.length > 0) {
+                faqItems[0].classList.add('active');
+                faqQuestions[0].setAttribute('aria-expanded', 'true');
+            }
+            */
+        })();
 
         // Gallery Functionality
         (function() {
