@@ -831,6 +831,17 @@
             50% { box-shadow: 0 0 40px rgba(45, 90, 39, 0.8); }
         }
 
+        /* Audience Toggle in CTA Section */
+        .audience-toggle-cta-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .audience-toggle-cta-wrapper .audience-toggle {
+            margin-bottom: 0;
+        }
+
         .hero h1 {
             font-size: clamp(2.5rem, 7vw, 5rem);
             font-weight: 900;
@@ -8378,6 +8389,18 @@
     <section id="cta" class="final-cta reveal">
         <div class="particles-section" id="particles-cta"></div>
         <div class="container" style="position: relative; z-index: 2;">
+            <!-- Audience Toggle in CTA Section -->
+            <div class="audience-toggle-cta-wrapper">
+                <div class="audience-toggle" id="audienceToggleCTA">
+                    <div class="audience-toggle-slider"></div>
+                    <a href="#" class="audience-option author active" data-page="author">
+                        For Authors
+                    </a>
+                    <a href="/reader" class="audience-option reader" data-page="reader">
+                        For Readers
+                    </a>
+                </div>
+            </div>
             <h2>Ready to Shape the<br>Future of Storytelling?</h2>
             <p>The next generation of immersive reading is here, and we're building it with a select group of founding authors. Request an invitation while you can!</p>
             <div class="final-cta-buttons">
@@ -9426,6 +9449,7 @@
         });
         // Audience Toggle Handler
         document.addEventListener('DOMContentLoaded', function() {
+            // Handle main hero toggle
             const toggle = document.getElementById('audienceToggle');
             if (toggle) {
                 // Remove initial-load class after first animation
@@ -9439,7 +9463,19 @@
                     authorBtn.addEventListener('click', function(e) {
                         e.preventDefault();
                         // Already on author page, no action needed
-                        // Could add a subtle bounce animation here if desired
+                    });
+                }
+            }
+
+            // Handle CTA section toggle
+            const ctaToggle = document.getElementById('audienceToggleCTA');
+            if (ctaToggle) {
+                // Handle author button click (current page)
+                const authorBtn = ctaToggle.querySelector('.author');
+                if (authorBtn) {
+                    authorBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Already on author page, no action needed
                     });
                 }
             }
