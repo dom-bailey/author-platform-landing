@@ -855,11 +855,10 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: heroTitleReveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards,
-                       gradientShift 3s ease infinite 1.8s;
-            opacity: 0;
-            transform: scale(0.8) translateY(20px);
-            filter: blur(10px);
+            /* Removed animations to focus attention on toggle */
+            opacity: 1;
+            transform: none;
+            filter: none;
         }
 
         @keyframes heroTitleReveal {
