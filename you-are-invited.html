@@ -1099,7 +1099,7 @@
             
 
             <div class="form-actions">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='/author'">Cancel</button>
             </div>
 
             <div id="formMessage"></div>
@@ -1204,7 +1204,7 @@
 
                     // Optional: Redirect after a delay
                     setTimeout(() => {
-                        window.location.href = '/';
+                        window.location.href = '/author';
                     }, 5000);
                 } else {
                     throw new Error('Submission failed');
@@ -1458,7 +1458,7 @@
 
                 // Redirect after delay
                 setTimeout(() => {
-                    window.location.href = '/';
+                    window.location.href = '/author';
                 }, 5000);
                 return; // Don't open LOI or call SignWell API
             }
@@ -1556,7 +1556,7 @@
 
                                         // Redirect after 10 seconds
                                         setTimeout(() => {
-                                            window.location.href = '/';
+                                            window.location.href = '/author';
                                         }, 10000);
                                     } else {
                                         throw new Error('Submission failed');

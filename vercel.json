@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/reader",
-      "destination": "/reader.html"
+      "source": "/author",
+      "destination": "/author.html"
     },
     {
       "source": "/request-invitation",

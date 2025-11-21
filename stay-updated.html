@@ -550,7 +550,7 @@
             </div>
 
             <div class="form-actions">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='/author'">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="submitBtn">Stay Updated</button>
             </div>
             <div id="submitValidationMessage"></div>
@@ -644,7 +644,7 @@
                 formMessage.className = 'success';
                 form.reset();
                 setTimeout(() => {
-                    window.location.href = '/';
+                    window.location.href = '/author';
                 }, 5000);
                 return; // Don't actually submit
             }
@@ -684,7 +684,7 @@
 
                     // Redirect after a delay
                     setTimeout(() => {
-                        window.location.href = '/';
+                        window.location.href = '/author';
                     }, 5000);
                 } else {
                     throw new Error('Submission failed');
